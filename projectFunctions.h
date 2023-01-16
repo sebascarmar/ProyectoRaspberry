@@ -2,7 +2,7 @@
 #define PROJECTFUNCTIONS_H
 
 #include <stdio.h>
-#include <termios.h>
+#include <termios.h> //controlContra; seteoModoNOCanonico
 
 #define FD_STDIN 0
 #define LENGTH_PSSW 5
@@ -14,7 +14,14 @@
  */
 int controlDeContraseña( void );
 
+/*--------------------------------------------------------------------------------------------------*/ 
 
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn );
 
 
 

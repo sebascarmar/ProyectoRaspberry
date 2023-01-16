@@ -1,6 +1,8 @@
 #ifndef PROJECTFUNCTIONS_H
 #define PROJECTFUNCTIONS_H
 
+#include <stdio.h>
+#include <termios.h>
 
 #define FD_STDIN 0
 #define LENGTH_PSSW 5

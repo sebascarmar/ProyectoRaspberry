@@ -12,6 +12,8 @@
 #include <fcntl.h>
 #include <string.h>
 
+#include "projectFunctions.h"
+
 #define FD_STDIN 0
 
 int main( int argc, char *argv[] )
@@ -53,6 +55,13 @@ int main( int argc, char *argv[] )
 
   printf("Llega bien\n");
 
+/*****************************Control de acceso************************************/
+  if( controlDeContraseña == 1)
+    printf("\n Bienvenido al sistema\n");
+  else{
+    printf("\n Contraseña incorrecta\n");
+    exit(EXIT_FAILURE);
+  }
 ///**************Inicia lectura y escritura mediante el puerto serie******************/
 //  printf(" --------------------------------------\n");
 //  printf(" - Com. serie (termina al recibir '!')-\n");
@@ -79,6 +88,10 @@ int main( int argc, char *argv[] )
 
 /*************************Cierre del puerto serie************************************/
   serialClose( puertoSerial );
+
+/****************************Seteo del modo canónico*********************************/
+  tcsetattr(FD_STDIN, TCSANOW, &t_old); // Actualiza los atributos del teclado 
+                                        //con los valores originales.
 
   return 0;
 }

@@ -1,9 +1,20 @@
-
 #include "projectFunctions.h"
+
+
+
+void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn )
+{
+  tcgetattr( FD_STDIN, t_oldStdIn );          // Lee atributos por defecto del teclado.
+  *t_newStdIn = *t_oldStdIn;                  // Guarda los atributos originales.
+  t_newStdIn->c_lflag &= ~(ECHO | ICANON);    // Anula entrada canónica y eco.
+  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
+}
+
+/*--------------------------------------------------------------------------------------------------*/ 
 
 int controlDeContraseña( void )
 {
-  char contra[LENGTH_PSSW+1] = {'8','3','3','8','A','\0'};  // Contraseña de LENGTH_PSSW carcateres (más el caracter NULL).
+  char contra[LENGTH_PSSW+1] = {'t','d','2','2','2','\0'};  // Contraseña de LENGTH_PSSW carcateres (más el caracter NULL).
   char password[LENGTH_PSSW+1] = {'\0'};                    // Buffer para almacenar la contraseña que se ingresa.
   char tecla;                                               // Variable que almacena cada caracter que se ingresa.
   int i, asteriscosImpresos, contraCorrecta;     
@@ -16,7 +27,7 @@ int controlDeContraseña( void )
     asteriscosImpresos = 0; // Cuenta los ast. que se imprimen, para poder borrar todos si se quiere.
     contraCorrecta = 0;     // Al recorrer 'password' y comparar con 'contra', si vale LENGTH_PSSW entncs es válida la passwd ingresada.
 
-    printf(" Ingrese su password de 5 dígitos: ");
+    printf(" Ingrese la contraseña:");
     while ( tecla!=10 )    // Ingresar hasta oprimir enter. Parte de la simulación del modo canónico.
     {
       tecla = getchar();
@@ -56,7 +67,7 @@ int controlDeContraseña( void )
     if( contraCorrecta == 5 ){
       numIntentos = 3; 
     }else
-      printf("\n Contraseña incorrecta\n");
+      printf("\n\t\t\t CONTRASEÑA INVÁLIDA\n");
     
   } // Fin del for.
 
@@ -66,3 +77,6 @@ int controlDeContraseña( void )
   else
     return 0;
 }
+
+/*--------------------------------------------------------------------------------------------------*/ 
+

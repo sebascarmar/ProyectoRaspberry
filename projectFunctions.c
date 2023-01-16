@@ -1,4 +1,5 @@
 
+#include "projectFunctions.h"
 
 int controlDeContraseña( void )
 {

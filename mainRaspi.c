@@ -57,7 +57,7 @@ int main( int argc, char *argv[] )
   printf("Llega bien\n");
 
 /*****************************Control de acceso************************************/
-  if( controlDeContraseña == 1)
+  if( controlDeContraseña() == 1)
     printf("\n Bienvenido al sistema\n");
   else{
     printf("\n Contraseña incorrecta\n");

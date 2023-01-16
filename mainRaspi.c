@@ -36,13 +36,13 @@ int main( int argc, char *argv[] )
     return 1;
   }
 
-/***********Seteo del modo NO canónico NO bloqueante en la ENTRADA ESTANDAR**********/
+/******************Seteo del modo NO canónico en la ENTRADA ESTANDAR*****************/
   tcgetattr( FD_STDIN, &t_old );        // Lee atributos del teclado.
   t_new = t_old;                        // Guarda los atributos originales.
 
   t_new.c_lflag &= ~(ECHO | ICANON);  // Anula entrada canónica y eco.
-        t_new.c_cc[VMIN] = 0;               // No espera que ingrese ningún caracter.
-  t_new.c_cc[VTIME] = 0;              // Tampoco espera ningún tiempo.
+  //t_new.c_cc[VMIN] = 0;               // No espera que ingrese ningún caracter.
+  //t_new.c_cc[VTIME] = 0;              // Tampoco espera ningún tiempo.
 
   tcsetattr( FD_STDIN,TCSANOW,&t_new ); // Setea los valores nuevos de la config.
 

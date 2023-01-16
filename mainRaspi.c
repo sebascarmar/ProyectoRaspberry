@@ -19,7 +19,7 @@
 int main( int argc, char *argv[] )
 {
   int puertoSerial;     // Almacena el descriptor de archivos del puerto serie.
-  char datoRecibido;    // Almacena lo recibido por el puerte serie (byte a byte),
+  //char datoRecibido;    // Almacena lo recibido por el puerte serie (byte a byte),
   //char avisaFin[] = "Comunicacion Finalizada";
 
   //struct termios t_old, t_oldUART, t_new, t_newUART; // Estructuras para atributos del teclado.

@@ -63,6 +63,17 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
+/****************************Mapeo de pines****************************************/
+  t_newStdIn.c_cc[VMIN] = 0;               // No espera que ingrese ningún caracter.
+  t_newStdIn.c_cc[VTIME] = 5;              // Espera 500ms por si ingresa un caracter.
+  tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
+
+  velocidadInicialSecuencias( );
+
+  t_newStdIn.c_cc[VMIN] = t_oldStdIn.c_cc[VMIN];               // No espera que ingrese ningún caracter.
+  t_newStdIn.c_cc[VTIME] = t_oldStdIn.c_cc[VTIME];              // Espera 500ms por si ingresa un caracter.
+  tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
+
 
 ///**************Inicia lectura y escritura mediante el puerto serie******************/
 //  printf(" --------------------------------------\n");

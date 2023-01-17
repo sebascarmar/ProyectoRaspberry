@@ -92,7 +92,7 @@ void velocidadInicialSecuencias( void )
     exit(EXIT_FAILURE);	
   }
 
-  while( tecla != 10 )
+  while( tecla[0] != 10 )
   {
     // Lectura del canal ADC0 (potenciómetro).
     wiringPiI2CReadReg8(fdModuloADC, A0); // Activa la conversión.

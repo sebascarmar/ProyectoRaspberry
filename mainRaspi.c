@@ -28,7 +28,8 @@ int main( int argc, char *argv[] )
 /**************************** Control de acceso ************************************/
   if( controlDeContraseña() == 1)
     printf("\n\n\t\t\t BIENVENIDO AL SISTEMA\n");
-  else{
+  else
+  {
     printf("\n\n\t\t\t NO SE HA PODIDO INGRESAR AL SISTEMA\n");
     tcsetattr(FD_STDIN, TCSANOW, &t_oldStdIn); // Actualiza los atributos del teclado 
                                                //con los valores originales.
@@ -41,15 +42,19 @@ int main( int argc, char *argv[] )
   if( fdPuertoSerial < 0 )
   {
     fprintf(stderr, "Error al abrir \\dev\\ttyS0: %s\n", strerror(errno));
-    return 1;
+    tcsetattr(FD_STDIN, TCSANOW, &t_oldStdIn); // Actualiza los atributos del teclado 
+                                               //con los valores originales.
+    exit(EXIT_FAILURE);
   }
 
 
 /****************************Mapeo de pines****************************************/
   if ( wiringPiSetup() == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.
   {
-    fprintf (stdout, "Error al inicializar wirinfPi: %s\n", strerror(errno));
-    return 1;
+    fprintf (stdout, "Error al inicializar wiringPi: %s\n", strerror(errno));
+    tcsetattr(FD_STDIN, TCSANOW, &t_oldStdIn); // Actualiza los atributos del teclado 
+                                               //con los valores originales.
+    exit(EXIT_FAILURE);
   }
 
 

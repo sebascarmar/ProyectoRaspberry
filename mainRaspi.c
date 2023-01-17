@@ -13,19 +13,21 @@
 #include <string.h>
 
 #include "projectFunctions.h"
+#include "EasyPIO.h"
 
 
 int main( int argc, char *argv[] )
 {
   int fdPuertoSerial;     // Almacena el descriptor de archivos del puerto serie.
   struct termios t_oldStdIn, t_newStdIn; // Estructuras para atributos del teclado.
+  int leds[8] = {23, 24, 25, 12, 16, 20, 21, 26}; // Arreglo que contiene los leds.
 
 
 /***************** Seteo del modo NO canónico en la ENTRADA ESTANDAR ****************/
   seteoModoNoCanonico( &t_oldStdIn, &t_newStdIn );
 
 
-/**************************** Control de acceso ************************************/
+/***************************** Control de acceso ************************************/
   if( controlDeContraseña() == 1)
     printf("\n\n\t\t\t BIENVENIDO AL SISTEMA\n");
   else
@@ -36,6 +38,11 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
+/****** Mapeo y configuración de pines según EasyPIO.h (manejo de GPIO ) ************/
+  pioInit();
+
+  for(int i=0 ; i < 8 ; i++)
+    pinModeEP( leds[i], OUTPUT );
 
 /***********************Apertura del puerto serie************************************/
   fdPuertoSerial = serialOpen("/dev/ttyS0", 9600);
@@ -46,7 +53,6 @@ int main( int argc, char *argv[] )
                                                //con los valores originales.
     exit(EXIT_FAILURE);
   }
-
 
 /****************************Mapeo de pines****************************************/
   if ( wiringPiSetup() == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.

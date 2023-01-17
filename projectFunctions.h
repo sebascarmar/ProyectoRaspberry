@@ -4,6 +4,22 @@
 #include <stdio.h>
 #include <termios.h> //controlContra; seteoModoNOCanonico
 
+#include <wiringPiI2C.h>
+#include <wiringPi.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <termios.h>
+#include <unistd.h>
+
+/*********Descriptor de entrada estándar y direcciones de registros*****************/
+#define FD_STDIN 0
+#define ADDRESS 0x48
+#define A0 ADDRESS+0
+#define A1 ADDRESS+1
+#define A2 ADDRESS+2
+#define A3 ADDRESS+3
+
+
 #define FD_STDIN 0
 #define LENGTH_PSSW 5
 
@@ -23,7 +39,13 @@ int controlDeContraseña( void );
  */
 void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn );
 
+/*--------------------------------------------------------------------------------------------------*/ 
 
-
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void velocidadInicialSecuencias( void )
 
 #endif

@@ -92,39 +92,40 @@ void velocidadInicialSecuencias( void )
     exit(EXIT_FAILURE);	
   }
 
+  dprintf(FD_STDOUT, "Velocidad inicial de la secuencia (min 1, max 10) :    ");
   while( tecla[0] != 10 )
   {
     // Lectura del canal ADC0 (potenciómetro).
     wiringPiI2CReadReg8(fdModuloADC, A0); // Activa la conversión.
     valorADC = wiringPiI2CReadReg8(fdModuloADC, A0);// Lectura del valor.
+    dprintf(FD_STDOUT, "\b\b  \b\b");
 
-    if( (valorADC / 10) <= 26 ) 
-      printf("Velocidad inicial de la secuencia (min 1, max 10) :  1");
-    else if( (valorADC / 10) > 26 && (valorADC / 10) <= 51 )
-      printf("Velocidad inicial de la secuencia (min 1, max 10) :  2");
-    else if( (valorADC / 10) > 51 && (valorADC / 10) <= 77 )
-      printf("Velocidad inicial de la secuencia (min 1, max 10) :  3");
-    else if( (valorADC / 10) > 77 && (valorADC / 10) <= 102 )
-      printf("Velocidad inicial de la secuencia (min 1, max 10) :  4");
-    else if( (valorADC / 10) > 102 && (valorADC / 10) <= 128 )
-      printf("Velocidad inicial de la secuencia (min 1, max 10) :  5");
-    else if( (valorADC / 10) > 128 && (valorADC / 10) <= 153 )
-      printf("Velocidad inicial de la secuencia (min 1, max 10) :  6");
-    else if( (valorADC / 10) > 153 && (valorADC / 10) <= 179 )
-      printf("Velocidad inicial de la secuencia (min 1, max 10) :  7");
-    else if( (valorADC / 10) > 179 && (valorADC / 10) <= 204 )
-      printf("Velocidad inicial de la secuencia (min 1, max 10) :  8");
-    else if( (valorADC / 10) > 204 && (valorADC / 10) <= 230 )
-      printf("Velocidad inicial de la secuencia (min 1, max 10) :  9");
+    if( valorADC  <= 26 ) 
+      dprintf(FD_STDOUT, " 1");
+    else if( valorADC  > 26 && (valorADC <= 51) )
+      dprintf(FD_STDOUT, " 2");
+    else if( valorADC  > 51 && (valorADC <= 77) )
+      dprintf(FD_STDOUT, " 3");
+    else if( valorADC  > 77 && (valorADC <= 102) )
+      dprintf(FD_STDOUT, " 4");
+    else if( valorADC  > 102 && (valorADC <= 128) )
+      dprintf(FD_STDOUT, " 5");
+    else if( valorADC  > 128 && (valorADC <= 153) )
+      dprintf(FD_STDOUT, " 6");
+    else if( valorADC  > 153 && (valorADC <= 179) )
+      dprintf(FD_STDOUT, " 7");
+    else if( valorADC  > 179 && (valorADC <= 204) )
+      dprintf(FD_STDOUT, " 8");
+    else if( valorADC  > 204 && (valorADC <= 230) )
+      dprintf(FD_STDOUT, " 9");
     else
-      printf("Velocidad inicial de la secuencia (min 1, max 10) : 10");
+      dprintf(FD_STDOUT, "10");
 
     // La función read() espera por 500ms. Esto sirve para que la que se
     //imprime en pantalla se pueda leer de forma prolija. Además, permite
     //salir del bucle.
     read( FD_STDIN, tecla, 1 ); // read() retorna la cantidad de
                                 //caracteres que lee.
-    printf("\b\b  \b\b");
   }
 
 

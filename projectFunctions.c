@@ -80,3 +80,53 @@ int controlDeContraseña( void )
 
 /*--------------------------------------------------------------------------------------------------*/ 
 
+void velocidadInicialSecuencias( void )
+{
+  char tecla[1] = {'\0'};         // Almacena lo leído por que lee read().
+  int fdModuloADC, valorADC;    // Declaracion de variables para acceder al ADC.
+
+  fdModuloADC = wiringPiI2CSetup(ADDRESS); // Inicializa el sistema I2C con el ID del dispos.
+  if( fdModuloADC <= -1 )
+  {
+    printf("Error al inicializar el systema I2C.\n");
+    exit(EXIT_FAILURE);	
+  }
+
+  while( tecla != 10 )
+  {
+    // Lectura del canal ADC0 (potenciómetro).
+    wiringPiI2CReadReg8(fdModuloADC, A0); // Activa la conversión.
+    valorADC = wiringPiI2CReadReg8(fdModuloADC, A0);// Lectura del valor.
+
+    if( (valorADC / 10) <= 26 ) 
+      printf("Velocidad inicial de la secuencia (min 1, max 10) :  1");
+    else if( (valorADC / 10) > 26 && (valorADC / 10) <= 51 )
+      printf("Velocidad inicial de la secuencia (min 1, max 10) :  2");
+    else if( (valorADC / 10) > 51 && (valorADC / 10) <= 77 )
+      printf("Velocidad inicial de la secuencia (min 1, max 10) :  3");
+    else if( (valorADC / 10) > 77 && (valorADC / 10) <= 102 )
+      printf("Velocidad inicial de la secuencia (min 1, max 10) :  4");
+    else if( (valorADC / 10) > 102 && (valorADC / 10) <= 128 )
+      printf("Velocidad inicial de la secuencia (min 1, max 10) :  5");
+    else if( (valorADC / 10) > 128 && (valorADC / 10) <= 153 )
+      printf("Velocidad inicial de la secuencia (min 1, max 10) :  6");
+    else if( (valorADC / 10) > 153 && (valorADC / 10) <= 179 )
+      printf("Velocidad inicial de la secuencia (min 1, max 10) :  7");
+    else if( (valorADC / 10) > 179 && (valorADC / 10) <= 204 )
+      printf("Velocidad inicial de la secuencia (min 1, max 10) :  8");
+    else if( (valorADC / 10) > 204 && (valorADC / 10) <= 230 )
+      printf("Velocidad inicial de la secuencia (min 1, max 10) :  9");
+    else
+      printf("Velocidad inicial de la secuencia (min 1, max 10) : 10");
+
+    // La función read() espera por 500ms. Esto sirve para que la que se
+    //imprime en pantalla se pueda leer de forma prolija. Además, permite
+    //salir del bucle.
+    read( FD_STDIN, tecla, 1 ); // read() retorna la cantidad de
+                                //caracteres que lee.
+    printf("\b\b  \b\b");
+  }
+
+
+
+}

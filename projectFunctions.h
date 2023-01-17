@@ -13,6 +13,7 @@
 
 /*********Descriptor de entrada estándar y direcciones de registros*****************/
 #define FD_STDIN 0
+#define FD_STDOUT 1
 #define ADDRESS 0x48
 #define A0 ADDRESS+0
 #define A1 ADDRESS+1

@@ -40,7 +40,7 @@ int main( int argc, char *argv[] )
 
 /****** Mapeo y configuración de pines según EasyPIO.h (manejo de GPIO ) ************/
   pioInit();
-
+  
   for(int i=0 ; i < 8 ; i++)
     pinModeEP( leds[i], OUTPUT );
 

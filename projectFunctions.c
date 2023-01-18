@@ -123,6 +123,7 @@ int velocidadInicialSecuencias( void )
       dprintf(FD_STDOUT, "%d", velocidad = 10);
 
     read( FD_STDIN, tecla, 1 ); // Se guarda el caracter ingresado en "tecla[0]".
+    retardo( 100000000 );
   }
 
   return velocidad;

@@ -122,11 +122,7 @@ int velocidadInicialSecuencias( void )
     else
       dprintf(FD_STDOUT, "%d", velocidad = 10);
 
-    // La función read() espera por 500ms. Esto sirve para que la que se
-    //imprime en pantalla se pueda leer de forma prolija. Además, permite
-    //salir del bucle.
-    read( FD_STDIN, tecla, 1 ); // read() retorna la cantidad de
-                                //caracteres que lee.
+    read( FD_STDIN, tecla, 1 ); // Se guarda el caracter ingresado en "tecla[0]".
   }
 
   return velocidad;

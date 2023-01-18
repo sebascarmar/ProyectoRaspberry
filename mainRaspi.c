@@ -3,7 +3,6 @@
 #include <errno.h>
 #include <wiringPi.h>
 #include <wiringSerial.h>
-#include <string.h>
 
 #include <stdio.h>
 #include <termios.h>
@@ -17,6 +16,7 @@
 
 #include <stdint.h>
 
+extern char seleccionMenuModoLocal( void );
 
 int main( int argc, char *argv[] )
 {

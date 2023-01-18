@@ -27,7 +27,7 @@ int controlDeContraseña( void )
     asteriscosImpresos = 0; // Cuenta los ast. que se imprimen, para poder borrar todos si se quiere.
     contraCorrecta = 0;     // Al recorrer 'password' y comparar con 'contra', si vale LENGTH_PSSW entncs es válida la passwd ingresada.
 
-    printf(" Ingrese la contraseña:");
+    printf("\n\t\t\t - Contraseña: ");
     while ( tecla!=10 )    // Ingresar hasta oprimir enter. Parte de la simulación del modo canónico.
     {
       tecla = getchar();
@@ -67,7 +67,7 @@ int controlDeContraseña( void )
     if( contraCorrecta == 5 ){
       numIntentos = 3; 
     }else
-      printf("\n\t\t\t CONTRASEÑA INVÁLIDA\n");
+      printf("\n\t\t\t Contraseña inválida\n");
     
   } // Fin del for.
 
@@ -93,7 +93,7 @@ int velocidadInicialSecuencias( void )
     exit(EXIT_FAILURE);	
   }
 
-  dprintf(FD_STDOUT, "Velocidad inicial de la secuencia (min 1, max 10) :    ");
+  dprintf(FD_STDOUT, "\n\t\t\t- Velocidad inicial de la secuencia (min 1, max 10) :  ");
   while( tecla[0] != 10 )
   {
     // Lectura del canal ADC0 (potenciómetro).

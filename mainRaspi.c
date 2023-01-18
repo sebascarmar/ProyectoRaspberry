@@ -27,7 +27,7 @@ int main( int argc, char *argv[] )
   char opcion = '\0';
 
 
-/***************** Seteo del modo NO canónico en la ENTRADA ESTANDAR ****************/
+/******************** Seteo del modo NO canónico en la ENTRADA ESTANDAR ********************/
   seteoModoNoCanonico( &t_oldStdIn, &t_newStdIn );
 
 

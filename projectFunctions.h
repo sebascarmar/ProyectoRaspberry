@@ -54,4 +54,14 @@ void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn
  */
 int velocidadInicialSecuencias( void );
 
+/*--------------------------------------------------------------------------------------------------*/ 
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void imprimeMenu( void );
+
+
 #endif

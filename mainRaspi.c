@@ -31,11 +31,15 @@ int main( int argc, char *argv[] )
 
 
 /***************************** Control de acceso ************************************/
+  printf("----------------------------------------------------------------------------------\n");
+  printf("\nPara continuar, por favor ingrese su contraseña\n");
   if( controlDeContraseña() == 1)
-    printf("\n\n\t\t\t BIENVENIDO AL SISTEMA\n");
-  else
   {
-    printf("\n\n\t\t\t NO SE HA PODIDO INGRESAR AL SISTEMA\n");
+    printf("\n\n\t\t\t ¡BIENVENIDO AL SISTEMA!\n\n");
+    printf("----------------------------------------------------------------------------------\n");
+  } else
+  {
+    printf("\n\t\t\t NO SE HA PODIDO INGRESAR AL SISTEMA\n\n");
     tcsetattr(FD_STDIN, TCSANOW, &t_oldStdIn); // Actualiza los atributos del teclado 
                                                //con los valores originales.
     exit(EXIT_FAILURE);
@@ -67,6 +71,8 @@ int main( int argc, char *argv[] )
   }
 
 /***************** Seteo de velocidad inicial de secuencias *************************/
+  printf("\nSeleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
+
   // Modo no bloqueante de la entrada estandar.
   t_newStdIn.c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
   t_newStdIn.c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
@@ -79,10 +85,12 @@ int main( int argc, char *argv[] )
   t_newStdIn.c_cc[VTIME] = t_oldStdIn.c_cc[VTIME]; // Setea valor por defecto.
   tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
 
-    printf("\n velocidad: %d \n", velSecuencias);
+  printf("\n\n\t\t\t VELOCIDAD ELEGIDA: %d\n\n", velSecuencias);
 
 /****************************** Menú principal ***************************************/
-
+  printf("##################################################################################\n");
+  printf("##                           MENÚ PRINCIPAL                                     ##\n");
+  printf("##################################################################################\n\n");
 
 
 

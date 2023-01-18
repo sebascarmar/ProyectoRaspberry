@@ -80,10 +80,11 @@ int controlDeContraseña( void )
 
 /*--------------------------------------------------------------------------------------------------*/ 
 
-void velocidadInicialSecuencias( void )
+int velocidadInicialSecuencias( void )
 {
   char tecla[1] = {'\0'};         // Almacena lo leído por que lee read().
   int fdModuloADC, valorADC;    // Declaracion de variables para acceder al ADC.
+  int velocidad;
 
   fdModuloADC = wiringPiI2CSetup(ADDRESS); // Inicializa el sistema I2C con el ID del dispos.
   if( fdModuloADC <= -1 )
@@ -128,6 +129,6 @@ void velocidadInicialSecuencias( void )
                                 //caracteres que lee.
   }
 
-
+  return velocidad;
 
 }

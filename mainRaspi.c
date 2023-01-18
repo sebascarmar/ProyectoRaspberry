@@ -66,16 +66,24 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
-/****************************Mapeo de pines****************************************/
-  t_newStdIn.c_cc[VMIN] = 0;               // No espera que ingrese ningún caracter.
-  t_newStdIn.c_cc[VTIME] = 5;              // Espera 500ms por si ingresa un caracter.
+/***************** Seteo de velocidad inicial de secuencias *************************/
+  // Modo no bloqueante de la entrada estandar.
+  t_newStdIn.c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
+  t_newStdIn.c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
   tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
 
-  velocidadInicialSecuencias( );
+  velSecuencias = velocidadInicialSecuencias( );
 
-  t_newStdIn.c_cc[VMIN] = t_oldStdIn.c_cc[VMIN];               // No espera que ingrese ningún caracter.
-  t_newStdIn.c_cc[VTIME] = t_oldStdIn.c_cc[VTIME];              // Espera 500ms por si ingresa un caracter.
+  // Modo por defecto de la entrada estandar.
+  t_newStdIn.c_cc[VMIN] = t_oldStdIn.c_cc[VMIN];   // Setea valor por defecto.
+  t_newStdIn.c_cc[VTIME] = t_oldStdIn.c_cc[VTIME]; // Setea valor por defecto.
   tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
+
+    printf("\n velocidad: %d \n", velSecuencias);
+
+/****************************** Menú principal ***************************************/
+
+
 
 
 ///**************Inicia lectura y escritura mediante el puerto serie******************/

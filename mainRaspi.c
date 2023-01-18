@@ -15,12 +15,15 @@
 #include "projectFunctions.h"
 #include "EasyPIO.h"
 
+#include <stdint.h>
+
 
 int main( int argc, char *argv[] )
 {
   int fdPuertoSerial;     // Almacena el descriptor de archivos del puerto serie.
   struct termios t_oldStdIn, t_newStdIn; // Estructuras para atributos del teclado.
   int leds[8] = {23, 24, 25, 12, 16, 20, 21, 26}; // Arreglo que contiene los leds.
+  int8_t velSecuencias = 1;
 
 
 /***************** Seteo del modo NO canónico en la ENTRADA ESTANDAR ****************/

@@ -57,7 +57,7 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
-/****************************Mapeo de pines****************************************/
+/**************************** Mapeo de pines ****************************************/
   if ( wiringPiSetup() == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.
   {
     fprintf (stdout, "Error al inicializar wiringPi: %s\n", strerror(errno));

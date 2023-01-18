@@ -5,11 +5,11 @@
 // R0: a
 
 retardo:
-  loop:
-    cmp R0, #0
-    beq salir
-    sub R0, R0, #1
-    b   loop
-
-  salir:
-    mov pc, lr
+    loop:
+        CMP R0, #0
+        BEQ salir
+        SUB R0, R0, #1
+        B   loop
+        
+    salir:
+      MOV PC, LR

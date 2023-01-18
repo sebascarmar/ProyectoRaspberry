@@ -12,21 +12,21 @@ seleccionMenuModoLocal:
     PUSH {LR}          // Apila reg. en el stack
       
     loop:
-        /**************** IMPRIME EN PANTALLA EL ENUNCIADO ********************/
+        /*--------------- IMPRIME EN PANTALLA EL ENUNCIADO -------------------*/
         MOV   R7, #4      // 4 es el código de la llamada a 'write' del sistema.
         MOV   R0, #1      // Descriptor de archivo de stdout (monitor).
         LDR   R1, =enunciado // Buffer de salida
         MOV   R2, #32     // Cantidad de char a escribir.
         SWI   0           // Llamada al sistema para arm 32-bit/EABI.
         
-        /*********** ESPERA POR EL INGRESO DE UNA OPCION **********************/
+        /*---------- ESPERA POR EL INGRESO DE UNA OPCION ---------------------*/
         MOV   R7, #3      // 3 es el código de la llamada a 'read' del sistema.
         MOV   R0, #0      // Descriptor de archivo de stdin (teclado).
         LDR   R1, =seleccion // Buffer de entrada.
         MOV   R2, #20     // Cantidad de char a leer.
         SWI   0           // Llamada al sistema para arm 32-bit/EABI.
         
-        /************************** SWITCH CASE *******************************/
+        /*------------------------- SWITCH CASE ------------------------------*/
         LDRB  R2, [R1]      // Compara el 1er char, que es el que importa.
         LDRB  R3, [R1, #1]  // Compara el 2do char, debe ser un enter.
        

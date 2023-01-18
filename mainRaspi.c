@@ -86,28 +86,6 @@ int main( int argc, char *argv[] )
 
 
 
-///**************Inicia lectura y escritura mediante el puerto serie******************/
-//  printf(" --------------------------------------\n");
-//  printf(" - Com. serie (termina al recibir '!')-\n");
-//  printf(" --------------------------------------\n");
-//  while( datoRecibido != '!' )
-//  {
-//    if( serialDataAvail(fdPuertoSerial) )             // Retorna el número de caracteres
-//    {                                               //disponible para leer.
-//      datoRecibido = serialGetchar( fdPuertoSerial ); // Retorna el siguiente caracter 
-//                                                    //disponible en el dispositivo serial.	
-//      printf ("%c", datoRecibido);                  // Imprime en pantalla el caracter.
-//                                                    //el puerto serie.
-//    }
-//  }
-//  delay(1); // Sin esto la PC no lee el 1er char de la cadena a enviar.
-//
-///************Envía cadena de aviso de finalización por puerto serie*****************/
-//  for( int i = 0 ; i <= strlen(avisaFin) ; i++ )
-//  {
-//      serialPutchar( fdPuertoSerial, avisaFin[i] );
-//  }
-//  printf("\n");
 
 
 /*************************Cierre del puerto serie************************************/

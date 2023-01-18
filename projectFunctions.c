@@ -1,6 +1,6 @@
 #include "projectFunctions.h"
 
-
+/*------------------------------------------------------------------------------------------*/
 
 void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn )
 {
@@ -10,7 +10,7 @@ void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn
   tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
 }
 
-/*--------------------------------------------------------------------------------------------------*/ 
+/*------------------------------------------------------------------------------------------*/
 
 int controlDeContraseña( void )
 {
@@ -19,7 +19,7 @@ int controlDeContraseña( void )
   char tecla;                                               // Variable que almacena cada caracter que se ingresa.
   int i, asteriscosImpresos, contraCorrecta;     
 
-  /**********************INGRESO DE CONTRASEÑA  Y PROCESAMIENTO DE DATOS****************************/
+  /*****************INGRESO DE CONTRASEÑA  Y PROCESAMIENTO DE DATOS************************/
   for(int numIntentos = 1 ; numIntentos <= 3; numIntentos++)
   {
     tecla = 0;              // Almacena cada caracter que se ingresa.
@@ -78,7 +78,7 @@ int controlDeContraseña( void )
     return 0;
 }
 
-/*--------------------------------------------------------------------------------------------------*/ 
+/*------------------------------------------------------------------------------------------*/
 
 int velocidadInicialSecuencias( void )
 {

@@ -129,3 +129,24 @@ int velocidadInicialSecuencias( void )
   return velocidad;
 
 }
+
+/*------------------------------------------------------------------------------------------*/
+
+void imprimeMenu( void )
+{
+  printf("=================================================================================\n"
+         "##                             MENÚ PRINCIPAL                                  ##\n"
+         "=================================================================================\n"
+         "\t\ta) Selección de modo local/remoto\n"
+         "\t\tb) Seteo de velocidad con el potenciómetro del ADC\n"
+         "\t\tc) Secuencia \"El Auto Fantástico\"\n"
+         "\t\td) Secuencia \"El Choque\"\n"
+         "\t\te) Secuencia \"La Apilada\"\n"
+         "\t\tf) Secuencia \"La Carrera\"\n"
+         "\t\tg) Secuencia \"Sin nombre aun\"\n"
+         "\t\th) Secuencia \"Sin nombre aun\"\n"
+         "\t\ti) Secuencia \"Sin nombre aun\"\n"
+         "\t\tj) Secuencia \"Sin nombre aun\"\n"
+         "\t\tk) Salir\n\n");
+
+}

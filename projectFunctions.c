@@ -102,25 +102,25 @@ int velocidadInicialSecuencias( void )
     dprintf(FD_STDOUT, "\b\b  \b\b");
 
     if( valorADC  <= 26 ) 
-      dprintf(FD_STDOUT, " 1");
-    else if( valorADC  > 26 && (valorADC <= 51) )
-      dprintf(FD_STDOUT, " 2");
-    else if( valorADC  > 51 && (valorADC <= 77) )
-      dprintf(FD_STDOUT, " 3");
-    else if( valorADC  > 77 && (valorADC <= 102) )
-      dprintf(FD_STDOUT, " 4");
-    else if( valorADC  > 102 && (valorADC <= 128) )
-      dprintf(FD_STDOUT, " 5");
-    else if( valorADC  > 128 && (valorADC <= 153) )
-      dprintf(FD_STDOUT, " 6");
-    else if( valorADC  > 153 && (valorADC <= 179) )
-      dprintf(FD_STDOUT, " 7");
-    else if( valorADC  > 179 && (valorADC <= 204) )
-      dprintf(FD_STDOUT, " 8");
-    else if( valorADC  > 204 && (valorADC <= 230) )
-      dprintf(FD_STDOUT, " 9");
+      dprintf(FD_STDOUT, " %d", velocidad = 1);
+    else if( (valorADC  > 26) && (valorADC <= 51) )
+      dprintf(FD_STDOUT, " %d", velocidad = 2);
+    else if( (valorADC  > 51) && (valorADC <= 77) )
+      dprintf(FD_STDOUT, " %d", velocidad = 3);
+    else if( (valorADC  > 77) && (valorADC <= 102) )
+      dprintf(FD_STDOUT, " %d", velocidad = 4);
+    else if( (valorADC  > 102) && (valorADC <= 128) )
+      dprintf(FD_STDOUT, " %d", velocidad = 5);
+    else if( (valorADC  > 128) && (valorADC <= 153) )
+      dprintf(FD_STDOUT, " %d", velocidad = 6);
+    else if( (valorADC  > 153) && (valorADC <= 179) )
+      dprintf(FD_STDOUT, " %d", velocidad = 7);
+    else if( (valorADC  > 179) && (valorADC <= 204) )
+      dprintf(FD_STDOUT, " %d", velocidad = 8);
+    else if( (valorADC  > 204) && (valorADC <= 230) )
+      dprintf(FD_STDOUT, " %d", velocidad = 9);
     else
-      dprintf(FD_STDOUT, "10");
+      dprintf(FD_STDOUT, "%d", velocidad = 10);
 
     // La función read() espera por 500ms. Esto sirve para que la que se
     //imprime en pantalla se pueda leer de forma prolija. Además, permite

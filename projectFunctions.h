@@ -24,6 +24,11 @@
 #define FD_STDIN 0
 #define LENGTH_PSSW 5
 
+
+extern void retardo(unsigned long int a);
+
+
+
 /* FUNCION:  controlDeContraseña
  * ACCION: realiza un control de acceso al programa.
  * PARAMETROS: ninguno.

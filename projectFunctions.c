@@ -86,7 +86,7 @@ int controlDeContraseña( void )
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-int velocidadInicialSecuencias( void )
+int velocidadSecuenciasConPote( void )
 {
   char tecla[1] = {'\0'};         // Almacena lo leído por read().
   int fdModuloADC, valorADC;      // Declaracion de variables para acceder al ADC.

@@ -24,6 +24,7 @@ int main( int argc, char *argv[] )
   struct termios t_oldStdIn, t_newStdIn; // Estructuras para atributos del teclado.
   int leds[8] = {23, 24, 25, 12, 16, 20, 21, 26}; // Arreglo que contiene los leds.
   int8_t velSecuencias = 1;
+  char opcion = '\0';
 
 
 /***************** Seteo del modo NO canónico en la ENTRADA ESTANDAR ****************/
@@ -88,11 +89,10 @@ int main( int argc, char *argv[] )
   printf("\n\n\t\t\t VELOCIDAD ELEGIDA: %d\n\n", velSecuencias);
 
 /****************************** Menú principal ***************************************/
-  printf("##################################################################################\n");
-  printf("##                           MENÚ PRINCIPAL                                     ##\n");
-  printf("##################################################################################\n\n");
-
-
+  tcsetattr( FD_STDIN,TCSANOW,&t_oldStdIn ); // Setea los valores por defec. de la config.
+  imprimeMenu();
+  opcion = seleccionMenuModoLocal();
+  printf("La opción ingresada fue: %c\n", opcion);
 
 
 

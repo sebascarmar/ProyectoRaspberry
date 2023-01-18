@@ -27,11 +27,11 @@ int main( int argc, char *argv[] )
   char opcion = '\0';
 
 
-/******************** Seteo del modo NO canónico en la ENTRADA ESTANDAR ********************/
+/*------------------- Seteo del modo NO canónico en la ENTRADA ESTANDAR -------------------*/
   seteoModoNoCanonico( &t_oldStdIn, &t_newStdIn );
 
 
-/***************************** Control de acceso ************************************/
+/*-------------------------------- Control de acceso --------------------------------------*/
   printf("-----------------------------------------------------------------------------\n");
   printf("Para continuar, por favor ingrese su contraseña\n");
   if( controlDeContraseña() == 1)
@@ -45,13 +45,13 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
-/****** Mapeo y configuración de pines según EasyPIO.h (manejo de GPIO ) ************/
+/*---------- Mapeo y configuración de pines según EasyPIO.h (manejo de GPIO ) -------------*/
   pioInit();
   
   for(int i=0 ; i < 8 ; i++)
     pinModeEP( leds[i], OUTPUT );
 
-/***********************Apertura del puerto serie************************************/
+/*----------------------------- Apertura del puerto serie ---------------------------------*/
   fdPuertoSerial = serialOpen("/dev/ttyS0", 9600);
   if( fdPuertoSerial < 0 )
   {
@@ -61,7 +61,7 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
-/**************************** Mapeo de pines ****************************************/
+/*---------------------- Mapeo de pines según WiringPi (UART) -----------------------------*/
   if ( wiringPiSetup() == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.
   {
     fprintf (stdout, "Error al inicializar wiringPi: %s\n", strerror(errno));
@@ -70,7 +70,7 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
-/***************** Seteo de velocidad inicial de secuencias *************************/
+/*-------------------- Seteo de velocidad inicial de secuencias ---------------------------*/
   printf("-----------------------------------------------------------------------------\n");
   printf("Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
 
@@ -79,7 +79,7 @@ int main( int argc, char *argv[] )
   t_newStdIn.c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
   tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
 
-  velSecuencias = velocidadInicialSecuencias( );
+  velSecuencias = velocidadSecuenciasConPote( );
 
   // Modo por defecto de la entrada estandar.
   t_newStdIn.c_cc[VMIN] = t_oldStdIn.c_cc[VMIN];   // Setea valor por defecto.
@@ -87,7 +87,7 @@ int main( int argc, char *argv[] )
   tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
 
 
-/****************************** Menú principal ***************************************/
+/*-------------------------------- Menú principal -----------------------------------------*/
   tcsetattr( FD_STDIN,TCSANOW,&t_oldStdIn ); // Setea los valores por defec. de la config.
   imprimeMenu();
   opcion = seleccionMenuModoLocal();
@@ -95,12 +95,15 @@ int main( int argc, char *argv[] )
 
 
 
-/*************************Cierre del puerto serie************************************/
+
+
+
+/*---------------------------- Cierre del puerto serie ------------------------------------*/
   serialClose( fdPuertoSerial );
 
-/****************************Seteo del modo canónico*********************************/
+/*------------------------------ Seteo del modo canónico ----------------------------------*/
   tcsetattr(FD_STDIN, TCSANOW, &t_oldStdIn); // Actualiza los atributos del teclado 
-                                        //con los valores originales.
+                                             //con los valores originales.
 
   return 0;
 }

@@ -11,7 +11,8 @@
 #include <termios.h>
 #include <unistd.h>
 
-/*********Descriptor de entrada estándar y direcciones de registros*****************/
+/*-------------------- Seteo de velocidad inicial de secuencias ---------------------------*/
+/*------------ Descriptor de entrada estándar y direcciones de registros ------------------*/
 #define FD_STDIN 0
 #define FD_STDOUT 1
 #define ADDRESS 0x48
@@ -36,7 +37,7 @@ extern void retardo(unsigned long int a);
  */
 int controlDeContraseña( void );
 
-/*--------------------------------------------------------------------------------------------------*/ 
+/*******************************************************************************************/
 
 /* FUNCION: 
  * ACCION:
@@ -45,7 +46,7 @@ int controlDeContraseña( void );
  */
 void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn );
 
-/*--------------------------------------------------------------------------------------------------*/ 
+/*******************************************************************************************/
 
 /* FUNCION: 
  * ACCION:
@@ -54,7 +55,7 @@ void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn
  */
 int velocidadInicialSecuencias( void );
 
-/*--------------------------------------------------------------------------------------------------*/ 
+/*******************************************************************************************/
 
 /* FUNCION: 
  * ACCION:

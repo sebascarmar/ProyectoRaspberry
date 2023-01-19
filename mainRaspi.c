@@ -23,7 +23,8 @@ int main( int argc, char *argv[] )
   int fdPuertoSerial;     // Almacena el descriptor de archivos del puerto serie.
   struct termios t_oldStdIn, t_newStdIn; // Estructuras para atributos del teclado.
   int leds[8] = {23, 24, 25, 12, 16, 20, 21, 26}; // Arreglo que contiene los leds.
-  int8_t velSecuencias = 1, modoLocal = 1;
+  int8_t velSecuencias = 1;
+  char modoLocal = '1';
   char opcion = '\0';
 
 
@@ -34,8 +35,8 @@ int main( int argc, char *argv[] )
 
 
 /*-------------------------------- Control de acceso --------------------------------------*/
-  printf("-----------------------------------------------------------------------------\n");
-  printf("Para continuar, por favor ingrese su contraseña\n");
+  printf("-----------------------------------------------------------------------\n"
+         "Para continuar, por favor ingrese su contraseña\n");
   if( controlDeContraseña() == 1)
   {
     printf("\n\n\t\t\t ¡BIENVENIDO AL SISTEMA!\n");
@@ -47,11 +48,13 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
+
 /*---------- Mapeo y configuración de pines según EasyPIO.h (manejo de GPIO ) -------------*/
   pioInit();
   
   for(int i=0 ; i < 8 ; i++)
     pinModeEP( leds[i], OUTPUT );
+
 
 /*----------------------------- Apertura del puerto serie ---------------------------------*/
   fdPuertoSerial = serialOpen("/dev/ttyS0", 9600);
@@ -72,6 +75,7 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
+
 /*-------------------- Seteo de velocidad inicial de secuencias ---------------------------*/
   printf("-----------------------------------------------------------------------\n"
          "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
@@ -86,7 +90,7 @@ int main( int argc, char *argv[] )
   {
     tcsetattr( FD_STDIN,TCSANOW,&t_oldStdIn ); // Setea los valores por defec. de la config.
     imprimeMenu();
-    if( modoLocal == 1 )
+    if( modoLocal == '1' )
       opcion = seleccionMenuModoLocal();
     else
     {
@@ -115,8 +119,8 @@ int main( int argc, char *argv[] )
         break;
       
       case 'b': // Velocidad con pote.
-        printf("-----------------------------------------------------------------------------\n");
-        printf("Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
+        printf("-----------------------------------------------------------------------\n"
+               "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );

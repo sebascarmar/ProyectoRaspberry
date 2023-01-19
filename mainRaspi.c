@@ -77,9 +77,9 @@ int main( int argc, char *argv[] )
   velSecuencias = velocidadSecuenciasConPote(  &t_oldStdIn, &t_newStdIn );
 
 /*-------------------------------- Menú principal -----------------------------------------*/
-  tcsetattr( FD_STDIN,TCSANOW,&t_oldStdIn ); // Setea los valores por defec. de la config.
   while( opcion != 'k' )
   {
+    tcsetattr( FD_STDIN,TCSANOW,&t_oldStdIn ); // Setea los valores por defec. de la config.
     imprimeMenu();
     opcion = seleccionMenuModoLocal();
     printf("\n");

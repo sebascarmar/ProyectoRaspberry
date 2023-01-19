@@ -74,7 +74,7 @@ int main( int argc, char *argv[] )
   printf("-----------------------------------------------------------------------------\n");
   printf("Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
 
-  velSecuencias = velocidadSecuenciasConPote(  &t_oldStdIn, &t_newStdIn );
+  velSecuencias = velocidadSecuenciasConPote( &t_oldStdIn, &t_newStdIn );
 
 /*-------------------------------- Menú principal -----------------------------------------*/
   while( opcion != 'k' )
@@ -86,35 +86,46 @@ int main( int argc, char *argv[] )
 
     switch( opcion )
     {
-      case 'a':
+      case 'a': // Modo remoto/local.
         break;
-      case 'b':
+      
+      case 'b': // Velocidad con pote.
         printf("-----------------------------------------------------------------------------\n");
         printf("Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
       
-        velSecuencias = velocidadSecuenciasConPote(  &t_oldStdIn, &t_newStdIn );
+        velSecuencias = velocidadSecuenciasConPote( &t_oldStdIn, &t_newStdIn );
         break;
-      case 'c':
+      
+      case 'c': // Sec. auto fantástico.
         break;
-      case 'd':
+      
+      case 'd': // Sec. choque.
         break;
-      case 'e':
+      
+      case 'e': // Sec. apilada.
         break;
-      case 'f':
+      
+      case 'f': // Sec. carrera.
         break;
+      
       case 'g':
         break;
+      
       case 'h':
         break;
+      
       case 'i':
         break;
+        
       case 'j':
         break;
-      case 'k':
+      
+      case 'k': // Salir del programa.
         break;
+      
       default:
         break;
-    }
+    } // Fin del switch case.
   }
 
 

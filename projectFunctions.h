@@ -107,6 +107,24 @@ long unsigned int valorDeRetardo( int velSecuencia );
  * PARAMETROS:
  * RETORNO:
  */
+void imprimeVelocidadDurante( int velSecuencias );
+
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void velocidadSecuenciasConTeclado( int8_t *velSecuencias, char *buf );
+
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
 void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLocal );
 
 /*******************************************************************************************/

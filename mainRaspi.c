@@ -107,14 +107,23 @@ int main( int argc, char *argv[] )
 
     switch( opcion )
     {
-      case 'a': // Modo local/remoto.
-        printf("-----------------------------------------------------------------------------\n");
-        printf("Seleccione el modo de control:\n"
-               "\t 1) Local\n"
-               "\t 2) Remoto\n"
-               "Modo: ");
+      case 'a': // Modo remoto/local.
+        dprintf(FD_STDOUT, "--------------------------------------------------------------"
+                           "---------\n"
+                           "Seleccione el modo de control:\n"
+                           "\t 0) Remoto\n"
+                           "\t 1) Local\n"
+                           "Modo: ");
+        read(FD_STDIN,&modoLocal, 1);
+        tcflush(FD_STDIN, TCIOFLUSH);
 
-        scanf("%hhd", &modoLocal);
+        while( (modoLocal != '0') && (modoLocal != '1') )
+        {
+          dprintf(FD_STDOUT, "Opción inválida. Elija el modo: ");
+          read(FD_STDIN,&modoLocal, 1);
+          tcflush(FD_STDIN, TCIOFLUSH);
+        }
+      
         printf("\n");
         break;
       

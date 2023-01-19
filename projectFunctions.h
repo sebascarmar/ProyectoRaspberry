@@ -125,7 +125,7 @@ void velocidadSecuenciasConTeclado( int8_t *velSecuencias, char *buf );
  * PARAMETROS:
  * RETORNO:
  */
-void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLocal );
+void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -134,7 +134,7 @@ void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLoc
  * PARAMETROS:
  * RETORNO:
  */
-void secChoque( int *leds, int size, int8_t *velSecuencias, char modoLocal );
+void secChoque( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -143,7 +143,7 @@ void secChoque( int *leds, int size, int8_t *velSecuencias, char modoLocal );
  * PARAMETROS:
  * RETORNO:
  */
-void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal );
+void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -152,7 +152,7 @@ void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal );
  * PARAMETROS:
  * RETORNO:
  */
-void secCarrera( int *leds, int size, int8_t *velSecuencias, char modoLocal );
+void secCarrera( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 
 

@@ -91,5 +91,25 @@ int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_ne
  */
 void imprimeMenu( void );
 
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+long unsigned int valorDeRetardo( int velSecuencia );
+
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLocal );
+
+
+
 
 #endif

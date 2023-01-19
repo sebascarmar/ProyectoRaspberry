@@ -82,7 +82,7 @@ int main( int argc, char *argv[] )
   {
     imprimeMenu();
     opcion = seleccionMenuModoLocal();
-    printf("La opción ingresada fue: %c\n", opcion);
+    printf("\n");
 
     switch( opcion )
     {
@@ -91,7 +91,7 @@ int main( int argc, char *argv[] )
       case 'b':
         printf("-----------------------------------------------------------------------------\n");
         printf("Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
-
+      
         velSecuencias = velocidadSecuenciasConPote(  &t_oldStdIn, &t_newStdIn );
         break;
       case 'c':
@@ -114,7 +114,6 @@ int main( int argc, char *argv[] )
         break;
       default:
         break;
-
     }
   }
 

@@ -138,13 +138,14 @@ int main( int argc, char *argv[] )
       
       case 'c': // Sec. auto fantástico.
         printf("-----------------------------------------------------------------------\n"
-               "Se está ejecutando \"El Auto Fantástico\" (presione 's' para salir)\n");
+               "Se está ejecutando \"El Auto Fantástico\" (presione 's' para volver al menú)\n");
+        dprintf(FD_STDOUT, "Velocidad:   ");
 
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
         secAutoFantastico( leds, 8, &velSecuencias, modoLocal);
 
-        printf("\n");
+        printf("\n\n");
         break;
       
       case 'd': // Sec. choque.

@@ -164,11 +164,11 @@ int main( int argc, char *argv[] )
         printf("-----------------------------------------------------------------------\n"
                "Se está ejecutando \"La Apilada\" (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
-
+      
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
         secApilada( leds, 8, &velSecuencias, modoLocal);
-
+      
         printf("\n\n");
         break;
       
@@ -176,11 +176,11 @@ int main( int argc, char *argv[] )
         printf("-----------------------------------------------------------------------\n"
                "Se está ejecutando \"La Carrera\" (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
-
+      
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
         secCarrera( leds, 8, &velSecuencias, modoLocal);
-
+      
         printf("\n\n");
         break;
       

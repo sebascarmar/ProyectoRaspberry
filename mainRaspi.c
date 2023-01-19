@@ -73,10 +73,13 @@ int main( int argc, char *argv[] )
   }
 
 /*-------------------- Seteo de velocidad inicial de secuencias ---------------------------*/
-  printf("-----------------------------------------------------------------------------\n");
-  printf("Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
+  printf("-----------------------------------------------------------------------\n"
+         "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
 
+  seteoModoNoBloqueante( &t_newStdIn );
   velSecuencias = velocidadSecuenciasConPote( &t_oldStdIn, &t_newStdIn );
+  seteoModoBloqueante( &t_oldStdIn, &t_newStdIn );
+
 
 /*-------------------------------- Menú principal -----------------------------------------*/
   while( opcion != 'k' )

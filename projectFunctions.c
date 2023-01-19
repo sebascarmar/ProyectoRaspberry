@@ -3,11 +3,38 @@
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn )
+void seteoModoNoCanonico( struct termios *t_newStdIn )
 {
-  tcgetattr( FD_STDIN, t_oldStdIn );          // Lee atributos por defecto del teclado.
-  *t_newStdIn = *t_oldStdIn;                  // Guarda los atributos originales.
   t_newStdIn->c_lflag &= ~(ECHO | ICANON);    // Anula entrada canónica y eco.
+  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
+
+void seteoModoNoBloqueante( struct termios *t_newStdIn )
+{
+  t_newStdIn->c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
+  t_newStdIn->c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
+  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
+
+void seteoModoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn )
+{
+  t_newStdIn->c_lflag = t_oldStdIn->c_lflag; // Anula entrada canónica y eco.
+  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
+
+void seteoModoBloqueante( struct termios *t_oldStdIn, struct termios *t_newStdIn )
+{
+  t_newStdIn->c_cc[VMIN] = t_oldStdIn->c_cc[VMIN];    // No espera a recibir ningún caracter.
+  t_newStdIn->c_cc[VTIME] = t_oldStdIn->c_cc[VTIME];  // No espera tiempo alguno tampoco.
   tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
 }
 
@@ -92,11 +119,6 @@ int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_ne
   int fdModuloADC, valorADC;      // Declaracion de variables para acceder al ADC.
   int velocidad; 
 
-  // Modo no bloqueante de la entrada estandar.
-  t_newStdIn->c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
-  t_newStdIn->c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
-  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
-
   fdModuloADC = wiringPiI2CSetup(ADDRESS); // Inicializa el sistema I2C con el ID del dispos.
   if( fdModuloADC <= -1 )
   {
@@ -137,10 +159,6 @@ int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_ne
     retardo( 100000000 );
   }
 
-  // Modo por defecto (bloqueante) de la entrada estandar.
-  t_newStdIn->c_cc[VMIN] = t_oldStdIn->c_cc[VMIN];   // Setea valor por defecto.
-  t_newStdIn->c_cc[VTIME] = t_oldStdIn->c_cc[VTIME]; // Setea valor por defecto. 
-  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
   
   printf("\n\n");
   return velocidad;

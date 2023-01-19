@@ -139,7 +139,7 @@ int main( int argc, char *argv[] )
       case 'c': // Sec. auto fantástico.
         printf("-----------------------------------------------------------------------\n"
                "Se está ejecutando \"El Auto Fantástico\" (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad:   ");
+        dprintf(FD_STDOUT, "Velocidad actual:   ");
 
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
@@ -149,12 +149,21 @@ int main( int argc, char *argv[] )
         break;
       
       case 'd': // Sec. choque.
+        printf("-----------------------------------------------------------------------\n"
+               "Se está ejecutando \"El Choque\" (presione 's' para volver al menú)\n");
+        dprintf(FD_STDOUT, "Velocidad actual:   ");
+
+        seteoModoNoCanonico( &t_newStdIn );
+        seteoModoNoBloqueante( &t_newStdIn );
+        secChoque( leds, 8, &velSecuencias, modoLocal);
+
+        printf("\n\n");
         break;
       
       case 'e': // Sec. apilada.
         printf("-----------------------------------------------------------------------\n"
                "Se está ejecutando \"La Apilada\" (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad:   ");
+        dprintf(FD_STDOUT, "Velocidad actual:   ");
 
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
@@ -166,7 +175,7 @@ int main( int argc, char *argv[] )
       case 'f': // Sec. carrera.
         printf("-----------------------------------------------------------------------\n"
                "Se está ejecutando \"La Carrera\" (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad:   ");
+        dprintf(FD_STDOUT, "Velocidad actual:   ");
 
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );

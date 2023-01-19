@@ -143,7 +143,7 @@ int main( int argc, char *argv[] )
 
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
-        secAutoFantastico( leds, 8, &velSecuencias, modoLocal);
+        secAutoFantastico( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
 
         printf("\n\n");
         break;
@@ -155,7 +155,7 @@ int main( int argc, char *argv[] )
 
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
-        secChoque( leds, 8, &velSecuencias, modoLocal);
+        secChoque( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
 
         printf("\n\n");
         break;
@@ -167,7 +167,7 @@ int main( int argc, char *argv[] )
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
-        secApilada( leds, 8, &velSecuencias, modoLocal);
+        secApilada( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
         break;
@@ -179,7 +179,7 @@ int main( int argc, char *argv[] )
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
-        secCarrera( leds, 8, &velSecuencias, modoLocal);
+        secCarrera( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
         break;

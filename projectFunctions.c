@@ -306,6 +306,50 @@ void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLoc
 /*******************************************************************************************/
 /*******************************************************************************************/
 
+void secChoque( int *leds, int size, int8_t *velSecuencias, char modoLocal )
+{
+  char buf[4] = {'\0'}; // Almacena lo leído por que lee read().
+  int i, j;             // Los leds se recorren en un sentido con i y  con j en el otro.
+
+  while( buf[0] != 's' )
+  {
+    i = 0;
+    j = 7;
+    while( (buf[0] != 's') && (i < 8) && (j >= 0) ) // Act/Desact los leds en un sentido.
+    {                                                  
+      digitalWrite( leds[i], 1 );
+      digitalWrite( leds[j], 1 );
+      
+      imprimeVelocidadDurante( *velSecuencias );
+      retardo( valorDeRetardo(*velSecuencias) );
+      
+      digitalWrite( leds[i], 0 );
+      digitalWrite( leds[j], 0 );
+      
+      if( modoLocal == '1' ) // Lectura del teclado.
+      {
+        read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
+        tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
+      }
+      else
+      {
+        //lectura de puerto serial
+      }
+      
+      imprimeVelocidadDurante( *velSecuencias );
+      i++;
+      j--;
+    }
+
+    velocidadSecuenciasConTeclado( velSecuencias, buf );
+
+    imprimeVelocidadDurante( *velSecuencias );
+  } // Fin del while.
+
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
 void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal )
 {
   char buf[4] = {'\0'};                          // Almacena lo leído por que lee read().

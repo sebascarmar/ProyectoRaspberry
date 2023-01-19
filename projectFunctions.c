@@ -239,6 +239,17 @@ long unsigned int valorDeRetardo( int velSecuencia )
 /*******************************************************************************************/
 /*******************************************************************************************/
 
+void imprimeVelocidadDurante( int velSecuencias )
+{
+      if( velSecuencias == 10)
+        dprintf(FD_STDOUT, "\b\b  \b\b%d", velSecuencias);
+      else
+        dprintf(FD_STDOUT, "\b\b  \b\b %d", velSecuencias);
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
+
 void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLocal )
 {
   char buf[4] = {'\0'};                  // Almacena lo leído por que lee read().

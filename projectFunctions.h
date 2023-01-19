@@ -53,7 +53,7 @@ void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn
  * PARAMETROS:
  * RETORNO:
  */
-int velocidadSecuenciasConPote(  struct termios *t_oldStdIn, struct termios *t_newStdIn );
+int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_newStdIn );
 
 /*******************************************************************************************/
 

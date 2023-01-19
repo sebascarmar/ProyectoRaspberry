@@ -164,6 +164,15 @@ int main( int argc, char *argv[] )
         break;
       
       case 'f': // Sec. carrera.
+        printf("-----------------------------------------------------------------------\n"
+               "Se está ejecutando \"La Carrera\" (presione 's' para volver al menú)\n");
+        dprintf(FD_STDOUT, "Velocidad:   ");
+
+        seteoModoNoCanonico( &t_newStdIn );
+        seteoModoNoBloqueante( &t_newStdIn );
+        secCarrera( leds, 8, &velSecuencias, modoLocal);
+
+        printf("\n\n");
         break;
       
       case 'g':

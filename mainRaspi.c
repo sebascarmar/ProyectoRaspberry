@@ -28,7 +28,9 @@ int main( int argc, char *argv[] )
 
 
 /*------------------- Seteo del modo NO canónico en la ENTRADA ESTANDAR -------------------*/
-  seteoModoNoCanonico( &t_oldStdIn, &t_newStdIn );
+  tcgetattr( FD_STDIN, &t_oldStdIn );          // Lee atributos por defecto del teclado.
+  t_newStdIn = t_oldStdIn;                     // Guarda los atributos originales.
+  seteoModoNoCanonico( &t_newStdIn );
 
 
 /*-------------------------------- Control de acceso --------------------------------------*/
@@ -113,6 +115,8 @@ int main( int argc, char *argv[] )
         printf("-----------------------------------------------------------------------------\n");
         printf("Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
       
+        seteoModoNoCanonico( &t_newStdIn );
+        seteoModoNoBloqueante( &t_newStdIn );
         velSecuencias = velocidadSecuenciasConPote( &t_oldStdIn, &t_newStdIn );
         break;
       

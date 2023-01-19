@@ -23,7 +23,7 @@ int main( int argc, char *argv[] )
   int fdPuertoSerial;     // Almacena el descriptor de archivos del puerto serie.
   struct termios t_oldStdIn, t_newStdIn; // Estructuras para atributos del teclado.
   int leds[8] = {23, 24, 25, 12, 16, 20, 21, 26}; // Arreglo que contiene los leds.
-  int8_t velSecuencias = 1;
+  int8_t velSecuencias = 1, modoLocal = 1;
   char opcion = '\0';
 
 
@@ -81,12 +81,32 @@ int main( int argc, char *argv[] )
   {
     tcsetattr( FD_STDIN,TCSANOW,&t_oldStdIn ); // Setea los valores por defec. de la config.
     imprimeMenu();
-    opcion = seleccionMenuModoLocal();
+    if( modoLocal == 1 )
+      opcion = seleccionMenuModoLocal();
+    else
+    {
+      dprintf(FD_STDOUT, "Por favor, ingrese una opción vía UART: ");
+      while( serialDataAvail(fdPuertoSerial) == 0 )             // Retorna el número de caracteres
+      {                                               //disponible para leer.
+        opcion = serialGetchar( fdPuertoSerial ); // Retorna el siguiente caracter 
+                                                      //disponible en el dispositivo serial.	
+        printf ("%c", opcion);                  // Imprime en pantalla el caracter.
+                                                      //el puerto serie.
+      }   
+    }
     printf("\n");
 
     switch( opcion )
     {
-      case 'a': // Modo remoto/local.
+      case 'a': // Modo local/remoto.
+        printf("-----------------------------------------------------------------------------\n");
+        printf("Seleccione el modo de control:\n"
+               "\t 1) Local\n"
+               "\t 2) Remoto\n"
+               "Modo: ");
+
+        scanf("%hhd", &modoLocal);
+        printf("\n");
         break;
       
       case 'b': // Velocidad con pote.

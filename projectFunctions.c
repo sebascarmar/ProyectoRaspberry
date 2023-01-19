@@ -350,6 +350,7 @@ void secChoque( int *leds, int size, int8_t *velSecuencias, char modoLocal )
 
 /*******************************************************************************************/
 /*******************************************************************************************/
+
 void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal )
 {
   char buf[4] = {'\0'};                          // Almacena lo leído por que lee read().
@@ -454,7 +455,6 @@ void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal )
       digitalWrite( leds[i], 0 );
 
 }
-
 
 /*******************************************************************************************/
 /*******************************************************************************************/

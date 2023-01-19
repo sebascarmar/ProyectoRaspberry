@@ -152,6 +152,15 @@ int main( int argc, char *argv[] )
         break;
       
       case 'e': // Sec. apilada.
+        printf("-----------------------------------------------------------------------\n"
+               "Se está ejecutando \"La Apilada\" (presione 's' para volver al menú)\n");
+        dprintf(FD_STDOUT, "Velocidad:   ");
+
+        seteoModoNoCanonico( &t_newStdIn );
+        seteoModoNoBloqueante( &t_newStdIn );
+        secApilada( leds, 8, &velSecuencias, modoLocal);
+
+        printf("\n\n");
         break;
       
       case 'f': // Sec. carrera.

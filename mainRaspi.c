@@ -76,14 +76,47 @@ int main( int argc, char *argv[] )
 
   velSecuencias = velocidadSecuenciasConPote(  &t_oldStdIn, &t_newStdIn );
 
-
-
 /*-------------------------------- Menú principal -----------------------------------------*/
   tcsetattr( FD_STDIN,TCSANOW,&t_oldStdIn ); // Setea los valores por defec. de la config.
-  imprimeMenu();
-  opcion = seleccionMenuModoLocal();
-  printf("La opción ingresada fue: %c\n", opcion);
+  while( opcion != 'k' )
+  {
+    imprimeMenu();
+    opcion = seleccionMenuModoLocal();
+    printf("La opción ingresada fue: %c\n", opcion);
 
+    switch( opcion )
+    {
+      case 'a':
+        break;
+      case 'b':
+        printf("-----------------------------------------------------------------------------\n");
+        printf("Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
+
+        velSecuencias = velocidadSecuenciasConPote(  &t_oldStdIn, &t_newStdIn );
+        break;
+      case 'c':
+        break;
+      case 'd':
+        break;
+      case 'e':
+        break;
+      case 'f':
+        break;
+      case 'g':
+        break;
+      case 'h':
+        break;
+      case 'i':
+        break;
+      case 'j':
+        break;
+      case 'k':
+        break;
+      default:
+        break;
+
+    }
+  }
 
 
 

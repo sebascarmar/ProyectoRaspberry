@@ -92,6 +92,11 @@ int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_ne
   int fdModuloADC, valorADC;      // Declaracion de variables para acceder al ADC.
   int velocidad; 
 
+  // Modo no bloqueante de la entrada estandar.
+  t_newStdIn->c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
+  t_newStdIn->c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
+  tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
+
   fdModuloADC = wiringPiI2CSetup(ADDRESS); // Inicializa el sistema I2C con el ID del dispos.
   if( fdModuloADC <= -1 )
   {
@@ -131,6 +136,11 @@ int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_ne
     read( FD_STDIN, tecla, 1 ); // Se guarda el caracter ingresado en "tecla[0]".
     retardo( 100000000 );
   }
+
+  // Modo por defecto (bloqueante) de la entrada estandar.
+  t_newStdIn->c_cc[VMIN] = t_oldStdIn->c_cc[VMIN];   // Setea valor por defecto.
+  t_newStdIn->c_cc[VTIME] = t_oldStdIn->c_cc[VTIME]; // Setea valor por defecto. 
+  tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
   
   printf("\n\n");
   return velocidad;

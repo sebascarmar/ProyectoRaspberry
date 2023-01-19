@@ -74,17 +74,8 @@ int main( int argc, char *argv[] )
   printf("-----------------------------------------------------------------------------\n");
   printf("Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
 
-  // Modo no bloqueante de la entrada estandar.
-  t_newStdIn.c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
-  t_newStdIn.c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
-  tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
+  velSecuencias = velocidadSecuenciasConPote(  &t_oldStdIn, &t_newStdIn );
 
-  velSecuencias = velocidadSecuenciasConPote( );
-
-  // Modo por defecto de la entrada estandar.
-  t_newStdIn.c_cc[VMIN] = t_oldStdIn.c_cc[VMIN];   // Setea valor por defecto.
-  t_newStdIn.c_cc[VTIME] = t_oldStdIn.c_cc[VTIME]; // Setea valor por defecto.
-  tcsetattr( FD_STDIN,TCSANOW,&t_newStdIn ); // Setea los valores nuevos de la config.
 
 
 /*-------------------------------- Menú principal -----------------------------------------*/

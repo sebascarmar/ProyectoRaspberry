@@ -44,7 +44,34 @@ int controlDeContraseña( void );
  * PARAMETROS:
  * RETORNO:
  */
-void seteoModoNoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn );
+void seteoModoNoCanonico( struct termios *t_newStdIn );
+
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void seteoModoNoBloqueante( struct termios *t_newStdIn );
+
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void seteoModoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn );
+
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void seteoModoBloqueante( struct termios *t_oldStdIn, struct termios *t_newStdIn );
 
 /*******************************************************************************************/
 

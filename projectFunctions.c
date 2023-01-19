@@ -189,3 +189,75 @@ void imprimeMenu( void )
 
 /*******************************************************************************************/
 /*******************************************************************************************/
+
+long unsigned int valorDeRetardo( int velSecuencia )
+{
+  switch( velSecuencia )
+  {
+    case 1:
+      return 190000000;
+    case 2:
+      return 170000000;
+    case 3:
+      return 150000000;
+    case 4:
+      return 130000000;
+    case 5:
+      return 110000000;
+    case 6:
+      return 90000000;
+    case 7:
+      return 70000000;
+    case 8:
+      return 50000000;
+    case 9:
+      return 30000000;
+    case 10:
+      return 10000000;
+    default:
+      return 210000000;
+  }
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
+
+void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLocal )
+{
+  char buf[4] = {'\0'};                  // Almacena lo leído por que lee read().
+
+  while( buf[0] != 's' )
+  {
+    for(int i = 0 ; (buf[0] != 's') && (i < 8) ; i++) // Act./Desact. los leds
+    {                                                       //en un sentido.
+      digitalWrite( leds[i], 1 );
+      retardo( valorDeRetardo(*velSecuencias) );
+      digitalWrite( leds[i], 0 );
+      if( modoLocal == '1' )
+        read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
+      else
+      {
+
+      }
+    }
+
+  
+    for(int i = 6 ; (buf[0] != 's') && (i > 0) ; i--) // Act./Desact. los leds
+    {                                                     //en el otro sentido.
+      digitalWrite( leds[i], 1 );
+      retardo( valorDeRetardo(*velSecuencias) );
+      digitalWrite( leds[i], 0 );
+      if( modoLocal == '1' )
+        read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
+      else
+      {
+
+      }
+    }
+
+  }
+
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/

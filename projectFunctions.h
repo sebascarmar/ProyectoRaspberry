@@ -134,6 +134,15 @@ void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLoc
  * PARAMETROS:
  * RETORNO:
  */
+void secChoque( int *leds, int size, int8_t *velSecuencias, char modoLocal );
+
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
 void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal );
 
 /*******************************************************************************************/

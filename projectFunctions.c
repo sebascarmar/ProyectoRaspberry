@@ -260,7 +260,7 @@ void imprimeVelocidadDurante( int velSecuencias )
 
 void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
-  char buf[4] = {'\0'}; // Almacena lo leído por que lee read().
+  char buf[4] = {'\0'}; // Almacena lo leído por que lee read() o por el puerto serie.
 
   while( buf[0] != 's' )
   {
@@ -316,7 +316,7 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
 
 void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
-  char buf[4] = {'\0'}; // Almacena lo leído por que lee read().
+  char buf[4] = {'\0'}; // Almacena lo leído por que lee read() o por el puerto serie.
   int i, j;             // Los leds se recorren en un sentido con i y  con j en el otro.
 
   while( buf[0] != 's' )
@@ -358,7 +358,7 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
 
 void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
-  char buf[4] = {'\0'};                          // Almacena lo leído por que lee read().
+  char buf[4] = {'\0'}; // Almacena lo leído por que lee read() o por el puerto serie.
   int8_t laApilada[68][8] = { {0,0,0,0,0,0,0,0}, // Arreglo bidimensional con la rutina.
                               {1,0,0,0,0,0,0,0},
                               {0,1,0,0,0,0,0,0},
@@ -427,7 +427,7 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
                               {0,1,1,1,1,1,1,1},
                               {1,1,1,1,1,1,1,1},
                               {1,1,1,1,1,1,1,1}
-                         }; 
+                            }; 
   
   while( buf[0] != 's' )
   {
@@ -466,7 +466,7 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
 
 void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
-  char buf[4] = {'\0'};                       // Almacena lo leído por que lee read().
+  char buf[4] = {'\0'}; // Almacena lo leído por que lee read() o por el puerto serie.
   int laCarrera[17][8] = { {0,0,0,0,0,0,0,0}, // Arreglo bidimensional con la rutina.
                            {0,0,0,0,0,0,0,0},
                            {1,0,0,0,0,0,0,0},
@@ -523,7 +523,7 @@ void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
 
 void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
-  char buf[4] = {'\0'};                          // Almacena lo leído por que lee read().
+  char buf[4] = {'\0'}; // Almacena lo leído por que lee read() o por el puerto serie.
   int8_t elVumetro[25][8] = { {0,0,0,0,0,0,0,0}, // Arreglo bidimensional con la rutina.
                               {1,1,0,0,0,0,0,0},
                               {1,1,1,1,1,0,0,0},

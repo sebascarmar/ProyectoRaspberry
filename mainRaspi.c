@@ -136,7 +136,7 @@ int main( int argc, char *argv[] )
         velSecuencias = velocidadSecuenciasConPote( &t_oldStdIn, &t_newStdIn );
         break;
       
-      case 'c': // Sec. auto fantástico.
+      case 'c': // Secuencia El Auto Fantástico.
         printf("-----------------------------------------------------------------------\n"
                "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
@@ -148,7 +148,7 @@ int main( int argc, char *argv[] )
         printf("\n\n");
         break;
       
-      case 'd': // Sec. choque.
+      case 'd': // Secuencia El Choque.
         printf("-----------------------------------------------------------------------\n"
                "\"El Choque\" en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
@@ -160,7 +160,7 @@ int main( int argc, char *argv[] )
         printf("\n\n");
         break;
       
-      case 'e': // Sec. apilada.
+      case 'e': // Secuencia La Apilada.
         printf("-----------------------------------------------------------------------\n"
                "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
@@ -172,7 +172,7 @@ int main( int argc, char *argv[] )
         printf("\n\n");
         break;
       
-      case 'f': // Sec. carrera.
+      case 'f': // Secuencia La Carrera.
         printf("-----------------------------------------------------------------------\n"
                "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
@@ -184,7 +184,7 @@ int main( int argc, char *argv[] )
         printf("\n\n");
         break;
       
-      case 'g':
+      case 'g': // Secuencia El Vúmetro.
         printf("-----------------------------------------------------------------------\n"
                "\"El Vúmetro\"en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
@@ -196,7 +196,7 @@ int main( int argc, char *argv[] )
         printf("\n\n");
         break;
       
-      case 'h':
+      case 'h': // Secuencia Juntos Por Paridad.
         printf("-----------------------------------------------------------------------\n"
                "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
@@ -208,10 +208,10 @@ int main( int argc, char *argv[] )
         printf("\n\n");
         break;
       
-      case 'i':
+      case 'i': // Secuencia La Gran Moisés.
         break;
         
-      case 'j':
+      case 'j': // Secuencia El Parpadeo.
         break;
       
       case 'k': // Salir del programa.

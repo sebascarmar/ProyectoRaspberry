@@ -437,7 +437,7 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
       {
         imprimeVelocidadDurante( *velSecuencias );
         digitalWrite( leds[j], laApilada[i][j] ); // Muestra en los leds la tabla.
-        usleep(10000); // Delay entre cada led.
+        usleep(5000); // Delay entre cada led.
       
         if( modoLocal == '1' ) // Lectura del teclado.
         {

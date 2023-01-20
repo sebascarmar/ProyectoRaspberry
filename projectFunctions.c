@@ -667,43 +667,54 @@ void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuer
 
   while( buf[0] != 's' )
   {
+    lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+
     velocidadSecuenciasConTeclado( velSecuencias, buf );
     imprimeVelocidadDurante( *velSecuencias );
-
-    while( (buf[0] != 's') && (i < 8) && (j >= 0) ) // Act/Desact los leds en un sentido.
-    {                                                  
-      for(int i=0 ; i < 8 ; i++)
-        digitalWrite( leds[i], 1);
-
-      j=0;
-      k=7;
-      while( j<4 && k>=4 )
-      {
-        digitalWrite( leds[i], 0 );
-        digitalWrite( leds[j], 0 );
-
-        retardo( valorDeRetardo(*velSecuencias) );
-        j++;
-        k--
-      }
+    
+    for(int i=0 ; i < 8 ; i++) // Enciende todos los leds.
+      digitalWrite( leds[i], 1);
+    usleep(400000);
+    
+    j=3;
+    k=4;
+    while( (buf[0] != 's') &&  (j >= 1) && (k <= 6) ) // Apaga los leds desde el centro.
+    {
+      lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
       
+      velocidadSecuenciasConTeclado( velSecuencias, buf );
+      imprimeVelocidadDurante( *velSecuencias );
       
-      digitalWrite( leds[i], 0 );
       digitalWrite( leds[j], 0 );
+      digitalWrite( leds[k], 0 );
       
-      if( modoLocal == '1' ) // Lectura del teclado.
-      {
-        read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-        tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
-      }
-      else
-      {
-        //lectura de puerto serial
-      }
+      retardo( valorDeRetardo(*velSecuencias) );
       
-      i++;
       j--;
+      k++;
     }
+  
+    usleep(200000);
+
+    while( (buf[0] != 's') && (j <= 3) && (k >= 4) ) // Enciende los leds desde los extremos.
+    {
+      lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+      
+      velocidadSecuenciasConTeclado( velSecuencias, buf );
+      imprimeVelocidadDurante( *velSecuencias );
+      
+      digitalWrite( leds[j], 1 );
+      digitalWrite( leds[k], 1 );
+      
+      retardo( valorDeRetardo(*velSecuencias) );
+      
+      j++;
+      k--;
+    }
+    
+  for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
+      digitalWrite( leds[i], 0 );
+    
   } // Fin del 1er while.
 
 }

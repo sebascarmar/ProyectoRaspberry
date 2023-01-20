@@ -620,7 +620,7 @@ void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuer
     velocidadSecuenciasConTeclado( velSecuencias, buf );
     imprimeVelocidadDurante( *velSecuencias );
     
-    for(int i=0 ; i < 8 ; i++) // Enciende todos los leds.
+    for(int i=0 ; (buf[0] != 's') && (i < 8) ; i++) // Enciende todos los leds.
       digitalWrite( leds[i], 1);
     usleep(400000);
     

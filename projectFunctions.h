@@ -163,7 +163,14 @@ void secCarrera( int *leds, int size, int8_t *velSecuencias, char modoLocal, int
  */
 void secVumetro( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
+/*******************************************************************************************/
 
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 
 #endif

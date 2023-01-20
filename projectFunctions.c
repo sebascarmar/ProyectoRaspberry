@@ -264,6 +264,9 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
 
   while( buf[0] != 's' )
   {
+    velocidadSecuenciasConTeclado( velSecuencias, buf );
+    imprimeVelocidadDurante( *velSecuencias );
+
     for(int i = 0 ; (buf[0] != 's') && (i < 8) ; i++) // Act/Desact los leds en un sentido.
     {                                                  
       digitalWrite( leds[i], 1 );
@@ -304,8 +307,6 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
       
     }
 
-    velocidadSecuenciasConTeclado( velSecuencias, buf );
-    imprimeVelocidadDurante( *velSecuencias );
   } // Fin del while.
 
 }

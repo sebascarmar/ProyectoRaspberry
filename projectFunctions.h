@@ -154,6 +154,16 @@ void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal, int
  */
 void secCarrera( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void secVumetro( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+
+
 
 
 #endif

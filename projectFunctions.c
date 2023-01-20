@@ -264,47 +264,32 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
 
   while( buf[0] != 's' )
   {
-    velocidadSecuenciasConTeclado( velSecuencias, buf );
-    imprimeVelocidadDurante( *velSecuencias );
-
     for(int i = 0 ; (buf[0] != 's') && (i < 8) ; i++) // Act/Desact los leds en un sentido.
     {                                                  
+      lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+      
+      velocidadSecuenciasConTeclado( velSecuencias, buf );
+      imprimeVelocidadDurante( *velSecuencias );
+      
       digitalWrite( leds[i], 1 );
      
       retardo( valorDeRetardo(*velSecuencias) );
       
       digitalWrite( leds[i], 0 );
-      
-      if( modoLocal == '1' ) // Lectura del teclado.
-      {
-        read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-        tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
-      }
-      else
-      {
-        //lectura de puerto serial
-      }
-      
     }
   
     for(int i = 6 ; (buf[0] != 's') && (i > 0) ; i--) // Act/Desact ls leds en otro sentido.
     {                                                     
+      lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+      
+      velocidadSecuenciasConTeclado( velSecuencias, buf );
+      imprimeVelocidadDurante( *velSecuencias );
+      
       digitalWrite( leds[i], 1 );
       
       retardo( valorDeRetardo(*velSecuencias) );
       
       digitalWrite( leds[i], 0 );
-      
-      if( modoLocal == '1' ) // Lectura del teclado.
-      {
-        read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-        tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no trasmitidos.
-      }
-      else
-      {
-        //lectura de puerto serial
-      }
-      
     }
 
   } // Fin del while.
@@ -321,13 +306,15 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
 
   while( buf[0] != 's' )
   {
-    velocidadSecuenciasConTeclado( velSecuencias, buf );
-    imprimeVelocidadDurante( *velSecuencias );
-
     i = 0;
     j = 7;
     while( (buf[0] != 's') && (i < 8) && (j >= 0) ) // Act/Desact los leds en un sentido.
     {                                                  
+      lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+      
+      velocidadSecuenciasConTeclado( velSecuencias, buf );
+      imprimeVelocidadDurante( *velSecuencias );
+      
       digitalWrite( leds[i], 1 );
       digitalWrite( leds[j], 1 );
       
@@ -335,16 +322,6 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
       
       digitalWrite( leds[i], 0 );
       digitalWrite( leds[j], 0 );
-      
-      if( modoLocal == '1' ) // Lectura del teclado.
-      {
-        read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-        tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
-      }
-      else
-      {
-        //lectura de puerto serial
-      }
       
       i++;
       j--;
@@ -435,27 +412,19 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
     { 							     
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
+        lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+         
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
-        
+         
         digitalWrite( leds[j], laApilada[i][j] ); // Muestra en los leds la tabla.
         usleep(5000); // Delay entre cada led.
-      
-        if( modoLocal == '1' ) // Lectura del teclado.
-        {
-          read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-          tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no trasmitidos.
-        }else
-        {
-          //lectura de puerto serial
-        }
-      
-      }
+      } // Fin 2º for.
         
       retardo( valorDeRetardo(*velSecuencias) );
-    }
+    } // Fin 1º for.
 
-  }
+  } // Fin del while.
   
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
       digitalWrite( leds[i], 0 );
@@ -493,20 +462,13 @@ void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
     { 							     
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
+        lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+        
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
         
         digitalWrite( leds[j], laCarrera[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
-      
-        if( modoLocal == '1' ) // Lectura del teclado.
-        {
-          read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-          tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no trasmitidos.
-        }else
-        {
-          //lectura de puerto serial
-        }
       } // Fin 2do for.
       
       retardo( valorDeRetardo(*velSecuencias) );
@@ -558,20 +520,13 @@ void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
     { 							     
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
+        lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+      
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
       
         digitalWrite( leds[j], elVumetro[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
-      
-        if( modoLocal == '1' ) // Lectura del teclado.
-        {
-          read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-          tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no trasmitidos.
-        }else
-        {
-          //lectura de puerto serial
-        }
       }
       
       retardo( valorDeRetardo(*velSecuencias) );
@@ -632,19 +587,12 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int 
     { 							     
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
+        lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+      
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
         
         digitalWrite( leds[j], juntosPorParidad[i][j] ); // Muestra en los leds la tabla.
-      
-        if( modoLocal == '1' ) // Lectura del teclado.
-        {
-          read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-          tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no trasmitidos.
-        }else                 // Lectura del puerto serial.
-        {
-          //lectura de puerto serial
-        }
       } // Fin del 2do for.
       
       retardo( valorDeRetardo(*velSecuencias) );

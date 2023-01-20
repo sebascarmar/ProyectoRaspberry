@@ -130,7 +130,8 @@ int main( int argc, char *argv[] )
       
       case 'b': // Velocidad con pote.
         printf("-----------------------------------------------------------------------\n"
-               "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n");
+               "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
+               "(mín=1, máx=10)\n");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );

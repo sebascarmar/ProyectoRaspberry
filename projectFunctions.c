@@ -660,3 +660,56 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int 
 /*******************************************************************************************/
 /*******************************************************************************************/
 
+void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
+{
+  char buf[4] = {'\0'}; // Almacena lo leído por que lee read() o por el puerto serie.
+  int j, k;             // Los leds se recorren en un sentido con i y  con j en el otro.
+
+  while( buf[0] != 's' )
+  {
+    velocidadSecuenciasConTeclado( velSecuencias, buf );
+    imprimeVelocidadDurante( *velSecuencias );
+
+    while( (buf[0] != 's') && (i < 8) && (j >= 0) ) // Act/Desact los leds en un sentido.
+    {                                                  
+      for(int i=0 ; i < 8 ; i++)
+        digitalWrite( leds[i], 1);
+
+      j=0;
+      k=7;
+      while( j<4 && k>=4 )
+      {
+        digitalWrite( leds[i], 0 );
+        digitalWrite( leds[j], 0 );
+
+        retardo( valorDeRetardo(*velSecuencias) );
+        j++;
+        k--
+      }
+      
+      
+      digitalWrite( leds[i], 0 );
+      digitalWrite( leds[j], 0 );
+      
+      if( modoLocal == '1' ) // Lectura del teclado.
+      {
+        read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
+        tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
+      }
+      else
+      {
+        //lectura de puerto serial
+      }
+      
+      i++;
+      j--;
+    }
+  } // Fin del 1er while.
+
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
+
+
+

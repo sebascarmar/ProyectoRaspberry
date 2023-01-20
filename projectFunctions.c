@@ -524,3 +524,68 @@ void secCarrera( int *leds, int size, int8_t *velSecuencias, char modoLocal, int
 /*******************************************************************************************/
 /*******************************************************************************************/
 
+void secVumetro( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
+{
+  char buf[4] = {'\0'};                          // Almacena lo leído por que lee read().
+  int8_t elVumetro[25][8] = { {0,0,0,0,0,0,0,0}, // Arreglo bidimensional con la rutina.
+                              {1,1,0,0,0,0,0,0},
+                              {1,1,1,1,1,0,0,0},
+                              {1,1,1,1,1,1,1,0},
+                              {1,1,1,0,0,0,0,0},
+                              {1,1,1,1,1,1,0,0},
+                              {1,1,0,0,0,0,0,0},
+                              {1,1,1,1,1,0,0,0},
+                              {1,1,1,1,1,1,1,1},
+                              {1,1,1,1,1,1,0,0},
+                              {1,1,1,1,1,1,1,0},
+                              {1,1,1,1,0,0,0,0},
+                              {1,1,1,1,1,1,0,0},
+                              {1,1,1,1,0,0,0,0},
+                              {1,1,0,0,0,0,0,0},
+                              {1,0,0,0,0,0,0,0},
+                              {1,1,1,0,0,0,0,0},
+                              {1,1,0,0,0,0,0,0},
+                              {1,1,1,1,0,0,0,0},
+                              {1,1,1,1,1,0,0,0},
+                              {1,1,1,1,1,1,1,1},
+                              {1,1,1,1,1,1,1,0},
+                              {1,1,1,1,1,1,0,0},
+                              {1,1,1,1,1,1,1,1},
+                              {1,1,1,1,1,0,0,0},
+                         }; 
+  
+  while( buf[0] != 's' )
+  {
+    for(int i = 0 ; (buf[0] != 's') && (i < 25) ; i++) 
+    { 							     
+      for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
+      {
+        imprimeVelocidadDurante( *velSecuencias );
+        digitalWrite( leds[j], elVumetro[i][j] ); // Muestra en los leds la tabla.
+        usleep(10000); // Delay entre cada led.
+      
+        if( modoLocal == '1' ) // Lectura del teclado.
+        {
+          read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
+          tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no trasmitidos.
+        }else
+        {
+          //lectura de puerto serial
+        }
+      
+        velocidadSecuenciasConTeclado( velSecuencias, buf );
+      }
+
+      retardo( valorDeRetardo(*velSecuencias) );
+    }
+
+  }
+  
+  for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
+      digitalWrite( leds[i], 0 );
+
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
+

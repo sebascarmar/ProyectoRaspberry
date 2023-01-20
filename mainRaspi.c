@@ -197,6 +197,15 @@ int main( int argc, char *argv[] )
         break;
       
       case 'h':
+        printf("-----------------------------------------------------------------------\n"
+               "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n");
+        dprintf(FD_STDOUT, "Velocidad actual:   ");
+      
+        seteoModoNoCanonico( &t_newStdIn );
+        seteoModoNoBloqueante( &t_newStdIn );
+        secJuntosPorParidad( leds, &velSecuencias, modoLocal, fdPuertoSerial );
+      
+        printf("\n\n");
         break;
       
       case 'i':

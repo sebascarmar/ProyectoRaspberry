@@ -188,20 +188,28 @@ void velocidadSecuenciasConTeclado( int8_t *velSecuencias, char *buf )
 void imprimeMenu( void )
 {
   printf("=================================================================================\n"
-         "##                             MENÚ PRINCIPAL                                  ##\n"
+         "==                             MENÚ PRINCIPAL                                  ==\n"
          "=================================================================================\n"
-         "\t\ta) Selección de modo local/remoto\n"
-         "\t\tb) Seteo de velocidad con el potenciómetro del ADC\n"
-         "\t\tc) Secuencia \"El Auto Fantástico\"\n"
-         "\t\td) Secuencia \"El Choque\"\n"
-         "\t\te) Secuencia \"La Apilada\"\n"
-         "\t\tf) Secuencia \"La Carrera\"\n"
-         "\t\tg) Secuencia \"Sin nombre aun\"\n"
-         "\t\th) Secuencia \"Sin nombre aun\"\n"
-         "\t\ti) Secuencia \"Sin nombre aun\"\n"
-         "\t\tj) Secuencia \"Sin nombre aun\"\n"
-         "\t\tk) Salir\n\n");
-
+         "  a) Selección de modo local/remoto\t      j) Secuencia \"El Parpadeo\"\n"
+         "  b) Velocidad con el potenciómetro del ADC   g) Secuencia \"El Vúmetro\"\n"
+         "  c) Secuencia \"El Auto Fantástico\"\t      h) Secuencia \"Juntos Por Paridad\"\n"
+         "  d) Secuencia \"El Choque\"\t\t      i) Secuencia \"La Gran Moisés\"\n"
+         "  e) Secuencia \"La Apilada\"\t\t      k) SALIR\n"
+         "  f) Secuencia \"La Carrera\"\n\n");
+  //printf("=================================================================================\n"
+  //       "==                             MENÚ PRINCIPAL                                  ==\n"
+  //       "=================================================================================\n"
+  //       "\t\ta) Selección de modo local/remoto\n"
+  //       "\t\tb) Seteo de velocidad con el potenciómetro del ADC\n"
+  //       "\t\tc) Secuencia \"El Auto Fantástico\"\n"
+  //       "\t\td) Secuencia \"El Choque\"\n"
+  //       "\t\te) Secuencia \"La Apilada\"\n"
+  //       "\t\tf) Secuencia \"La Carrera\"\n"
+  //       "\t\tg) Secuencia \"El Parpadeo\"\n"
+  //       "\t\th) Secuencia \"El Vúmetro\"\n"
+  //       "\t\ti) Secuencia \"Sin nombre aun\"\n"
+  //       "\t\tj) Secuencia \"Sin nombre aun\"\n"
+  //       "\t\tk) Salir\n\n");
 }
 
 /*******************************************************************************************/

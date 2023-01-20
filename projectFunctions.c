@@ -321,6 +321,9 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
 
   while( buf[0] != 's' )
   {
+    velocidadSecuenciasConTeclado( velSecuencias, buf );
+    imprimeVelocidadDurante( *velSecuencias );
+
     i = 0;
     j = 7;
     while( (buf[0] != 's') && (i < 8) && (j >= 0) ) // Act/Desact los leds en un sentido.
@@ -346,10 +349,6 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
       i++;
       j--;
     }
-
-    velocidadSecuenciasConTeclado( velSecuencias, buf );
-    imprimeVelocidadDurante( *velSecuencias );
-
   } // Fin del 1er while.
 
 }

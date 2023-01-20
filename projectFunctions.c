@@ -362,7 +362,7 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
 void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
   char buf[4] = {'\0'};                          // Almacena lo leído por que lee read().
-  int8_t laCarrera[68][8] = { {0,0,0,0,0,0,0,0}, // Arreglo bidimensional con la rutina.
+  int8_t laApilada[68][8] = { {0,0,0,0,0,0,0,0}, // Arreglo bidimensional con la rutina.
                               {1,0,0,0,0,0,0,0},
                               {0,1,0,0,0,0,0,0},
                               {0,0,1,0,0,0,0,0},
@@ -439,7 +439,7 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
         imprimeVelocidadDurante( *velSecuencias );
-        digitalWrite( leds[j], laCarrera[i][j] ); // Muestra en los leds la tabla.
+        digitalWrite( leds[j], laApilada[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
       
         if( modoLocal == '1' ) // Lectura del teclado.

@@ -592,16 +592,11 @@ void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
 void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
   char buf[4] = {'\0'}; // Almacena lo leído por que lee read() o por el puerto serie.
-  int8_t juntosPorParidad[50][8] = {{0,0,0,0,0,0,0,0}, //Arreglo bidimensional con la rutina.
-                                    {0,0,0,0,0,0,0,0},
-                                    {0,1,0,0,0,0,0,0},
+  int8_t juntosPorParidad[34][8] = {{0,0,0,0,0,0,0,0}, //Arreglo bidimensional con la rutina.
                                     {0,1,0,0,0,0,0,0},
                                     {0,1,0,1,0,0,0,0},
-                                    {0,1,0,1,0,0,0,0},
-                                    {0,1,0,1,0,1,0,0},
                                     {0,1,0,1,0,1,0,0},
                                     {0,1,0,1,0,1,0,1},
-                                    {0,1,0,1,0,1,0,1},
                                     {0,0,0,0,0,0,0,0},
                                     {0,1,0,1,0,1,0,1},
                                     {0,0,0,0,0,0,0,0},
@@ -611,16 +606,10 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int 
                                     {0,0,0,0,0,0,0,0},
                                     {0,1,0,1,0,1,0,1},
                                     {0,1,0,1,0,1,0,1},
-                                    {0,1,0,1,0,1,0,1},
-                                    {0,0,0,0,0,0,0,0},
                                     {0,0,0,0,0,0,0,0},
                                     {0,0,0,0,0,0,1,0},
-                                    {0,0,0,0,0,0,1,0},
-                                    {0,0,0,0,1,0,1,0},
                                     {0,0,0,0,1,0,1,0},
                                     {0,0,1,0,1,0,1,0},
-                                    {0,0,1,0,1,0,1,0},
-                                    {1,0,1,0,1,0,1,0},
                                     {1,0,1,0,1,0,1,0},
                                     {0,0,0,0,0,0,0,0},
                                     {1,0,1,0,1,0,1,0},
@@ -631,22 +620,17 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int 
                                     {0,0,0,0,0,0,0,0},
                                     {1,0,1,0,1,0,1,0},
                                     {1,0,1,0,1,0,1,0},
-                                    {1,0,1,0,1,0,1,0},
                                     {0,1,0,1,0,1,0,1},
                                     {1,0,1,0,1,0,1,0},
                                     {0,1,0,1,0,1,0,1},
                                     {1,0,1,0,1,0,1,0},
                                     {0,1,0,1,0,1,0,1},
-                                    {1,0,1,0,1,0,1,0},
-                                    {0,1,0,1,0,1,0,1},
-                                    {1,0,1,0,1,0,1,0},
-                                    {0,1,0,1,0,1,0,1},
-                                    {1,0,1,0,1,0,1,0},
+                                    {1,0,1,0,1,0,1,0}
                                    }; 
   
   while( buf[0] != 's' )
   {
-    for(int i = 0 ; (buf[0] != 's') && (i < 50) ; i++) 
+    for(int i = 0 ; (buf[0] != 's') && (i < 34) ; i++) 
     { 							     
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {

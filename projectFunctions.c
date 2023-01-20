@@ -267,8 +267,9 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
     for(int i = 0 ; (buf[0] != 's') && (i < 8) ; i++) // Act/Desact los leds en un sentido.
     {                                                  
       digitalWrite( leds[i], 1 );
-      imprimeVelocidadDurante( *velSecuencias );
+     
       retardo( valorDeRetardo(*velSecuencias) );
+      
       digitalWrite( leds[i], 0 );
       
       if( modoLocal == '1' ) // Lectura del teclado.
@@ -281,14 +282,14 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
         //lectura de puerto serial
       }
       
-      imprimeVelocidadDurante( *velSecuencias );
     }
   
     for(int i = 6 ; (buf[0] != 's') && (i > 0) ; i--) // Act/Desact ls leds en otro sentido.
     {                                                     
       digitalWrite( leds[i], 1 );
-      imprimeVelocidadDurante( *velSecuencias );
+      
       retardo( valorDeRetardo(*velSecuencias) );
+      
       digitalWrite( leds[i], 0 );
       
       if( modoLocal == '1' ) // Lectura del teclado.
@@ -301,11 +302,9 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
         //lectura de puerto serial
       }
       
-      imprimeVelocidadDurante( *velSecuencias );
     }
 
     velocidadSecuenciasConTeclado( velSecuencias, buf );
-
     imprimeVelocidadDurante( *velSecuencias );
   } // Fin del while.
 
@@ -328,7 +327,6 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
       digitalWrite( leds[i], 1 );
       digitalWrite( leds[j], 1 );
       
-      imprimeVelocidadDurante( *velSecuencias );
       retardo( valorDeRetardo(*velSecuencias) );
       
       digitalWrite( leds[i], 0 );
@@ -344,15 +342,14 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
         //lectura de puerto serial
       }
       
-      imprimeVelocidadDurante( *velSecuencias );
       i++;
       j--;
     }
 
     velocidadSecuenciasConTeclado( velSecuencias, buf );
-
     imprimeVelocidadDurante( *velSecuencias );
-  } // Fin del while.
+
+  } // Fin del 1er while.
 
 }
 

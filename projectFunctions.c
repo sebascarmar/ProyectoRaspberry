@@ -435,7 +435,9 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
     { 							     
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
+        velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
+        
         digitalWrite( leds[j], laApilada[i][j] ); // Muestra en los leds la tabla.
         usleep(5000); // Delay entre cada led.
       
@@ -448,9 +450,8 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
           //lectura de puerto serial
         }
       
-        velocidadSecuenciasConTeclado( velSecuencias, buf );
       }
-
+        
       retardo( valorDeRetardo(*velSecuencias) );
     }
 
@@ -492,7 +493,9 @@ void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
     { 							     
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
+        velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
+        
         digitalWrite( leds[j], laCarrera[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
       
@@ -504,12 +507,10 @@ void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
         {
           //lectura de puerto serial
         }
-      
-        velocidadSecuenciasConTeclado( velSecuencias, buf );
-      }
+      } // Fin 2do for.
       
       retardo( valorDeRetardo(*velSecuencias) );
-    }
+    } // Fin 1er for.
 
   }
   
@@ -549,7 +550,7 @@ void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
                               {1,1,1,1,1,1,0,0},
                               {1,1,1,1,1,1,1,1},
                               {1,1,1,1,1,0,0,0},
-                         }; 
+                            }; 
   
   while( buf[0] != 's' )
   {
@@ -557,7 +558,9 @@ void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
     { 							     
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
+        velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
+      
         digitalWrite( leds[j], elVumetro[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
       
@@ -569,10 +572,8 @@ void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
         {
           //lectura de puerto serial
         }
-      
-        velocidadSecuenciasConTeclado( velSecuencias, buf );
       }
-
+      
       retardo( valorDeRetardo(*velSecuencias) );
     }
 
@@ -631,7 +632,9 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int 
     { 							     
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
+        velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
+        
         digitalWrite( leds[j], juntosPorParidad[i][j] ); // Muestra en los leds la tabla.
       
         if( modoLocal == '1' ) // Lectura del teclado.
@@ -642,12 +645,10 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int 
         {
           //lectura de puerto serial
         }
+      } // Fin del 2do for.
       
-        velocidadSecuenciasConTeclado( velSecuencias, buf );
-      }
-
       retardo( valorDeRetardo(*velSecuencias) );
-    }
+    } // Fin del 1er for.
 
   }
   

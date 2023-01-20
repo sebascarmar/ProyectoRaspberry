@@ -172,5 +172,24 @@ void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
  */
 void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
+void secParpadeo( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+
+
 
 #endif

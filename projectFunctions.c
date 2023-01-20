@@ -258,7 +258,7 @@ void imprimeVelocidadDurante( int velSecuencias )
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
+void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
   char buf[4] = {'\0'}; // Almacena lo leído por que lee read().
 
@@ -314,7 +314,7 @@ void secAutoFantastico( int *leds, int size, int8_t *velSecuencias, char modoLoc
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void secChoque( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
+void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
   char buf[4] = {'\0'}; // Almacena lo leído por que lee read().
   int i, j;             // Los leds se recorren en un sentido con i y  con j en el otro.
@@ -359,7 +359,7 @@ void secChoque( int *leds, int size, int8_t *velSecuencias, char modoLocal, int 
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
+void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
   char buf[4] = {'\0'};                          // Almacena lo leído por que lee read().
   int8_t laCarrera[68][8] = { {0,0,0,0,0,0,0,0}, // Arreglo bidimensional con la rutina.
@@ -467,7 +467,7 @@ void secApilada( int *leds, int size, int8_t *velSecuencias, char modoLocal, int
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void secCarrera( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
+void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
   char buf[4] = {'\0'};                       // Almacena lo leído por que lee read().
   int laCarrera[17][8] = { {0,0,0,0,0,0,0,0}, // Arreglo bidimensional con la rutina.
@@ -524,7 +524,7 @@ void secCarrera( int *leds, int size, int8_t *velSecuencias, char modoLocal, int
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void secVumetro( int *leds, int size, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
+void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
   char buf[4] = {'\0'};                          // Almacena lo leído por que lee read().
   int8_t elVumetro[25][8] = { {0,0,0,0,0,0,0,0}, // Arreglo bidimensional con la rutina.

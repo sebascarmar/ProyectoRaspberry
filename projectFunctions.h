@@ -107,6 +107,15 @@ int valorDeRetardo( int velSecuencia );
  * PARAMETROS:
  * RETORNO:
  */
+void velocidadSecuenciasConTeclado( int8_t *velSecuencias, char *buf );
+
+/*******************************************************************************************/
+
+/* FUNCION: 
+ * ACCION:
+ * PARAMETROS:
+ * RETORNO:
+ */
 void imprimeVelocidadDurante( int velSecuencias );
 
 /*******************************************************************************************/
@@ -116,7 +125,7 @@ void imprimeVelocidadDurante( int velSecuencias );
  * PARAMETROS:
  * RETORNO:
  */
-void velocidadSecuenciasConTeclado( int8_t *velSecuencias, char *buf );
+void lecturaTeclado( char modoLocal, int fdPuertoSerial, char *buf );
 
 /*******************************************************************************************/
 

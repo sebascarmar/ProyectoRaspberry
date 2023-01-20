@@ -215,7 +215,7 @@ void imprimeMenu( void )
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-long unsigned int valorDeRetardo( int velSecuencia )
+int valorDeRetardo( int velSecuencia )
 {
   switch( velSecuencia )
   {

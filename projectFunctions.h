@@ -98,7 +98,7 @@ void imprimeMenu( void );
  * PARAMETROS:
  * RETORNO:
  */
-long unsigned int valorDeRetardo( int velSecuencia );
+int valorDeRetardo( int velSecuencia );
 
 /*******************************************************************************************/
 

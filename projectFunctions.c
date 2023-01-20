@@ -220,27 +220,27 @@ int valorDeRetardo( int velSecuencia )
   switch( velSecuencia )
   {
     case 1:
-      return 190000000;
+      return 100000000;
     case 2:
-      return 170000000;
-    case 3:
-      return 150000000;
-    case 4:
-      return 130000000;
-    case 5:
-      return 110000000;
-    case 6:
       return 90000000;
-    case 7:
+    case 3:
+      return 80000000;
+    case 4:
       return 70000000;
-    case 8:
+    case 5:
+      return 60000000;
+    case 6:
       return 50000000;
-    case 9:
+    case 7:
+      return 40000000;
+    case 8:
       return 30000000;
+    case 9:
+      return 20000000;
     case 10:
       return 10000000;
     default:
-      return 210000000;
+      return 200000000;
   }
 }
 

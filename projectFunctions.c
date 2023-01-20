@@ -126,7 +126,7 @@ int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_ne
     exit(EXIT_FAILURE);	
   }
 
-  dprintf(FD_STDOUT, "\t- Velocidad (min 1, max 10):   ");
+  dprintf(FD_STDOUT, "\t- Velocidad (presione 'enter' para setear):   ");
   while( tecla[0] != 10 )
   {
     // Lectura del canal ADC0 (potenciómetro).

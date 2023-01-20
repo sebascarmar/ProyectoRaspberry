@@ -185,6 +185,15 @@ int main( int argc, char *argv[] )
         break;
       
       case 'g':
+        printf("-----------------------------------------------------------------------\n"
+               "Se está ejecutando \"El Vúmetro\" (presione 's' para volver al menú)\n");
+        dprintf(FD_STDOUT, "Velocidad actual:   ");
+      
+        seteoModoNoCanonico( &t_newStdIn );
+        seteoModoNoBloqueante( &t_newStdIn );
+        secVumetro( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
+      
+        printf("\n\n");
         break;
       
       case 'h':

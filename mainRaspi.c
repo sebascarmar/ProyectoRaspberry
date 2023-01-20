@@ -116,7 +116,7 @@ int main( int argc, char *argv[] )
                            "Modo: ");
         read(FD_STDIN,&modoLocal, 1);
         tcflush(FD_STDIN, TCIOFLUSH);
-
+      
         while( (modoLocal != '0') && (modoLocal != '1') )
         {
           dprintf(FD_STDOUT, "Opción inválida. Elija el modo: ");
@@ -138,60 +138,60 @@ int main( int argc, char *argv[] )
       
       case 'c': // Sec. auto fantástico.
         printf("-----------------------------------------------------------------------\n"
-               "Se está ejecutando \"El Auto Fantástico\" (presione 's' para volver al menú)\n");
+               "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
-
+      
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
-        secAutoFantastico( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
-
+        secAutoFantastico( leds, &velSecuencias, modoLocal, fdPuertoSerial );
+      
         printf("\n\n");
         break;
       
       case 'd': // Sec. choque.
         printf("-----------------------------------------------------------------------\n"
-               "Se está ejecutando \"El Choque\" (presione 's' para volver al menú)\n");
+               "\"El Choque\" en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
-
+      
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
-        secChoque( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
-
+        secChoque( leds, &velSecuencias, modoLocal, fdPuertoSerial );
+      
         printf("\n\n");
         break;
       
       case 'e': // Sec. apilada.
         printf("-----------------------------------------------------------------------\n"
-               "Se está ejecutando \"La Apilada\" (presione 's' para volver al menú)\n");
+               "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
-        secApilada( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
+        secApilada( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
         break;
       
       case 'f': // Sec. carrera.
         printf("-----------------------------------------------------------------------\n"
-               "Se está ejecutando \"La Carrera\" (presione 's' para volver al menú)\n");
+               "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
-        secCarrera( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
+        secCarrera( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
         break;
       
       case 'g':
         printf("-----------------------------------------------------------------------\n"
-               "Se está ejecutando \"El Vúmetro\" (presione 's' para volver al menú)\n");
+               "\"El Vúmetro\"en ejecución (presione 's' para volver al menú)\n");
         dprintf(FD_STDOUT, "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
-        secVumetro( leds, 8, &velSecuencias, modoLocal, fdPuertoSerial );
+        secVumetro( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
         break;

@@ -10,6 +10,8 @@
 #include <wiringPiI2C.h> //comunicación con el ADC
 #include <wiringSerial.h> //lecturaTeclado [remoto]
 
+#include "easyPio.h"
+
 /*-------------------- Seteo de velocidad inicial de secuencias ---------------------------*/
 /*------------ Descriptor de entrada estándar y direcciones de registros ------------------*/
 #define FD_STDIN 0

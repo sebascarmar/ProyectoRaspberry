@@ -122,7 +122,8 @@ int main( int argc, char *argv[] )
         break;
       
       case 'b': // Velocidad con pote.
-        printf("-----------------------------------------------------------------------\n"
+        dprintf(FD_STDIN,
+               "-----------------------------------------------------------------------\n"
                "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
                "(mín=1, máx=10)\n");
       
@@ -132,9 +133,10 @@ int main( int argc, char *argv[] )
         break;
       
       case 'c': // Secuencia El Auto Fantástico.
-        printf("-----------------------------------------------------------------------\n"
-               "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad actual:   ");
+        dprintf(FD_STDIN,
+               "-----------------------------------------------------------------------\n"
+               "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n"
+               "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
@@ -144,9 +146,10 @@ int main( int argc, char *argv[] )
         break;
       
       case 'd': // Secuencia El Choque.
-        printf("-----------------------------------------------------------------------\n"
-               "\"El Choque\" en ejecución (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad actual:   ");
+        dprintf(FD_STDIN,
+               "-----------------------------------------------------------------------\n"
+               "\"El Choque\" en ejecución (presione 's' para volver al menú)\n"
+               "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
@@ -156,9 +159,10 @@ int main( int argc, char *argv[] )
         break;
       
       case 'e': // Secuencia La Apilada.
-        printf("-----------------------------------------------------------------------\n"
-               "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad actual:   ");
+        dprintf(FD_STDIN,
+               "-----------------------------------------------------------------------\n"
+               "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n"
+               "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
@@ -168,9 +172,10 @@ int main( int argc, char *argv[] )
         break;
       
       case 'f': // Secuencia La Carrera.
-        printf("-----------------------------------------------------------------------\n"
-               "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad actual:   ");
+        dprintf(FD_STDIN,
+               "-----------------------------------------------------------------------\n"
+               "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n"
+               "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
@@ -180,9 +185,10 @@ int main( int argc, char *argv[] )
         break;
       
       case 'g': // Secuencia El Vúmetro.
-        printf("-----------------------------------------------------------------------\n"
-               "\"El Vúmetro\"en ejecución (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad actual:   ");
+        dprintf(FD_STDIN,
+               "-----------------------------------------------------------------------\n"
+               "\"El Vúmetro\"en ejecución (presione 's' para volver al menú)\n"
+               "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
@@ -192,9 +198,10 @@ int main( int argc, char *argv[] )
         break;
       
       case 'h': // Secuencia Juntos Por Paridad.
-        printf("-----------------------------------------------------------------------\n"
-               "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad actual:   ");
+        dprintf(FD_STDIN,
+               "-----------------------------------------------------------------------\n"
+               "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n"
+               "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );
@@ -204,9 +211,10 @@ int main( int argc, char *argv[] )
         break;
       
       case 'i': // Secuencia La Gran Moisés.
-        printf("-----------------------------------------------------------------------\n"
-               "\"La Gran Moisés\" en ejecución (presione 's' para volver al menú)\n");
-        dprintf(FD_STDOUT, "Velocidad actual:   ");
+        dprintf(FD_STDIN,
+               "-----------------------------------------------------------------------\n"
+               "\"La Gran Moisés\" en ejecución (presione 's' para volver al menú)\n"
+               "Velocidad actual:   ");
       
         seteoModoNoCanonico( &t_newStdIn );
         seteoModoNoBloqueante( &t_newStdIn );

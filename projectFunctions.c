@@ -683,15 +683,45 @@ void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuer
       k--;
     }
     
+  } // Fin del 1er while.
+
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
       digitalWriteEP( leds[i], 0 );
     
-  } // Fin del 1er while.
-
 }
 
 /*******************************************************************************************/
 /*******************************************************************************************/
 
+void secParpadeo( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
+{
+  char buf[4] = {'\0'}; // Almacena lo leído por que lee read() o por el puerto serie.
 
+  while( buf[0] != 's' )
+  {
+    lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+
+    velocidadSecuenciasConTeclado( velSecuencias, buf );
+    imprimeVelocidadDurante( *velSecuencias );
+    
+    for(int i=0 ; (buf[0] != 's') && (i < 8) ; i++) // Enciende todos los leds.
+      digitalWriteEP( leds[i], 1);
+    
+    retardo( valorDeRetardo(*velSecuencias) );
+
+    lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
+
+    velocidadSecuenciasConTeclado( velSecuencias, buf );
+    imprimeVelocidadDurante( *velSecuencias );
+    
+    for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++) // Apaga todos los leds.
+      digitalWriteEP( leds[j], 0 );
+
+    retardo( valorDeRetardo(*velSecuencias) );
+  } // Fin del while.
+    
+  for(int k = 0 ; k < 8 ; k++) // Apaga todos los leds antes de volver al menú.
+      digitalWriteEP( leds[k], 0 );
+
+}
 

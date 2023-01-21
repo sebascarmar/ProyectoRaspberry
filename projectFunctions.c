@@ -294,11 +294,11 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
       velocidadSecuenciasConTeclado( velSecuencias, buf );
       imprimeVelocidadDurante( *velSecuencias );
       
-      digitalWrite( leds[i], 1 );
+      digitalWriteEP( leds[i], 1 );
      
       retardo( valorDeRetardo(*velSecuencias) );
       
-      digitalWrite( leds[i], 0 );
+      digitalWriteEP( leds[i], 0 );
     }
   
     for(int i = 6 ; (buf[0] != 's') && (i > 0) ; i--) // Act/Desact ls leds en otro sentido.
@@ -308,11 +308,11 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
       velocidadSecuenciasConTeclado( velSecuencias, buf );
       imprimeVelocidadDurante( *velSecuencias );
       
-      digitalWrite( leds[i], 1 );
+      digitalWriteEP( leds[i], 1 );
       
       retardo( valorDeRetardo(*velSecuencias) );
       
-      digitalWrite( leds[i], 0 );
+      digitalWriteEP( leds[i], 0 );
     }
 
   } // Fin del while.
@@ -338,13 +338,13 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
       velocidadSecuenciasConTeclado( velSecuencias, buf );
       imprimeVelocidadDurante( *velSecuencias );
       
-      digitalWrite( leds[i], 1 );
-      digitalWrite( leds[j], 1 );
+      digitalWriteEP( leds[i], 1 );
+      digitalWriteEP( leds[j], 1 );
       
       retardo( valorDeRetardo(*velSecuencias) );
       
-      digitalWrite( leds[i], 0 );
-      digitalWrite( leds[j], 0 );
+      digitalWriteEP( leds[i], 0 );
+      digitalWriteEP( leds[j], 0 );
       
       i++;
       j--;
@@ -440,7 +440,7 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
          
-        digitalWrite( leds[j], laApilada[i][j] ); // Muestra en los leds la tabla.
+        digitalWriteEP( leds[j], laApilada[i][j] ); // Muestra en los leds la tabla.
         usleep(5000); // Delay entre cada led.
       } // Fin 2º for.
         
@@ -450,7 +450,7 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
   } // Fin del while.
   
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
-      digitalWrite( leds[i], 0 );
+      digitalWriteEP( leds[i], 0 );
 
 }
 
@@ -490,7 +490,7 @@ void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
         
-        digitalWrite( leds[j], laCarrera[i][j] ); // Muestra en los leds la tabla.
+        digitalWriteEP( leds[j], laCarrera[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
       } // Fin 2do for.
       
@@ -500,7 +500,7 @@ void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
   }
   
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
-      digitalWrite( leds[i], 0 );
+      digitalWriteEP( leds[i], 0 );
 
 }
 
@@ -548,7 +548,7 @@ void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
       
-        digitalWrite( leds[j], elVumetro[i][j] ); // Muestra en los leds la tabla.
+        digitalWriteEP( leds[j], elVumetro[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
       }
       
@@ -558,7 +558,7 @@ void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
   }
   
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
-      digitalWrite( leds[i], 0 );
+      digitalWriteEP( leds[i], 0 );
 
 }
 
@@ -615,7 +615,7 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int 
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
         
-        digitalWrite( leds[j], juntosPorParidad[i][j] ); // Muestra en los leds la tabla.
+        digitalWriteEP( leds[j], juntosPorParidad[i][j] ); // Muestra en los leds la tabla.
       } // Fin del 2do for.
       
       retardo( valorDeRetardo(*velSecuencias) );
@@ -624,7 +624,7 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int 
   }
   
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
-      digitalWrite( leds[i], 0 );
+      digitalWriteEP( leds[i], 0 );
 
 }
 
@@ -644,7 +644,7 @@ void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuer
     imprimeVelocidadDurante( *velSecuencias );
     
     for(int i=0 ; (buf[0] != 's') && (i < 8) ; i++) // Enciende todos los leds.
-      digitalWrite( leds[i], 1);
+      digitalWriteEP( leds[i], 1);
     usleep(400000);
     
     j=3;
@@ -656,8 +656,8 @@ void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuer
       velocidadSecuenciasConTeclado( velSecuencias, buf );
       imprimeVelocidadDurante( *velSecuencias );
       
-      digitalWrite( leds[j], 0 );
-      digitalWrite( leds[k], 0 );
+      digitalWriteEP( leds[j], 0 );
+      digitalWriteEP( leds[k], 0 );
       
       retardo( valorDeRetardo(*velSecuencias) );
       
@@ -674,8 +674,8 @@ void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuer
       velocidadSecuenciasConTeclado( velSecuencias, buf );
       imprimeVelocidadDurante( *velSecuencias );
       
-      digitalWrite( leds[j], 1 );
-      digitalWrite( leds[k], 1 );
+      digitalWriteEP( leds[j], 1 );
+      digitalWriteEP( leds[k], 1 );
       
       retardo( valorDeRetardo(*velSecuencias) );
       
@@ -684,7 +684,7 @@ void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuer
     }
     
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
-      digitalWrite( leds[i], 0 );
+      digitalWriteEP( leds[i], 0 );
     
   } // Fin del 1er while.
 

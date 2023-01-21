@@ -26,12 +26,11 @@
 #define LENGTH_PSSW 5
 
 
-extern void retardo(unsigned long int a);
+extern void retardo( int a ); // Función escrita en ensamblador de ARM.
 
 
 
-/* FUNCION:  controlDeContraseña
- * ACCION: realiza un control de acceso al programa.
+/* ACCION: realiza un control de acceso al programa.
  * PARAMETROS: ninguno.
  * RETORNO: retorna un entero, 1 si se logra acceder y 0 si no.
  */
@@ -39,8 +38,7 @@ int controlDeContraseña( void );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
+/* ACCION:
  * PARAMETROS:
  * RETORNO:
  */
@@ -48,8 +46,7 @@ void seteoModoNoCanonico( struct termios *t_newStdIn );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
+/* ACCION:
  * PARAMETROS:
  * RETORNO:
  */
@@ -57,8 +54,7 @@ void seteoModoNoBloqueante( struct termios *t_newStdIn );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
+/* ACCION:
  * PARAMETROS:
  * RETORNO:
  */
@@ -75,127 +71,140 @@ void seteoModoBloqueante( struct termios *t_oldStdIn, struct termios *t_newStdIn
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: setea la velocidad entre secuencias con el potencióemtro del ADC.
+ * PARAMETROS: dos punteros a estructuras termios.
+ * RETORNO: un entero con el valor de velocidad (de mín=1 a máx=10).
  */
 int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_newStdIn );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: imprime las opciones del menú principal en la stdout.
+ * PARAMETROS: ninguno.
+ * RETORNO: ninguno.
  */
 void imprimeMenu( void );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: en base a la velocidad de la secuencia elegida, setea el valor del delay.
+ * PARAMETROS: un entero con el valor de la velocidad de la secuencia deseada.
+ * RETORNO: un entero con el valor de delay.
  */
 int valorDeRetardo( int velSecuencia );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: setea la velocdad entre secuencis con las flechas up/down del teclado (Loc o Rem)
+ * PARAMETROS: un puntero a un entero de 8bits, un arreglo de char.
+ * RETORNO: ninguno.
  */
 void velocidadSecuenciasConTeclado( int8_t *velSecuencias, char *buf );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: imprime durante la ejecución el valor de velocidad, para ver los cambios en vivo.
+ * PARAMETROS: un enetero con la velocidad de las secuencias ya seteada.
+ * RETORNO: ninguno.
  */
 void imprimeVelocidadDurante( int velSecuencias );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: durante la ejecución de las secuencias, lee el teclado local o remoto (mediante
+ * el puerto serie).
+ * PARAMETROS: un char con el modo de manejo
+ *             un entero con el descr. de archivos del puerto serial,
+ *             un un arreglo a char para almacenar lo leído
+ * RETORNO: ninguno.
  */
 void lecturaTeclado( char modoLocal, int fdPuertoSerial, char *buf );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: ejecuta la secuencia El Auto Fantástico en los leds
+ * PARAMETROS: un arreglo a enteros con los pines de los leds
+ *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
+ *             un char con el modo de manejo ('1' local, '0' remoto)
+ *             un entero con el valor del puerto serial
+ * RETORNO: ninguno.
  */
 void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: ejecuta la secuencia El Choque en los leds.
+ * PARAMETROS: un arreglo a enteros con los pines de los leds
+ *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
+ *             un char con el modo de manejo ('1' local, '0' remoto)
+ *             un entero con el valor del puerto serial
+ * RETORNO: ninguno.
  */
 void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: ejecuta la secuencia la Apilada en los leds.
+ * PARAMETROS: un arreglo a enteros con los pines de los leds
+ *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
+ *             un char con el modo de manejo ('1' local, '0' remoto)
+ *             un entero con el valor del puerto serial
+ * RETORNO: ninguno.
  */
 void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: ejecuta la secuencia La Carrera en los leds.
+ * PARAMETROS: un arreglo a enteros con los pines de los leds
+ *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
+ *             un char con el modo de manejo ('1' local, '0' remoto)
+ *             un entero con el valor del puerto serial
+ * RETORNO: ninguno.
  */
 void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: ejecuta la secuencia El Vúmetro en los leds.
+ * PARAMETROS: un arreglo a enteros con los pines de los leds
+ *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
+ *             un char con el modo de manejo ('1' local, '0' remoto)
+ *             un entero con el valor del puerto serial
+ * RETORNO: ninguno.
  */
 void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: ejecuta la secuencia La Gran Moisés en los leds.
+ * PARAMETROS: un arreglo a enteros con los pines de los leds
+ *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
+ *             un char con el modo de manejo ('1' local, '0' remoto)
+ *             un entero con el valor del puerto serial
+ * RETORNO: ninguno.
  */
 void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: ejecuta la secuencia La Gran Moisés en los leds.
+ * PARAMETROS: un arreglo a enteros con los pines de los leds
+ *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
+ *             un char con el modo de manejo ('1' local, '0' remoto)
+ *             un entero con el valor del puerto serial
+ * RETORNO: ninguno.
  */
 void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
+/* ACCION: ejecuta la secuencia El Parpadeo en los leds.
+ * PARAMETROS: un arreglo a enteros con los pines de los leds
+ *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
+ *             un char con el modo de manejo ('1' local, '0' remoto)
+ *             un entero con el valor del puerto serial
+ * RETORNO: ninguno.
  */
 void secParpadeo( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
 

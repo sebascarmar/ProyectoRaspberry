@@ -76,7 +76,7 @@ void seteoModoBloqueante( struct termios *ttyOldStdIn, struct termios *ttyNewStd
  * PARAMETROS: dos punteros a estructuras termios.
  * RETORNO: un entero con el valor de velocidad (de mín=1 a máx=10).
  */
-int velocidadSecuenciasConPote( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn );
+int velocidadSecuenciasConPote( void );
 
 /*******************************************************************************************/
 

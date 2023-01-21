@@ -15,13 +15,13 @@ extern char seleccionMenuModoLocal( void );
 
 int main( int argc, char *argv[] )
 {
-  int fdPuertoSerial;     // Almacena el descriptor de archivos del puerto serie.
   struct termios ttyOldStdIn, ttyNewStdIn; // Estructuras para atributos del teclado.
+  int fdPuertoSerial;     // Almacena el descriptor de archivos del puerto serie.
   int leds[8] = {23, 24, 25, 12, 16, 20, 21, 26}; // Arreglo que contiene los leds.
   int8_t velSecuencias = 1; // Almacena la velocidad del 1 al 10.
+  char opcion = '\0'; // Almacena la opción que se elige del menú principal.
   char modoLocalFlag = '1'; // Permite establecer la variable booleana.
   bool modoLocal = true;    // Establece si el control  del programa se hace local o remoto.
-  char opcion = '\0'; // Almacena la opción que se elige del menú principal.
 
 
 /*------------------- Seteo del modo NO canónico en la ENTRADA ESTANDAR -------------------*/

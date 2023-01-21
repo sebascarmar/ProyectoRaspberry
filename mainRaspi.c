@@ -7,7 +7,7 @@
 #include <wiringSerial.h>
 
 #include "projectFunctions.h"
-#include "EasyPIO.h"
+#include "easyPio.h"
 
 extern char seleccionMenuModoLocal( void );
 

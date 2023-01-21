@@ -132,7 +132,7 @@ int main( int argc, char *argv[] )
         break;
       
       case 'b': // Velocidad con pote.
-        dprintf(FD_STDIN,
+        dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
                "(mín=1, máx=10)\n");
@@ -141,7 +141,7 @@ int main( int argc, char *argv[] )
         break;
       
       case 'c': // Secuencia El Auto Fantástico.
-        dprintf(FD_STDIN,
+        dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
@@ -152,7 +152,7 @@ int main( int argc, char *argv[] )
         break;
       
       case 'd': // Secuencia El Choque.
-        dprintf(FD_STDIN,
+        dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"El Choque\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
@@ -163,7 +163,7 @@ int main( int argc, char *argv[] )
         break;
       
       case 'e': // Secuencia La Apilada.
-        dprintf(FD_STDIN,
+        dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
@@ -174,7 +174,7 @@ int main( int argc, char *argv[] )
         break;
       
       case 'f': // Secuencia La Carrera.
-        dprintf(FD_STDIN,
+        dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
@@ -185,7 +185,7 @@ int main( int argc, char *argv[] )
         break;
       
       case 'g': // Secuencia El Vúmetro.
-        dprintf(FD_STDIN,
+        dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"El Vúmetro\"en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
@@ -196,7 +196,7 @@ int main( int argc, char *argv[] )
         break;
       
       case 'h': // Secuencia Juntos Por Paridad.
-        dprintf(FD_STDIN,
+        dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
@@ -207,7 +207,7 @@ int main( int argc, char *argv[] )
         break;
       
       case 'i': // Secuencia La Gran Moisés.
-        dprintf(FD_STDIN,
+        dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"La Gran Moisés\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
@@ -218,7 +218,7 @@ int main( int argc, char *argv[] )
         break;
         
       case 'j': // Secuencia El Parpadeo.
-        dprintf(FD_STDIN,
+        dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"El Parpadeo\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");

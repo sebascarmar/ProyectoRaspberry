@@ -54,7 +54,7 @@ int main( int argc, char *argv[] )
   fdPuertoSerial = serialOpen("/dev/ttyS0", 9600);
   if( fdPuertoSerial < 0 )
   {
-    fprintf(stderr, "Error al abrir \\dev\\ttyS0: %s\n", strerror(errno));
+    printf("Error al abrir \\dev\\ttyS0\n");
     tcsetattr(FD_STDIN, TCSANOW, &t_oldStdIn); // Actualiza los atributos del teclado 
                                                //con los valores originales.
     exit(EXIT_FAILURE);
@@ -63,7 +63,7 @@ int main( int argc, char *argv[] )
 /*---------------------- Mapeo de pines según WiringPi (UART) -----------------------------*/
   if ( wiringPiSetup() == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.
   {
-    fprintf (stdout, "Error al inicializar wiringPi: %s\n", strerror(errno));
+    printf("Error al inicializar wiringPi.\n");
     tcsetattr(FD_STDIN, TCSANOW, &t_oldStdIn); // Actualiza los atributos del teclado 
                                                //con los valores originales.
     exit(EXIT_FAILURE);

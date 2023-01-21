@@ -45,6 +45,10 @@ int main( int argc, char *argv[] )
   }
 
 
+/*------------------ Seteo del modo NO bloqueante en la ENTRADA ESTANDAR ------------------*/
+  seteoModoNoBloqueante( &ttyNewStdIn );
+
+
 /*---------- Mapeo y configuración de pines según EasyPIO.h (manejo de GPIO ) -------------*/
   pioInit();
   
@@ -62,6 +66,7 @@ int main( int argc, char *argv[] )
     exit(EXIT_FAILURE);
   }
 
+
 /*---------------------- Mapeo de pines según WiringPi (UART) -----------------------------*/
   if ( wiringPiSetup() == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.
   {
@@ -77,15 +82,12 @@ int main( int argc, char *argv[] )
          "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
          "(mín=1, máx=10)\n");
 
-  seteoModoNoBloqueante( &ttyNewStdIn );
   velSecuencias = velocidadSecuenciasConPote( &ttyOldStdIn, &ttyNewStdIn );
-  seteoModoBloqueante( &ttyOldStdIn, &ttyNewStdIn );
 
 
 /*-------------------------------- Menú principal -----------------------------------------*/
   while( opcion != 'k' )
   {
-    tcsetattr( FD_STDIN,TCSANOW,&ttyOldStdIn ); // Setea los valores por defec. de la config.
     imprimeMenu();
     if( modoLocal == true )
       opcion = seleccionMenuModoLocal();
@@ -100,7 +102,7 @@ int main( int argc, char *argv[] )
                                                       //el puerto serie.
       }   
     }
-    printf("\n");
+    printf("\n\n");
 
     switch( opcion )
     {
@@ -126,7 +128,7 @@ int main( int argc, char *argv[] )
         else
           modoLocal = false ;
       
-        printf("\n");
+        printf("\n\n");
         break;
       
       case 'b': // Velocidad con pote.
@@ -135,8 +137,6 @@ int main( int argc, char *argv[] )
                "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
                "(mín=1, máx=10)\n");
       
-        seteoModoNoCanonico( &ttyNewStdIn );
-        seteoModoNoBloqueante( &ttyNewStdIn );
         velSecuencias = velocidadSecuenciasConPote( &ttyOldStdIn, &ttyNewStdIn );
         break;
       
@@ -146,8 +146,6 @@ int main( int argc, char *argv[] )
                "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
       
-        seteoModoNoCanonico( &ttyNewStdIn );
-        seteoModoNoBloqueante( &ttyNewStdIn );
         secAutoFantastico( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
@@ -159,8 +157,6 @@ int main( int argc, char *argv[] )
                "\"El Choque\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
       
-        seteoModoNoCanonico( &ttyNewStdIn );
-        seteoModoNoBloqueante( &ttyNewStdIn );
         secChoque( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
@@ -172,8 +168,6 @@ int main( int argc, char *argv[] )
                "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
       
-        seteoModoNoCanonico( &ttyNewStdIn );
-        seteoModoNoBloqueante( &ttyNewStdIn );
         secApilada( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
@@ -185,8 +179,6 @@ int main( int argc, char *argv[] )
                "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
       
-        seteoModoNoCanonico( &ttyNewStdIn );
-        seteoModoNoBloqueante( &ttyNewStdIn );
         secCarrera( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
@@ -198,8 +190,6 @@ int main( int argc, char *argv[] )
                "\"El Vúmetro\"en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
       
-        seteoModoNoCanonico( &ttyNewStdIn );
-        seteoModoNoBloqueante( &ttyNewStdIn );
         secVumetro( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
@@ -211,8 +201,6 @@ int main( int argc, char *argv[] )
                "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
       
-        seteoModoNoCanonico( &ttyNewStdIn );
-        seteoModoNoBloqueante( &ttyNewStdIn );
         secJuntosPorParidad( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
@@ -224,8 +212,6 @@ int main( int argc, char *argv[] )
                "\"La Gran Moisés\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
       
-        seteoModoNoCanonico( &ttyNewStdIn );
-        seteoModoNoBloqueante( &ttyNewStdIn );
         secGranMoises( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         printf("\n\n");
@@ -237,7 +223,6 @@ int main( int argc, char *argv[] )
                "\"El Parpadeo\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
       
-        seteoModoNoCanonico( &ttyNewStdIn );
         seteoModoNoBloqueante( &ttyNewStdIn );
         secParpadeo( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       

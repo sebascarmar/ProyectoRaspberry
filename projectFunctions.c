@@ -3,39 +3,39 @@
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void seteoModoNoCanonico( struct termios *t_newStdIn )
+void seteoModoNoCanonico( struct termios *ttyNewStdIn )
 {
-  t_newStdIn->c_lflag &= ~(ECHO | ICANON);    // Anula entrada canónica y eco.
-  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
+  ttyNewStdIn->c_lflag &= ~(ECHO | ICANON);    // Anula entrada canónica y eco.
+  tcsetattr( FD_STDIN, TCSANOW, ttyNewStdIn ); // Setea los valores nuevos de la config.
 }
 
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void seteoModoNoBloqueante( struct termios *t_newStdIn )
+void seteoModoNoBloqueante( struct termios *ttyNewStdIn )
 {
-  t_newStdIn->c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
-  t_newStdIn->c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
-  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
+  ttyNewStdIn->c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
+  ttyNewStdIn->c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
+  tcsetattr( FD_STDIN, TCSANOW, ttyNewStdIn ); // Setea los valores nuevos de la config.
 }
 
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void seteoModoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn )
+void seteoModoCanonico( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn )
 {
-  t_newStdIn->c_lflag = t_oldStdIn->c_lflag; // Anula entrada canónica y eco.
-  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
+  ttyNewStdIn->c_lflag = ttyOldStdIn->c_lflag; // Anula entrada canónica y eco.
+  tcsetattr( FD_STDIN, TCSANOW, ttyNewStdIn ); // Setea los valores nuevos de la config.
 }
 
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void seteoModoBloqueante( struct termios *t_oldStdIn, struct termios *t_newStdIn )
+void seteoModoBloqueante( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn )
 {
-  t_newStdIn->c_cc[VMIN] = t_oldStdIn->c_cc[VMIN];    // No espera a recibir ningún caracter.
-  t_newStdIn->c_cc[VTIME] = t_oldStdIn->c_cc[VTIME];  // No espera tiempo alguno tampoco.
-  tcsetattr( FD_STDIN, TCSANOW, t_newStdIn ); // Setea los valores nuevos de la config.
+  ttyNewStdIn->c_cc[VMIN] = ttyOldStdIn->c_cc[VMIN];    // No espera a recibir ningún caracter.
+  ttyNewStdIn->c_cc[VTIME] = ttyOldStdIn->c_cc[VTIME];  // No espera tiempo alguno tampoco.
+  tcsetattr( FD_STDIN, TCSANOW, ttyNewStdIn ); // Setea los valores nuevos de la config.
 }
 
 /*******************************************************************************************/
@@ -113,7 +113,7 @@ int controlDeContraseña( void )
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_newStdIn )
+int velocidadSecuenciasConPote( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn )
 {
   char tecla[1] = {'\0'};         // Almacena lo leído por read().
   int fdModuloADC, valorADC;      // Declaracion de variables para acceder al ADC.

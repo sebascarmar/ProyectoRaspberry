@@ -6,7 +6,6 @@
 #include <unistd.h> //read, usleep
 #include <termios.h> //controlContra; seteoModoNOCanonico, etc ; lecturaTeclado [local]
 
-#include <wiringPi.h>
 #include <wiringPiI2C.h> //comunicación con el ADC
 #include <wiringSerial.h> //lecturaTeclado [remoto]
 
@@ -42,7 +41,7 @@ int controlDeContraseña( void );
  * PARAMETROS:
  * RETORNO:
  */
-void seteoModoNoCanonico( struct termios *t_newStdIn );
+void seteoModoNoCanonico( struct termios *ttyNewStdIn );
 
 /*******************************************************************************************/
 
@@ -50,7 +49,7 @@ void seteoModoNoCanonico( struct termios *t_newStdIn );
  * PARAMETROS:
  * RETORNO:
  */
-void seteoModoNoBloqueante( struct termios *t_newStdIn );
+void seteoModoNoBloqueante( struct termios *ttyNewStdIn );
 
 /*******************************************************************************************/
 
@@ -58,7 +57,7 @@ void seteoModoNoBloqueante( struct termios *t_newStdIn );
  * PARAMETROS:
  * RETORNO:
  */
-void seteoModoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn );
+void seteoModoCanonico( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn );
 
 /*******************************************************************************************/
 
@@ -67,7 +66,7 @@ void seteoModoCanonico( struct termios *t_oldStdIn, struct termios *t_newStdIn )
  * PARAMETROS:
  * RETORNO:
  */
-void seteoModoBloqueante( struct termios *t_oldStdIn, struct termios *t_newStdIn );
+void seteoModoBloqueante( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn );
 
 /*******************************************************************************************/
 
@@ -75,7 +74,7 @@ void seteoModoBloqueante( struct termios *t_oldStdIn, struct termios *t_newStdIn
  * PARAMETROS: dos punteros a estructuras termios.
  * RETORNO: un entero con el valor de velocidad (de mín=1 a máx=10).
  */
-int velocidadSecuenciasConPote( struct termios *t_oldStdIn, struct termios *t_newStdIn );
+int velocidadSecuenciasConPote( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn );
 
 /*******************************************************************************************/
 

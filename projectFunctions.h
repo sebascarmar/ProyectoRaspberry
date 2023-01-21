@@ -1,28 +1,26 @@
 #ifndef PROJECTFUNCTIONS_H
 #define PROJECTFUNCTIONS_H
 
-#include <stdio.h>
-#include <termios.h> //controlContra; seteoModoNOCanonico
+#include <stdio.h> // xprintf
+#include <stdlib.h> //exit, int8_t
+#include <unistd.h> //read, usleep
+#include <termios.h> //controlContra; seteoModoNOCanonico, etc ; lecturaTeclado [local]
 
-#include <wiringPiI2C.h>
 #include <wiringPi.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <termios.h>
-#include <unistd.h>
+#include <wiringPiI2C.h> //comunicación con el ADC
+#include <wiringSerial.h> //lecturaTeclado [remoto]
 
 /*-------------------- Seteo de velocidad inicial de secuencias ---------------------------*/
 /*------------ Descriptor de entrada estándar y direcciones de registros ------------------*/
 #define FD_STDIN 0
 #define FD_STDOUT 1
+
 #define ADDRESS 0x48
 #define A0 ADDRESS+0
 #define A1 ADDRESS+1
 #define A2 ADDRESS+2
 #define A3 ADDRESS+3
 
-
-#define FD_STDIN 0
 #define LENGTH_PSSW 5
 
 

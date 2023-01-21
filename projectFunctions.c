@@ -113,7 +113,7 @@ int controlDeContraseña( void )
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-int velocidadSecuenciasConPote( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn )
+int velocidadSecuenciasConPote( void )
 {
   char tecla[1] = {'\0'};         // Almacena lo leído por read().
   int fdModuloADC, valorADC;      // Declaracion de variables para acceder al ADC.

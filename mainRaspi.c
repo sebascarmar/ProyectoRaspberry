@@ -1,22 +1,16 @@
 #include <stdio.h>
-#include <string.h>
-#include <errno.h>
-#include <wiringPi.h>
-#include <wiringSerial.h>
-
-#include <stdio.h>
+#include <stdlib.h>
 #include <termios.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <string.h>
+
+#include <wiringPi.h>
+#include <wiringSerial.h>
 
 #include "projectFunctions.h"
 #include "EasyPIO.h"
 
-#include <stdint.h>
-
 extern char seleccionMenuModoLocal( void );
+
 
 int main( int argc, char *argv[] )
 {

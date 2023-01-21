@@ -9,6 +9,8 @@
 #include <wiringPiI2C.h> //comunicación con el ADC
 #include <wiringSerial.h> //lecturaTeclado [remoto]
 
+#include <stdbool.h>
+
 #include "easyPio.h"
 
 /*-------------------- Seteo de velocidad inicial de secuencias ---------------------------*/
@@ -117,7 +119,7 @@ void imprimeVelocidadDurante( int velSecuencias );
  *             un un arreglo a char para almacenar lo leído
  * RETORNO: ninguno.
  */
-void lecturaTeclado( char modoLocal, int fdPuertoSerial, char *buf );
+void lecturaTeclado( bool modoLocal, int fdPuertoSerial, char *buf );
 
 /*******************************************************************************************/
 
@@ -128,7 +130,7 @@ void lecturaTeclado( char modoLocal, int fdPuertoSerial, char *buf );
  *             un entero con el valor del puerto serial
  * RETORNO: ninguno.
  */
-void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+void secAutoFantastico( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -139,7 +141,7 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fd
  *             un entero con el valor del puerto serial
  * RETORNO: ninguno.
  */
-void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+void secChoque( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -150,7 +152,7 @@ void secChoque( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSe
  *             un entero con el valor del puerto serial
  * RETORNO: ninguno.
  */
-void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+void secApilada( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -161,7 +163,7 @@ void secApilada( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
  *             un entero con el valor del puerto serial
  * RETORNO: ninguno.
  */
-void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+void secCarrera( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -172,7 +174,7 @@ void secCarrera( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
  *             un entero con el valor del puerto serial
  * RETORNO: ninguno.
  */
-void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+void secVumetro( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -183,7 +185,7 @@ void secVumetro( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoS
  *             un entero con el valor del puerto serial
  * RETORNO: ninguno.
  */
-void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+void secJuntosPorParidad( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -194,7 +196,7 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, char modoLocal, int 
  *             un entero con el valor del puerto serial
  * RETORNO: ninguno.
  */
-void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 
@@ -205,7 +207,7 @@ void secGranMoises( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuer
  *             un entero con el valor del puerto serial
  * RETORNO: ninguno.
  */
-void secParpadeo( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial );
+void secParpadeo( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
 
 
 

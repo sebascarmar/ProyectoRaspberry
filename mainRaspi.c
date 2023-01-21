@@ -6,6 +6,8 @@
 #include <wiringPi.h>
 #include <wiringSerial.h>
 
+#include <stdbool.h>
+
 #include "projectFunctions.h"
 
 extern char seleccionMenuModoLocal( void );
@@ -16,9 +18,10 @@ int main( int argc, char *argv[] )
   int fdPuertoSerial;     // Almacena el descriptor de archivos del puerto serie.
   struct termios ttyOldStdIn, ttyNewStdIn; // Estructuras para atributos del teclado.
   int leds[8] = {23, 24, 25, 12, 16, 20, 21, 26}; // Arreglo que contiene los leds.
-  int8_t velSecuencias = 1;
-  char modoLocal = '1';
-  char opcion = '\0';
+  int8_t velSecuencias = 1; // Almacena la velocidad del 1 al 10.
+  char modoLocalFlag = '1'; // Permite establecer la variable booleana.
+  bool modoLocal = true;    // Establece si el control  del programa se hace local o remoto.
+  char opcion = '\0'; // Almacena la opción que se elige del menú principal.
 
 
 /*------------------- Seteo del modo NO canónico en la ENTRADA ESTANDAR -------------------*/
@@ -84,7 +87,7 @@ int main( int argc, char *argv[] )
   {
     tcsetattr( FD_STDIN,TCSANOW,&ttyOldStdIn ); // Setea los valores por defec. de la config.
     imprimeMenu();
-    if( modoLocal == '1' )
+    if( modoLocal == true )
       opcion = seleccionMenuModoLocal();
     else
     {
@@ -108,15 +111,20 @@ int main( int argc, char *argv[] )
                            "\t 0) Remoto\n"
                            "\t 1) Local\n"
                            "Modo: ");
-        read(FD_STDIN,&modoLocal, 1);
+        read(FD_STDIN,&modoLocalFlag, 1);
         tcflush(FD_STDIN, TCIOFLUSH);
       
-        while( (modoLocal != '0') && (modoLocal != '1') )
+        while( (modoLocalFlag != '0') && (modoLocalFlag != '1') ) // Control de errores.
         {
           dprintf(FD_STDOUT, "Opción inválida. Elija el modo: ");
-          read(FD_STDIN,&modoLocal, 1);
+          read(FD_STDIN,&modoLocalFlag, 1);
           tcflush(FD_STDIN, TCIOFLUSH);
         }
+
+        if(modoLocalFlag == '1') // Establece si se trata de modo local o remoto.
+          modoLocal = true;
+        else
+          modoLocal = false ;
       
         printf("\n");
         break;

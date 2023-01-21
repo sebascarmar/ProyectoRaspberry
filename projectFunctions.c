@@ -258,6 +258,29 @@ void imprimeVelocidadDurante( int velSecuencias )
 /*******************************************************************************************/
 /*******************************************************************************************/
 
+void lecturaTeclado( char modoLocal, int fdPuertoSerial, char *buf ) //Modo remoto en revisión
+{
+  if( modoLocal == '1' ) // Lectura del teclado local
+  {
+    read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
+    tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
+  }
+  else                   // Lectura teclado remoto mediante puerto serie.
+  {
+    if( serialDataAvail(fdPuertoSerial) )       // Retorna el número de caracteres
+    {                                           //disponible para leer.
+      for(int i = 0 ; i < 3 ; i++)
+        buf[i] = serialGetchar( fdPuertoSerial ); // Retorna el siguiente caracter 
+                                                  //disponible en el dispositivo serial.	
+      
+      tcflush(fdPuertoSerial, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
+    }
+  }
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
+
 void secAutoFantastico( int *leds, int8_t *velSecuencias, char modoLocal, int fdPuertoSerial )
 {
   char buf[4] = {'\0'}; // Almacena lo leído por que lee read() o por el puerto serie.

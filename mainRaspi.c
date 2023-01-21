@@ -82,7 +82,7 @@ int main( int argc, char *argv[] )
          "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
          "(mín=1, máx=10)\n");
 
-  velSecuencias = velocidadSecuenciasConPote( &ttyOldStdIn, &ttyNewStdIn );
+  velSecuencias = velocidadSecuenciasConPote();
 
 
 /*-------------------------------- Menú principal -----------------------------------------*/
@@ -137,7 +137,7 @@ int main( int argc, char *argv[] )
                "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
                "(mín=1, máx=10)\n");
       
-        velSecuencias = velocidadSecuenciasConPote( &ttyOldStdIn, &ttyNewStdIn );
+        velSecuencias = velocidadSecuenciasConPote( );
         break;
       
       case 'c': // Secuencia El Auto Fantástico.

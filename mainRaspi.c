@@ -224,6 +224,16 @@ int main( int argc, char *argv[] )
         break;
         
       case 'j': // Secuencia El Parpadeo.
+        dprintf(FD_STDIN,
+               "-----------------------------------------------------------------------\n"
+               "\"El Parpadeo\" en ejecución (presione 's' para volver al menú)\n"
+               "Velocidad actual:   ");
+      
+        seteoModoNoCanonico( &t_newStdIn );
+        seteoModoNoBloqueante( &t_newStdIn );
+        secParpadeo( leds, &velSecuencias, modoLocal, fdPuertoSerial );
+      
+        printf("\n\n");
         break;
       
       case 'k': // Salir del programa.

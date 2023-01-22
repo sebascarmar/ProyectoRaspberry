@@ -219,21 +219,20 @@ bool seleccionModoEnModoLocal( char modoLocalFlag )
 {
   do
   {
-    while( read(FD_STDIN,&modoLocalFlag, 1) == 0 ) // Espera por ingreso por teclado,
-                                                   //debido al modo no bloqueante.
-    tcflush(FD_STDIN, TCIOFLUSH);           // Descarta lo escrito pero no transmitido.
-    dprintf(FD_STDOUT, "%c", modoLocalFlag);// Imprime lo ingresado por teclado.
+    while( read(FD_STDIN,&modoLocalFlag, 1) == 0 )// Espera por ingreso por teclado,
+                                                  //debido al modo no bloqueante.
+    tcflush(FD_STDIN, TCIOFLUSH);// Descarta lo escrito pero no transmtido (limpia el buffer)
+
+    if( (modoLocalFlag >= 32) && (modoLocalFlag<=126) ) // Imprime solo char imprimibles.
+      dprintf(FD_STDOUT, "%c", modoLocalFlag); 
   
-    if( (modoLocalFlag != '0') && (modoLocalFlag != '1') )
-    {
-      if( modoLocalFlag != '\n' )
-        dprintf(FD_STDOUT, "\n");
-      dprintf(FD_STDOUT, "Opción inválida. Elija el modo: ");
-    }
+    if( (modoLocalFlag != '0') && (modoLocalFlag != '1') ) // Control de valores válidos.
+      dprintf(FD_STDOUT, "\nOpción inválida. Elija el modo: ");
+    
   }while( (modoLocalFlag != '0') && (modoLocalFlag != '1') ); // Control valores válidos.
 
 
-  if(modoLocalFlag == '1') // Establece si se trata de modo local o remoto.
+  if(modoLocalFlag == '1') // Retorna si se trata de modo local o remoto.
     return true;
   else
     return false ;

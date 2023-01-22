@@ -226,10 +226,10 @@ bool seleccionModoEnModoLocal( char modoLocalFlag )
     if( (modoLocalFlag >= 32) && (modoLocalFlag<=126) ) // Imprime solo char imprimibles.
       dprintf(FD_STDOUT, "%c", modoLocalFlag); 
   
-    if( (modoLocalFlag != '0') && (modoLocalFlag != '1') ) // Control de valores válidos.
+    if( (modoLocalFlag != '1') && (modoLocalFlag != '2') ) // Control de valores válidos.
       dprintf(FD_STDOUT, "\nOpción inválida. Elija el modo: ");
     
-  }while( (modoLocalFlag != '0') && (modoLocalFlag != '1') ); // Control valores válidos.
+  }while( (modoLocalFlag != '1') && (modoLocalFlag != '2') ); // Control valores válidos.
 
 
   if(modoLocalFlag == '1') // Retorna si se trata de modo local o remoto.

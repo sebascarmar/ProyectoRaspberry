@@ -20,7 +20,6 @@ int main( int argc, char *argv[] )
   int leds[8] = {23, 24, 25, 12, 16, 20, 21, 26}; // Arreglo que contiene los leds.
   int8_t velSecuencias = 1; // Almacena la velocidad del 1 al 10.
   char opcion = '\0'; // Almacena la opción que se elige del menú principal.
-  char modoLocalFlag = '1'; // Permite establecer la variable booleana.
   bool modoLocal = true;    // Establece si el control  del programa se hace local o remoto.
 
 
@@ -113,10 +112,11 @@ int main( int argc, char *argv[] )
                            "\t 1) Remoto\n"
                            "\t 2) Local\n"
                            "Modo: ");
+        tcdrain(FD_STDOUT);
       
         if( modoLocal == true ) // Selección de modo en modo local.
         {
-          modoLocal = seleccionModoEnModoLocal( modoLocalFlag );
+          modoLocal = seleccionModoEnModoLocal();
           
         }else                   // Selección de modo en modo remoto.
         {

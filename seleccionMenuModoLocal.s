@@ -1,7 +1,7 @@
 .data
 enunciado: .ascii "Por favor, ingrese una opción: "
-seleccion: .ascii "\0"
-msjError: .ascii "Valor inválido. "
+seleccion: .ascii "\0\0\0\0"
+msjError: .ascii "\nValor inválido. "
 
 .arm
 .text
@@ -22,16 +22,19 @@ seleccionMenuModoLocal:
         
     loop:
         /********************** VACIA EL BUFFER *******************************/
-        MOV   R0, #'\0'
-        LDR   R1, =seleccion // Buffer de entrada.
-        STR   R0, [R1]
+       // MOV   R0, #'\0'
+       // LDR   R1, =seleccion // Buffer de entrada.
+       // STR   R0, [R1]
 
         /*********** ESPERA POR EL INGRESO DE UNA OPCION **********************/
+    ingresaChar:
         MOV   R7, #3      // 3 es el código de la llamada a 'read' del sistema.
         MOV   R0, #0      // Descriptor de archivo de stdin (teclado).
         LDR   R1, =seleccion // Buffer de entrada.
-        MOV   R2, #1     // Cantidad de char a leer.
+        MOV   R2, #3     // Cantidad de char a leer.
         SWI   0           // Llamada al sistema para arm 32-bit/EABI.
+        CMP   R0, #0    // read retorno el número de caracteres leídos.
+        BEQ   ingresaChar
         LDR   R4, [R1] // Almacena el caracter ingresado en R4.
 
         /******** DESCARTA DATOS ESCRITOS PERO NO TRASMITIDOS ******************/
@@ -40,8 +43,8 @@ seleccionMenuModoLocal:
         BL  tcflush
 
         /**************** IMPRIME EN PANTALLA LO INGRESADO *********************/
-        CMP   R4, #'\0' 
-        BEQ   switchCase
+        //CMP   R4, #'\0' 
+        //BEQ   switchCase
         CMP   R4, #32
         BLT   switchCase
         CMP   R4, #126
@@ -92,6 +95,7 @@ seleccionMenuModoLocal:
       
     opcion6:
         CMP   R2, #'f'
+        BNE opcion7
         MOV   R0, #'f'    // Valor de retorno de la función.
         B   break         // Sale del switch case.
       
@@ -128,7 +132,7 @@ seleccionMenuModoLocal:
     opcion12:
         CMP   R2, #'\0'
         BNE opcionDefecto
-        B   break    
+        B   loop    
      
     opcionDefecto:
         MOV   R7, #4      // 4 es el código de la llamada a 'write' del sistema.

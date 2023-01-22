@@ -88,9 +88,9 @@ void imprimeMenu( void );
 
 /*******************************************************************************************/
 
-/* ACCION: imprime las opciones del menú principal en la stdout.
- * PARAMETROS: ninguno.
- * RETORNO: ninguno.
+/* ACCION: seleccion el modo local o remoto, estando en modo local.
+ * PARAMETROS: un char con la bandera del modo local (usada para retornar el booleano).
+ * RETORNO: un bool: verdadero si es modo local, falso si es modo remoto.
  */
 bool seleccionModoEnModoLocal( char modoLocalFlag );
 

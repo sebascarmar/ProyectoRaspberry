@@ -88,6 +88,14 @@ void imprimeMenu( void );
 
 /*******************************************************************************************/
 
+/* ACCION: imprime las opciones del menú principal en la stdout.
+ * PARAMETROS: ninguno.
+ * RETORNO: ninguno.
+ */
+bool seleccionModoEnModoLocal( char modoLocalFlag );
+
+/*******************************************************************************************/
+
 /* ACCION: en base a la velocidad de la secuencia elegida, setea el valor del delay.
  * PARAMETROS: un entero con el valor de la velocidad de la secuencia deseada.
  * RETORNO: un entero con el valor de delay.

@@ -215,6 +215,34 @@ void imprimeMenu( void )
 /*******************************************************************************************/
 /*******************************************************************************************/
 
+bool seleccionModoEnModoLocal( char modoLocalFlag )
+{
+  do
+  {
+    while( read(FD_STDIN,&modoLocalFlag, 1) == 0 ) // Espera por ingreso por teclado,
+                                                   //debido al modo no bloqueante.
+    tcflush(FD_STDIN, TCIOFLUSH);           // Descarta lo escrito pero no transmitido.
+    dprintf(FD_STDOUT, "%c", modoLocalFlag);// Imprime lo ingresado por teclado.
+  
+    if( (modoLocalFlag != '0') && (modoLocalFlag != '1') )
+    {
+      if( modoLocalFlag != '\n' )
+        dprintf(FD_STDOUT, "\n");
+      dprintf(FD_STDOUT, "Opción inválida. Elija el modo: ");
+    }
+  }while( (modoLocalFlag != '0') && (modoLocalFlag != '1') ); // Control valores válidos.
+
+
+  if(modoLocalFlag == '1') // Establece si se trata de modo local o remoto.
+    return true;
+  else
+    return false ;
+
+}
+
+/*******************************************************************************************/
+/*******************************************************************************************/
+
 int valorDeRetardo( int velSecuencia )
 {
   switch( velSecuencia )

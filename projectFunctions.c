@@ -196,20 +196,6 @@ void imprimeMenu( void )
          "  d) Secuencia \"El Choque\"\t\t      j) Secuencia \"El Parpadeo\"\n"
          "  e) Secuencia \"La Apilada\"\t\t      k) SALIR\n"
          "  f) Secuencia \"La Carrera\"\n\n");
-  //printf("=================================================================================\n"
-  //       "==                             MENÚ PRINCIPAL                                  ==\n"
-  //       "=================================================================================\n"
-  //       "\t\ta) Selección de modo local/remoto\n"
-  //       "\t\tb) Seteo de velocidad con el potenciómetro del ADC\n"
-  //       "\t\tc) Secuencia \"El Auto Fantástico\"\n"
-  //       "\t\td) Secuencia \"El Choque\"\n"
-  //       "\t\te) Secuencia \"La Apilada\"\n"
-  //       "\t\tf) Secuencia \"La Carrera\"\n"
-  //       "\t\tg) Secuencia \"El Parpadeo\"\n"
-  //       "\t\th) Secuencia \"El Vúmetro\"\n"
-  //       "\t\ti) Secuencia \"Sin nombre aun\"\n"
-  //       "\t\tj) Secuencia \"Sin nombre aun\"\n"
-  //       "\t\tk) Salir\n\n");
 }
 
 /*******************************************************************************************/

@@ -214,7 +214,7 @@ bool seleccionModoEnModoLocal( void )
       dprintf(FD_STDOUT, "%c", modoLocalFlag[0] ); 
   
     if( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') )
-      dprintf(FD_STDOUT, "\nOpción inválida. Elija el modo: ");//Mensaje de error.
+      dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo: ");//Mensaje de error.
     
   }while( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') );//Control valores válidos.
 

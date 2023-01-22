@@ -108,10 +108,10 @@ int main( int argc, char *argv[] )
       case 'a': // Modo remoto/local.
         dprintf(FD_STDOUT, "--------------------------------------------------------------"
                            "---------\n"
-                           "Seleccione el modo de control:\n"
+                           "Modo de control:\n"
                            "\t 1) Local\n"
-                           "\t 2) Remoto\n"
-                           "Modo: ");
+                           "\t 2) Remoto\n\n"
+                           "Por favor, elija el modo: ");
       
         if( modoLocal == true ) // Selección de modo en modo local.
         {

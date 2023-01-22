@@ -109,10 +109,9 @@ int main( int argc, char *argv[] )
         dprintf(FD_STDOUT, "--------------------------------------------------------------"
                            "---------\n"
                            "Seleccione el modo de control:\n"
-                           "\t 1) Remoto\n"
-                           "\t 2) Local\n"
+                           "\t 1) Local\n"
+                           "\t 2) Remoto\n"
                            "Modo: ");
-        tcdrain(FD_STDOUT);
       
         if( modoLocal == true ) // Selección de modo en modo local.
         {

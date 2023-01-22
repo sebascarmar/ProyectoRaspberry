@@ -7,8 +7,6 @@ msjError: .ascii "\nValor inválido. "
 .text
 .global seleccionMenuModoLocal
 
-.extern tcflush
-
 
 seleccionMenuModoLocal:
     PUSH {R4, R7, LR}          // Apila reg. en el stack
@@ -21,30 +19,26 @@ seleccionMenuModoLocal:
         SWI   0           // Llamada al sistema para arm 32-bit/EABI.
         
     loop:
-        /********************** VACIA EL BUFFER *******************************/
-       // MOV   R0, #'\0'
-       // LDR   R1, =seleccion // Buffer de entrada.
-       // STR   R0, [R1]
+        /********************** VACÍA EL BUFFER *******************************/
+        MOV   R0, #'\0'
+        LDR   R1, =seleccion // Buffer de entrada.
+        STR   R0, [R1]
+
 
         /*********** ESPERA POR EL INGRESO DE UNA OPCION **********************/
-    ingresaChar:
+    bucleWrite:
         MOV   R7, #3      // 3 es el código de la llamada a 'read' del sistema.
         MOV   R0, #0      // Descriptor de archivo de stdin (teclado).
         LDR   R1, =seleccion // Buffer de entrada.
         MOV   R2, #3     // Cantidad de char a leer.
         SWI   0           // Llamada al sistema para arm 32-bit/EABI.
-        CMP   R0, #0    // read retorno el número de caracteres leídos.
-        BEQ   ingresaChar
         LDR   R4, [R1] // Almacena el caracter ingresado en R4.
-
-        /******** DESCARTA DATOS ESCRITOS PERO NO TRASMITIDOS ******************/
-        MOV   R0, #0 // Descriptor de archivo de stdin (teclado).
-        MOV   R1, #2 // Valor de queue_selector para TCIOFLUSH (/bits/termios.h)
-        BL  tcflush
+        CMP   R0, #0
+        BEQ   bucleWrite
 
         /**************** IMPRIME EN PANTALLA LO INGRESADO *********************/
-        //CMP   R4, #'\0' 
-        //BEQ   switchCase
+        CMP   R4, #'\0' 
+        BEQ   switchCase
         CMP   R4, #32
         BLT   switchCase
         CMP   R4, #126
@@ -65,12 +59,14 @@ seleccionMenuModoLocal:
        
     //opcion1
         CMP   R2, #'a'
+        CMPNE R2, #'A'
         BNE opcion2
         MOV   R0, #'a'    // Valor de retorno de la función.
         B   break         // Sale del switch case.
        
     opcion2:
         CMP   R2, #'b'
+        CMPNE R2, #'B'
         BNE opcion3
         MOV   R0, #'b'    // Valor de retorno de la función.
         B   break         // Sale del switch case.
@@ -138,7 +134,7 @@ seleccionMenuModoLocal:
         MOV   R7, #4      // 4 es el código de la llamada a 'write' del sistema.
         MOV   R0, #1      // Descriptor de archivo de stdout (monitor).
         LDR   R1, =msjError // Buffer de salida
-        MOV   R2, #17     // Cantidad de char a escribir.
+        MOV   R2, #18     // Cantidad de char a escribir.
         SWI   0           // Llamada al sistema para arm 32-bit/EABI.
         B   loop
      

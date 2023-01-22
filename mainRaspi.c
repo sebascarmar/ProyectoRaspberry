@@ -113,20 +113,15 @@ int main( int argc, char *argv[] )
                            "\t 0) Remoto\n"
                            "\t 1) Local\n"
                            "Modo: ");
-        read(FD_STDIN,&modoLocalFlag, 1);
-        tcflush(FD_STDIN, TCIOFLUSH);
       
-        while( (modoLocalFlag != '0') && (modoLocalFlag != '1') ) // Control de errores.
+        if( modoLocal == true ) // Selección de modo en modo local.
         {
-          dprintf(FD_STDOUT, "Opción inválida. Elija el modo: ");
-          read(FD_STDIN,&modoLocalFlag, 1);
-          tcflush(FD_STDIN, TCIOFLUSH);
+          modoLocal = seleccionModoEnModoLocal( modoLocalFlag );
+          
+        }else                   // Selección de modo en modo remoto.
+        {
+            //modoLocal = seleccionModoEnModoRemoto( modoLocalFlag, fdPuertoSerial );
         }
-
-        if(modoLocalFlag == '1') // Establece si se trata de modo local o remoto.
-          modoLocal = true;
-        else
-          modoLocal = false ;
       
         printf("\n\n");
         break;

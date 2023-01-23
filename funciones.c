@@ -218,10 +218,30 @@ void imprimeMenu( void )
 
 /*******************************************************************************************/
 
-char seleccionMenuModoRemoto( int fdPuertoSerial )
+char seleccionMenuModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBA
 {
-  // Falta completar
-  return 'k'; //temporal
+  char bufferIngresoUART = '\0';
+
+  while( (bufferIngresoUART < 'a') || (bufferIngresoUART > 'k') )
+  {
+    dprintf(FD_STDOUT, "Por favor, ingrese una opción vía UART: ");
+
+    while( serialDataAvail(fdPuertoSerial) == 0 ){} // Espera por ingreso por la UART.
+      
+    bufferIngresoUART = serialGetchar( fdPuertoSerial ); // Lee el puerto serie.
+    
+    if( bufferIngresoUART >= 32 && bufferIngresoUART <= 126 ) // Imprime solo los caracteres
+      printf("%c", bufferIngresoUART);                        //imprimibles.
+    
+    if( (bufferIngresoUART >= 'A') && (bufferIngresoUART <= 'Z') ) // Si las letras son ma-
+      bufferIngresoUART += 32;                                     //yús., las pasa a minús.
+
+    if( (bufferIngresoUART < 'a') || (bufferIngresoUART > 'k') ) // Imprime msj de error.
+      dprintf(FD_STDOUT, "\nValor inválido. ");
+  }
+
+  return bufferIngresoUART;
+
 }
 
 

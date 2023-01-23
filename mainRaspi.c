@@ -91,14 +91,7 @@ int main( int argc, char *argv[] )
       opcion = seleccionMenuModoLocal( );
     else
     {
-      dprintf(FD_STDOUT, "Por favor, ingrese una opción vía UART: ");
-      while( serialDataAvail(fdPuertoSerial) == 0 )             // Retorna el número de caracteres
-      {                                               //disponible para leer.
-        opcion = serialGetchar( fdPuertoSerial ); // Retorna el siguiente caracter 
-                                                      //disponible en el dispositivo serial.	
-        printf ("%c", opcion);                  // Imprime en pantalla el caracter.
-                                                      //el puerto serie.
-      }   
+      opcion = seleccionMenuModoRemoto( fdPuertoSerial );
     }
     dprintf(FD_STDOUT, "\n\n");
 

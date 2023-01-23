@@ -1,5 +1,5 @@
-#ifndef PROJECTFUNCTIONS_H
-#define PROJECTFUNCTIONS_H
+#ifndef FUNCIONES_H
+#define FUNCIONES_H
 
 /*------------------------------- Archivos de cabecera ------------------------------------*/
 #include <stdio.h> // printf, dprintf

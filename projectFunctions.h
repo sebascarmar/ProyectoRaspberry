@@ -55,23 +55,6 @@ void seteoModoNoBloqueante( struct termios *ttyNewStdIn );
 
 /*******************************************************************************************/
 
-/* ACCION:
- * PARAMETROS:
- * RETORNO:
- */
-void seteoModoCanonico( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn );
-
-/*******************************************************************************************/
-
-/* FUNCION: 
- * ACCION:
- * PARAMETROS:
- * RETORNO:
- */
-void seteoModoBloqueante( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn );
-
-/*******************************************************************************************/
-
 /* ACCION: setea la velocidad entre secuencias con el potencióemtro del ADC.
  * PARAMETROS: dos punteros a estructuras termios.
  * RETORNO: un entero con el valor de velocidad (de mín=1 a máx=10).

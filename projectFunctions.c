@@ -22,25 +22,6 @@ void seteoModoNoBloqueante( struct termios *ttyNewStdIn )
 /*******************************************************************************************/
 /*******************************************************************************************/
 
-void seteoModoCanonico( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn )
-{
-  ttyNewStdIn->c_lflag = ttyOldStdIn->c_lflag; // Anula entrada canónica y eco.
-  tcsetattr( FD_STDIN, TCSANOW, ttyNewStdIn ); // Setea los valores nuevos de la config.
-}
-
-/*******************************************************************************************/
-/*******************************************************************************************/
-
-void seteoModoBloqueante( struct termios *ttyOldStdIn, struct termios *ttyNewStdIn )
-{
-  ttyNewStdIn->c_cc[VMIN] = ttyOldStdIn->c_cc[VMIN];    // No espera a recibir ningún caracter.
-  ttyNewStdIn->c_cc[VTIME] = ttyOldStdIn->c_cc[VTIME];  // No espera tiempo alguno tampoco.
-  tcsetattr( FD_STDIN, TCSANOW, ttyNewStdIn ); // Setea los valores nuevos de la config.
-}
-
-/*******************************************************************************************/
-/*******************************************************************************************/
-
 int controlDeContraseña( void )
 {
   char contra[LENGTH_PSSW+1] = {'t','d','2','2','2','\0'}; // Clave de LENGTH_PSSW+1 largo.

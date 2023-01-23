@@ -276,10 +276,30 @@ bool seleccionModoEnModoLocal( void )
 
 /*******************************************************************************************/
 
-bool seleccionModoEnModoRemoto( int fdPuertoSerial )
+bool seleccionModoEnModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBAAAA
 {
-  //Falta completar.
-  return false; // temporal
+  char modoLocalFlag = '1';
+
+  do
+  {
+    while( serialDataAvail(fdPuertoSerial) == 0 ){} // Espera por ingreso por la UART.
+
+    modoLocalFlag = serialGetchar( fdPuertoSerial ); // Lee el puerto serie.
+    
+    if( (modoLocalFlag >= 32) && (modoLocalFlag <= 126) ) // Imprime solo char imprimibles.
+      dprintf(FD_STDOUT, "%c", modoLocalFlag); 
+  
+    if( (modoLocalFlag != '1') && (modoLocalFlag != '2') ) // Imprime mensaje de error.
+      dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo vía UART: ");
+    
+  }while( (modoLocalFlag != '1') && (modoLocalFlag != '2') );//Control valores válidos.
+
+
+  if(modoLocalFlag == '1') // Retorna si se trata de modo local o remoto.
+    return true;
+  else
+    return false ;
+
 }
 
 

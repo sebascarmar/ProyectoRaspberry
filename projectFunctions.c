@@ -341,7 +341,6 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, bool modoLocal, int fd
 }
 
 /*******************************************************************************************/
-/*******************************************************************************************/
 
 void secChoque( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial )
 {
@@ -374,7 +373,6 @@ void secChoque( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSe
 
 }
 
-/*******************************************************************************************/
 /*******************************************************************************************/
 
 void secApilada( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial )
@@ -476,7 +474,6 @@ void secApilada( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
 }
 
 /*******************************************************************************************/
-/*******************************************************************************************/
 
 void secCarrera( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial )
 {
@@ -525,7 +522,6 @@ void secCarrera( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
 
 }
 
-/*******************************************************************************************/
 /*******************************************************************************************/
 
 void secVumetro( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial )
@@ -583,7 +579,6 @@ void secVumetro( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
 
 }
 
-/*******************************************************************************************/
 /*******************************************************************************************/
 
 void secJuntosPorParidad( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial )
@@ -650,7 +645,6 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, bool modoLocal, int 
 }
 
 /*******************************************************************************************/
-/*******************************************************************************************/
 
 void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial )
 {
@@ -711,7 +705,6 @@ void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuer
     
 }
 
-/*******************************************************************************************/
 /*******************************************************************************************/
 
 void secParpadeo( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial )

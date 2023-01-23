@@ -231,7 +231,7 @@ char seleccionMenuModoRemoto( int fdPuertoSerial )
 
 bool seleccionModoEnModoLocal( void )
 {
-  char modoLocalFlag[4] = {'\0'};// Permite almacenar lo ingresado por teclado.
+  char modoLocalFlag[4] = {'1','1','1','\0'};// Permite almacenar lo ingresado por teclado.
 
   do
   {

@@ -1,7 +1,7 @@
 .data
-enunciado: .ascii "Por favor, ingrese una opción: "
+enunciado:     .ascii "Por favor, ingrese una opción: "
 bufferIngreso: .ascii "\0\0\0\0"
-msjError: .ascii "\nValor inválido. "
+msjError:      .ascii "\nValor inválido. "
 
 .arm
 .text
@@ -40,20 +40,17 @@ seleccionMenuModoLocal:
       
       
         /** IMPRIME EN PANTALLA LO INGRESADO (SOLO CHAR IMPRIMIBLES: de ' ' hasta '~')**/
-        CMP   R4, #'\0'          // Comprueba si el buffer está  vacío, así no imprime.
-        BEQ   opcion1
-        CMP   R4, #32            // Código hasta del caracter espacio.
+        CMP   R4, #32            // Código ASCII del caracter espacio.
         BLT   opcion1
-        CMP   R4, #126           // Código hasta del caracter virgulilla.
+        CMP   R4, #126           // Código ASCII del caracter virgulilla.
         BGT   opcion1
         MOV   R7, #4             // 4 es el código de la llamada a 'write' del sistema.
         MOV   R0, #1             // Descriptor de archivo de stdout (monitor).
         LDR   R1, =bufferIngreso // Buffer de salida
         MOV   R2, #1             // Cantidad de char a escribir.
         SWI   0                  // Llamada al sistema para arm 32-bit/EABI.
-
-
-
+      
+      
         /******************************** SWITCH CASE **********************************/
         opcion1: // Modo local/remoto.
             CMP   R4, #'a'
@@ -128,14 +125,9 @@ seleccionMenuModoLocal:
         opcion11: // Salir del programa.
             CMP   R4, #'k'
             CMPNE R4, #'K'
-            BNE opcion12
+            BNE opcionDefecto
             MOV   R0, #'k'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-        
-        opcion12: // Si el buffer está vacío no imprime nada, vuelve al loop.
-            CMP   R4, #'\0'
-            BNE opcionDefecto
-            B   loop    
         
         opcionDefecto:
             MOV   R7, #4        // 4 es el código de la llamada a 'write' del sistema.
@@ -146,9 +138,9 @@ seleccionMenuModoLocal:
             B   loop
         
         
-        /**************************** SALIDA DE LA FUNCIÓN *****************************/
-        break:
-            POP   {R4, R7, LR}  // Desapila registros del stack.
-            MOV   PC, LR
+    /****************************** SALIDA DE LA FUNCIÓN *******************************/
+    break:
+        POP   {R4, R7, LR}  // Desapila registros del stack.
+        MOV   PC, LR
 
 

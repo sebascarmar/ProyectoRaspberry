@@ -179,7 +179,7 @@ int main( int argc, char *argv[] )
       case 'g': // Secuencia El Vúmetro.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"El Vúmetro\"en ejecución (presione 's' para volver al menú)\n"
+               "\"El Vúmetro\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       

@@ -259,7 +259,7 @@ bool seleccionModoEnModoLocal( void )
       tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
 
     if( (modoLocalFlag[0] >= 32) && (modoLocalFlag[0] <=126) )//Imprime solo char imprimibles
-      dprintf(FD_STDOUT, "%c", modoLocalFlag[0] ); 
+      dprintf(FD_STDOUT, "%c", modoLocalFlag[0]); 
   
     if( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') )
       dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo: ");//Mensaje de error.

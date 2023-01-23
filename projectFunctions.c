@@ -1,7 +1,9 @@
 #include "projectFunctions.h"
 
-/*******************************************************************************************/
-/*******************************************************************************************/
+
+/*#########################################################################################*/
+/*##                         CONFIGURACIÓN DE LA ENTRADA ESTÁNDAR                        ##*/
+/*#########################################################################################*/
 
 void seteoModoNoCanonico( struct termios *ttyNewStdIn )
 {
@@ -9,7 +11,6 @@ void seteoModoNoCanonico( struct termios *ttyNewStdIn )
   tcsetattr( FD_STDIN, TCSANOW, ttyNewStdIn ); // Setea los valores nuevos de la config.
 }
 
-/*******************************************************************************************/
 /*******************************************************************************************/
 
 void seteoModoNoBloqueante( struct termios *ttyNewStdIn )
@@ -19,8 +20,10 @@ void seteoModoNoBloqueante( struct termios *ttyNewStdIn )
   tcsetattr( FD_STDIN, TCSANOW, ttyNewStdIn ); // Setea los valores nuevos de la config.
 }
 
-/*******************************************************************************************/
-/*******************************************************************************************/
+
+/*#########################################################################################*/
+/*##                                  CONTROL DE INGRESO                                 ##*/
+/*#########################################################################################*/
 
 int controlDeContraseña( void )
 {
@@ -91,8 +94,10 @@ int controlDeContraseña( void )
     return 0;
 }
 
-/*******************************************************************************************/
-/*******************************************************************************************/
+
+/*#########################################################################################*/
+/*##                               VELOCIDAD DE SECUENCIAS                               ##*/
+/*#########################################################################################*/
 
 int velocidadSecuenciasConPote( void )
 {
@@ -147,7 +152,6 @@ int velocidadSecuenciasConPote( void )
 }
 
 /*******************************************************************************************/
-/*******************************************************************************************/
 
 void velocidadSecuenciasConTeclado( int8_t *velSecuencias, char *buf )
 {
@@ -163,51 +167,6 @@ void velocidadSecuenciasConTeclado( int8_t *velSecuencias, char *buf )
   }
 }
 
-/*******************************************************************************************/
-/*******************************************************************************************/
-
-void imprimeMenu( void )
-{
-  printf("=================================================================================\n"
-         "==                             MENÚ PRINCIPAL                                  ==\n"
-         "=================================================================================\n"
-         "  a) Selección de modo local/remoto\t      g) Secuencia \"El Vúmetro\"\n"
-         "  b) Velocidad con el potenciómetro del ADC   h) Secuencia \"Juntos Por Paridad\"\n"
-         "  c) Secuencia \"El Auto Fantástico\"\t      i) Secuencia \"La Gran Moisés\"\n"
-         "  d) Secuencia \"El Choque\"\t\t      j) Secuencia \"El Parpadeo\"\n"
-         "  e) Secuencia \"La Apilada\"\t\t      k) SALIR\n"
-         "  f) Secuencia \"La Carrera\"\n\n");
-}
-
-/*******************************************************************************************/
-/*******************************************************************************************/
-
-bool seleccionModoEnModoLocal( void )
-{
-  char modoLocalFlag[4] = {'\0'};// Permite almacenar lo ingresado por teclado.
-
-  do
-  {
-    while( read(FD_STDIN, modoLocalFlag, 3) == 0 )//Espera por ingreso por teclado.
-      tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
-
-    if( (modoLocalFlag[0] >= 32) && (modoLocalFlag[0] <=126) )//Imprime solo char imprimibles
-      dprintf(FD_STDOUT, "%c", modoLocalFlag[0] ); 
-  
-    if( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') )
-      dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo: ");//Mensaje de error.
-    
-  }while( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') );//Control valores válidos.
-
-
-  if(modoLocalFlag[0] == '1') // Retorna si se trata de modo local o remoto.
-    return true;
-  else
-    return false ;
-
-}
-
-/*******************************************************************************************/
 /*******************************************************************************************/
 
 int valorDeRetardo( int velSecuencia )
@@ -239,8 +198,74 @@ int valorDeRetardo( int velSecuencia )
   }
 }
 
+
+/*#########################################################################################*/
+/*##                           FUNCIONES PARA EL MENÚ                                    ##*/
+/*#########################################################################################*/
+
+void imprimeMenu( void )
+{
+  printf("=================================================================================\n"
+         "==                             MENÚ PRINCIPAL                                  ==\n"
+         "=================================================================================\n"
+         "  a) Selección de modo local/remoto\t      g) Secuencia \"El Vúmetro\"\n"
+         "  b) Velocidad con el potenciómetro del ADC   h) Secuencia \"Juntos Por Paridad\"\n"
+         "  c) Secuencia \"El Auto Fantástico\"\t      i) Secuencia \"La Gran Moisés\"\n"
+         "  d) Secuencia \"El Choque\"\t\t      j) Secuencia \"El Parpadeo\"\n"
+         "  e) Secuencia \"La Apilada\"\t\t      k) SALIR\n"
+         "  f) Secuencia \"La Carrera\"\n\n");
+}
+
 /*******************************************************************************************/
+
+char seleccionMenuModoRemoto( int fdPuertoSerial )
+{
+  // Falta completar
+  return 'k'; //temporal
+}
+
+
+/*#########################################################################################*/
+/*##                           ELECCIÓN DE MODO LOCAL O REMOTO                           ##*/
+/*#########################################################################################*/
+
+bool seleccionModoEnModoLocal( void )
+{
+  char modoLocalFlag[4] = {'\0'};// Permite almacenar lo ingresado por teclado.
+
+  do
+  {
+    while( read(FD_STDIN, modoLocalFlag, 3) == 0 )//Espera por ingreso por teclado.
+      tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
+
+    if( (modoLocalFlag[0] >= 32) && (modoLocalFlag[0] <=126) )//Imprime solo char imprimibles
+      dprintf(FD_STDOUT, "%c", modoLocalFlag[0] ); 
+  
+    if( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') )
+      dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo: ");//Mensaje de error.
+    
+  }while( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') );//Control valores válidos.
+
+
+  if(modoLocalFlag[0] == '1') // Retorna si se trata de modo local o remoto.
+    return true;
+  else
+    return false ;
+
+}
+
 /*******************************************************************************************/
+
+bool seleccionModoEnModoRemoto( int fdPuertoSerial )
+{
+  //Falta completar.
+  return false; // temporal
+}
+
+
+/*#########################################################################################*/
+/*##                   MANEJO DE STDIN Y STDOUT DURANTE SECUENCIAS                       ##*/
+/*#########################################################################################*/
 
 void imprimeVelocidadDurante( int velSecuencias )
 {
@@ -250,7 +275,6 @@ void imprimeVelocidadDurante( int velSecuencias )
         dprintf(FD_STDOUT, "\b\b  \b\b %d", velSecuencias);
 }
 
-/*******************************************************************************************/
 /*******************************************************************************************/
 
 void lecturaTeclado( bool modoLocal, int fdPuertoSerial, char *buf ) //Modo remoto en revisión
@@ -273,8 +297,10 @@ void lecturaTeclado( bool modoLocal, int fdPuertoSerial, char *buf ) //Modo remo
   }
 }
 
-/*******************************************************************************************/
-/*******************************************************************************************/
+
+/*#########################################################################################*/
+/*##                          SECUENCIAS DE LUCES                                        ##*/
+/*#########################################################################################*/
 
 void secAutoFantastico( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial )
 {
@@ -719,4 +745,5 @@ void secParpadeo( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuerto
       digitalWriteEP( leds[k], 0 );
 
 }
+
 

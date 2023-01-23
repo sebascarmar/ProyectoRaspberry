@@ -40,17 +40,17 @@ seleccionMenuModoLocal:
       
       
         /** IMPRIME EN PANTALLA LO INGRESADO (SOLO CHAR IMPRIMIBLES: de ' ' hasta '~')**/
-         CMP   R4, #'\0'          // Comprueba si el buffer está  vacío, así no imprime.
-         BEQ   opcion1
-         CMP   R4, #32            // Código hasta del caracter espacio.
-         BLT   opcion1
-         CMP   R4, #126           // Código hasta del caracter virgulilla.
-         BGT   opcion1
-         MOV   R7, #4             // 4 es el código de la llamada a 'write' del sistema.
-         MOV   R0, #1             // Descriptor de archivo de stdout (monitor).
-         LDR   R1, =bufferIngreso // Buffer de salida
-         MOV   R2, #1             // Cantidad de char a escribir.
-         SWI   0                  // Llamada al sistema para arm 32-bit/EABI.
+        CMP   R4, #'\0'          // Comprueba si el buffer está  vacío, así no imprime.
+        BEQ   opcion1
+        CMP   R4, #32            // Código hasta del caracter espacio.
+        BLT   opcion1
+        CMP   R4, #126           // Código hasta del caracter virgulilla.
+        BGT   opcion1
+        MOV   R7, #4             // 4 es el código de la llamada a 'write' del sistema.
+        MOV   R0, #1             // Descriptor de archivo de stdout (monitor).
+        LDR   R1, =bufferIngreso // Buffer de salida
+        MOV   R2, #1             // Cantidad de char a escribir.
+        SWI   0                  // Llamada al sistema para arm 32-bit/EABI.
 
 
 
@@ -61,82 +61,82 @@ seleccionMenuModoLocal:
             BNE opcion2
             MOV   R0, #'a'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-           
+        
         opcion2: // Velocidad con pote.
             CMP   R4, #'b'
             CMPNE R4, #'B'
             BNE opcion3
             MOV   R0, #'b'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-          
+        
         opcion3: // Sec. Auto Fantástico.
             CMP   R4, #'c'
             CMPNE R4, #'C'
             BNE opcion4
             MOV   R0, #'c'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-          
+        
         opcion4: // Sec. Choque.
             CMP   R4, #'d'
             CMPNE R4, #'D'
             BNE opcion5
             MOV   R0, #'d'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-         
+        
         opcion5: // Sec. Apilada.
             CMP   R4, #'e'
             CMPNE R4, #'E'
             BNE opcion6
             MOV   R0, #'e'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-          
+        
         opcion6: // Sec. Carrera.
             CMP   R4, #'f'
             CMPNE R4, #'F'
             BNE opcion7
             MOV   R0, #'f'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-          
+        
         opcion7: // Sec. Vúmetro.
             CMP   R4, #'g'
             CMPNE R4, #'G'
             BNE opcion8
             MOV   R0, #'g'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-
+        
         opcion8: // Sec. Juntos por Paridad.
             CMP   R4, #'h'
             CMPNE R4, #'H'
             BNE opcion9
             MOV   R0, #'h'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-          
+        
         opcion9: // Sec. Gran Moisés.
             CMP   R4, #'i'
             CMPNE R4, #'I'
             BNE opcion10
             MOV   R0, #'i'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-          
+        
         opcion10: // Sec. Parpadeo.
             CMP   R4, #'j'
             CMPNE R4, #'J'
             BNE opcion11
             MOV   R0, #'j'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-          
+        
         opcion11: // Salir del programa.
             CMP   R4, #'k'
             CMPNE R4, #'K'
             BNE opcion12
             MOV   R0, #'k'    // Valor de retorno de la función.
             B   break         // Sale del switch case.
-         
+        
         opcion12: // Si el buffer está vacío no imprime nada, vuelve al loop.
             CMP   R4, #'\0'
             BNE opcionDefecto
             B   loop    
-         
+        
         opcionDefecto:
             MOV   R7, #4        // 4 es el código de la llamada a 'write' del sistema.
             MOV   R0, #1        // Descriptor de archivo de stdout (monitor).
@@ -150,3 +150,5 @@ seleccionMenuModoLocal:
         break:
             POP   {R4, R7, LR}  // Desapila registros del stack.
             MOV   PC, LR
+
+

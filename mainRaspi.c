@@ -111,6 +111,7 @@ int main( int argc, char *argv[] )
                            "\t 1) Local\n"
                            "\t 2) Remoto\n\n"
                            "Por favor, elija el modo: ");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
         if( modoLocal == true ) // Selección de modo en modo local.
         {
@@ -129,6 +130,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
                "(mín=1, máx=10)\n");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
         velSecuencias = velocidadSecuenciasConPote( );
         break;
@@ -138,6 +140,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
         secAutoFantastico( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
@@ -149,6 +152,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Choque\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
         secChoque( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
@@ -160,6 +164,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
         secApilada( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
@@ -171,6 +176,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
         secCarrera( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
@@ -182,6 +188,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Vúmetro\"en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
         secVumetro( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
@@ -193,6 +200,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
         secJuntosPorParidad( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
@@ -204,6 +212,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Gran Moisés\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
         secGranMoises( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
@@ -215,14 +224,11 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Parpadeo\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
+        retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
       
-        seteoModoNoBloqueante( &ttyNewStdIn );
         secParpadeo( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
         dprintf(FD_STDOUT, "\n\n");
-        break;
-      
-      case 'k': // Salir del programa.
         break;
       
       default:
@@ -232,14 +238,12 @@ int main( int argc, char *argv[] )
 
 
 
-
-
 /*---------------------------- Cierre del puerto serie ------------------------------------*/
   serialClose( fdPuertoSerial );
 
 /*------------------------------ Seteo del modo canónico ----------------------------------*/
   tcsetattr(FD_STDIN, TCSANOW, &ttyOldStdIn); // Actualiza los atributos del teclado 
-                                             //con los valores originales.
+                                              //con los valores originales.
 
   return 0;
 }

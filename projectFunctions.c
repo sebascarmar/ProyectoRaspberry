@@ -160,7 +160,7 @@ int velocidadSecuenciasConPote( void )
   }
 
   
-  printf("\n\n");
+  dprintf(FD_STDOUT, "\n\n");
   return velocidad;
 
 }

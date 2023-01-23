@@ -112,7 +112,7 @@ int main( int argc, char *argv[] )
           
         }else                   // Selección de modo en modo remoto.
         {
-            //modoLocal = seleccionModoEnModoRemoto( fdPuertoSerial );
+            modoLocal = seleccionModoEnModoRemoto( fdPuertoSerial );
         }
       
         dprintf(FD_STDOUT, "\n\n");

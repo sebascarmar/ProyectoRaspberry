@@ -101,7 +101,7 @@ int main( int argc, char *argv[] )
                                                       //el puerto serie.
       }   
     }
-    printf("\n\n");
+    dprintf(FD_STDOUT, "\n\n");
 
     switch( opcion )
     {

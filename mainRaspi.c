@@ -122,7 +122,7 @@ int main( int argc, char *argv[] )
             //modoLocal = seleccionModoEnModoRemoto( modoLocalFlag, fdPuertoSerial );
         }
       
-        printf("\n\n");
+        dprintf(FD_STDOUT, "\n\n");
         break;
       
       case 'b': // Velocidad con pote.
@@ -142,7 +142,7 @@ int main( int argc, char *argv[] )
       
         secAutoFantastico( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
-        printf("\n\n");
+        dprintf(FD_STDOUT, "\n\n");
         break;
       
       case 'd': // Secuencia El Choque.
@@ -153,7 +153,7 @@ int main( int argc, char *argv[] )
       
         secChoque( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
-        printf("\n\n");
+        dprintf(FD_STDOUT, "\n\n");
         break;
       
       case 'e': // Secuencia La Apilada.
@@ -164,7 +164,7 @@ int main( int argc, char *argv[] )
       
         secApilada( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
-        printf("\n\n");
+        dprintf(FD_STDOUT, "\n\n");
         break;
       
       case 'f': // Secuencia La Carrera.
@@ -175,7 +175,7 @@ int main( int argc, char *argv[] )
       
         secCarrera( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
-        printf("\n\n");
+        dprintf(FD_STDOUT, "\n\n");
         break;
       
       case 'g': // Secuencia El Vúmetro.
@@ -186,7 +186,7 @@ int main( int argc, char *argv[] )
       
         secVumetro( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
-        printf("\n\n");
+        dprintf(FD_STDOUT, "\n\n");
         break;
       
       case 'h': // Secuencia Juntos Por Paridad.
@@ -197,7 +197,7 @@ int main( int argc, char *argv[] )
       
         secJuntosPorParidad( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
-        printf("\n\n");
+        dprintf(FD_STDOUT, "\n\n");
         break;
       
       case 'i': // Secuencia La Gran Moisés.
@@ -208,7 +208,7 @@ int main( int argc, char *argv[] )
       
         secGranMoises( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
-        printf("\n\n");
+        dprintf(FD_STDOUT, "\n\n");
         break;
         
       case 'j': // Secuencia El Parpadeo.
@@ -220,7 +220,7 @@ int main( int argc, char *argv[] )
         seteoModoNoBloqueante( &ttyNewStdIn );
         secParpadeo( leds, &velSecuencias, modoLocal, fdPuertoSerial );
       
-        printf("\n\n");
+        dprintf(FD_STDOUT, "\n\n");
         break;
       
       case 'k': // Salir del programa.

@@ -10,7 +10,6 @@
 
 #include "projectFunctions.h"
 
-extern char seleccionMenuModoLocal( void );
 
 
 int main( int argc, char *argv[] )
@@ -32,7 +31,7 @@ int main( int argc, char *argv[] )
 /*-------------------------------- Control de acceso --------------------------------------*/
   printf("-----------------------------------------------------------------------\n"
          "Para continuar, por favor ingrese su contraseña\n");
-  if( controlDeContraseña() == 1)
+  if( controlDeContraseña( ) == 1 )
   {
     printf("\n\n\t\t\t ¡BIENVENIDO AL SISTEMA!\n");
   } else
@@ -49,7 +48,7 @@ int main( int argc, char *argv[] )
 
 
 /*---------- Mapeo y configuración de pines según EasyPIO.h (manejo de GPIO ) -------------*/
-  pioInit();
+  pioInit( );
   
   for(int i=0 ; i < 8 ; i++)
     pinModeEP( leds[i], OUTPUT );
@@ -67,7 +66,7 @@ int main( int argc, char *argv[] )
 
 
 /*---------------------- Mapeo de pines según WiringPi (UART) -----------------------------*/
-  if ( wiringPiSetup() == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.
+  if ( wiringPiSetup( ) == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.
   {
     printf("Error al inicializar wiringPi.\n");
     tcsetattr(FD_STDIN, TCSANOW, &ttyOldStdIn); // Actualiza los atributos del teclado 
@@ -81,15 +80,15 @@ int main( int argc, char *argv[] )
          "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
          "(mín=1, máx=10)\n");
 
-  velSecuencias = velocidadSecuenciasConPote();
+  velSecuencias = velocidadSecuenciasConPote( );
 
 
 /*-------------------------------- Menú principal -----------------------------------------*/
   while( opcion != 'k' )
   {
-    imprimeMenu();
+    imprimeMenu( );
     if( modoLocal == true )
-      opcion = seleccionMenuModoLocal();
+      opcion = seleccionMenuModoLocal( );
     else
     {
       dprintf(FD_STDOUT, "Por favor, ingrese una opción vía UART: ");
@@ -115,11 +114,11 @@ int main( int argc, char *argv[] )
       
         if( modoLocal == true ) // Selección de modo en modo local.
         {
-          modoLocal = seleccionModoEnModoLocal();
+          modoLocal = seleccionModoEnModoLocal( );
           
         }else                   // Selección de modo en modo remoto.
         {
-            //modoLocal = seleccionModoEnModoRemoto( modoLocalFlag, fdPuertoSerial );
+            //modoLocal = seleccionModoEnModoRemoto( fdPuertoSerial );
         }
       
         dprintf(FD_STDOUT, "\n\n");

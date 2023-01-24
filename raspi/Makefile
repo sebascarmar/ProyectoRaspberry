@@ -1,6 +1,8 @@
 CC=gcc
 CFLAGS=-Wall 
 CLIB=-lwiringPi
+all: a.out clean
+
 
 a.out: mainRaspi.o easyPio.o funciones.o funcionesAsmARM.o
 	$(CC) $(CFLAGS) mainRaspi.o easyPio.o funciones.o funcionesAsmARM.o -o a.out $(CLIB)

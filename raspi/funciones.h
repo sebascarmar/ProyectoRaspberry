@@ -17,6 +17,7 @@
 /*----------------- Descriptor de entrada estándar y salida estándar ----------------------*/
 #define FD_STDIN 0
 #define FD_STDOUT 1
+#define FD_STDERR 2
 
 /*-------------- Direcciones de registros  usados para comunicación I2C -------------------*/
 #define ADDRESS 0x48

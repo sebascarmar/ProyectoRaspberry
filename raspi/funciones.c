@@ -222,6 +222,8 @@ char seleccionMenuModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBA
 {
   char bufferIngresoUART = '\0';
 
+  tcflush(fdPuertoSerial, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer)
+
   while( (bufferIngresoUART < 'a') || (bufferIngresoUART > 'k') )
   {
     dprintf(FD_STDOUT, "Por favor, ingrese una opción vía UART: ");

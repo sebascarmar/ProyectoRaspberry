@@ -33,10 +33,10 @@ int main( int argc, char *argv[] )
          "Para continuar, por favor ingrese su contraseña\n");
   if( controlDeContraseña( ) == 1 )
   {
-    printf("\n\n\t\t\t ¡BIENVENIDO AL SISTEMA!\n");
+    dprintf(FD_STDOUT, "\n\n\t\t\t ¡BIENVENIDO AL SISTEMA!\n");
   } else
   {
-    printf("\n\t\t\t NO SE HA PODIDO INGRESAR AL SISTEMA\n");
+    dprintf(FD_STDERR, "\n\t\t\t NO SE HA PODIDO INGRESAR AL SISTEMA\n");
     tcsetattr(FD_STDIN, TCSANOW, &ttyOldStdIn); // Actualiza los atributos del teclado 
                                                //con los valores originales.
     exit(EXIT_FAILURE);
@@ -58,7 +58,7 @@ int main( int argc, char *argv[] )
   fdPuertoSerial = serialOpen("/dev/ttyS0", 9600);
   if( fdPuertoSerial < 0 )
   {
-    printf("Error al abrir \\dev\\ttyS0\n");
+    dprintf(FD_STDERR, "Error al abrir \\dev\\ttyS0\n");
     tcsetattr(FD_STDIN, TCSANOW, &ttyOldStdIn); // Actualiza los atributos del teclado 
                                                //con los valores originales.
     exit(EXIT_FAILURE);

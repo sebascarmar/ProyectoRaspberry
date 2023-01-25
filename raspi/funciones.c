@@ -108,7 +108,7 @@ int velocidadSecuenciasConPote( void )
   fdModuloADC = wiringPiI2CSetup(ADDRESS); // Inicializa el sistema I2C con el ID del dispos.
   if( fdModuloADC <= -1 )
   {
-    printf("Error al inicializar el systema I2C.\n");
+    dprintf(FD_STDERR, "Error al inicializar el systema I2C.\n");
     exit(EXIT_FAILURE);	
   }
 
@@ -233,7 +233,7 @@ char seleccionMenuModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBA
     bufferIngresoUART = serialGetchar( fdPuertoSerial ); // Lee el puerto serie.
     
     if( bufferIngresoUART >= 32 && bufferIngresoUART <= 126 ) // Imprime solo los caracteres
-      printf("%c", bufferIngresoUART);                        //imprimibles.
+      dprintf(FD_STDIN, "%c", bufferIngresoUART);             //imprimibles.
     
     if( (bufferIngresoUART >= 'A') && (bufferIngresoUART <= 'Z') ) // Si las letras son ma-
       bufferIngresoUART += 32;                                     //yús., las pasa a minús.

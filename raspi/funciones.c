@@ -331,8 +331,12 @@ void lecturaTeclado( bool modoLocal, int fdPuertoSerial, char *buf ) //Modo remo
     if( serialDataAvail(fdPuertoSerial) )       // Retorna el número de caracteres
     {                                           //disponible para leer.
       for(int i = 0 ; i < 3 ; i++)
+      {
         buf[i] = serialGetchar( fdPuertoSerial ); // Retorna el siguiente caracter 
                                                   //disponible en el dispositivo serial.	
+        if( buf[0] == 's')
+          i = 3;
+      }
       
       tcflush(fdPuertoSerial, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
     }

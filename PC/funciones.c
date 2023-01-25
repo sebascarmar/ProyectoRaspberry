@@ -22,8 +22,8 @@ void seteoTramaYBaudRate( int fd, struct termios *ttyNew, speed_t baudRate )
   cfsetispeed( ttyNew, baudRate ); // Velocidad de comunicación de entrada.
   
   ttyNew->c_cflag = ( ttyNew->c_cflag & ~CSIZE ) | CS8; // 8 bits de datos (8)
-  ttyNew->c_cflag &= ~( PARENB | PARODD );	                // sin paridad     (N)
-  ttyNew->c_cflag &= ~CSTOPB;			        // 1 bit de stop   (1)
+  //ttyNew->c_cflag &= ~( PARENB | PARODD );	                // sin paridad     (N)
+  //ttyNew->c_cflag &= ~CSTOPB;			        // 1 bit de stop   (1)
 
   ttyNew->c_iflag |= IGNCR;  // Ignora el caracter '\r' en la entrada.
 
@@ -59,12 +59,12 @@ char seleccionMenu( int fdUART )
   {
     dprintf(FD_STDOUT, "Por favor, ingrese una opción vía UART: ");
 
-    while( read(FD_STDIN, opcion, 3) == 0 )//Espera por ingreso por teclado.
+    while( read(FD_STDIN, opcion, 1) == 0 ){}//Espera por ingreso por teclado.
       //tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
 
     write( fdUART, opcion, 1  ); // Envía el caracter por puerto serie.
     tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
-    //tcflush(fdUART, TCIOFLUSH);
+    tcflush(fdUART, TCIOFLUSH);
 
     if( (opcion[0] >= 32) && (opcion[0] <=126) )//Imprime solo char imprimibles.
       dprintf(FD_STDOUT, "%c", opcion[0]); 
@@ -86,8 +86,8 @@ void seleccionModo( int fdUART )
 
   do
   {
-    while( read(FD_STDIN, modoLocalFlag, 3) == 0 )//Espera por ingreso por teclado.
-      tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
+    while( read(FD_STDIN, modoLocalFlag, 3) == 0 ){}//Espera por ingreso por teclado.
+      //tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
 
     write( fdUART, modoLocalFlag, 1  ); // Envía el caracter por puerto serie.
     tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
@@ -113,12 +113,12 @@ void secuencia( int fdUART )
 
   while( buf[0] != 's' )
   {
-    datosLeidos = read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-    tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
+    datosLeidos = read( FD_STDIN, buf, 1 ); // read() retorna la cantidad de caracteres que lee.
+    //tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
 
     if( datosLeidos != 0 )
     { 
-      write( fdUART, buf, 3 ); // Envía el caracter por puerto serie.
+      write( fdUART, buf, 1 ); // Envía el caracter por puerto serie.
       tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
       tcflush(fdUART, TCIOFLUSH);
     }

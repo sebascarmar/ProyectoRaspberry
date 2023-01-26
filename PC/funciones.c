@@ -11,7 +11,7 @@ void seteoModoNoCanonicoNoBloqueante( int fd, struct termios *ttyNew )
   ttyNew->c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
   ttyNew->c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
 
-  tcsetattr( fd, TCSAFLUSH, ttyNew );
+  tcsetattr( fd, TCSAFLUSH, ttyNew ); // Setea los nuevos atributos.
 }
 
 /*******************************************************************************************/
@@ -28,7 +28,7 @@ void seteoTramaYBaudRate( int fd, struct termios *ttyNew, speed_t baudRate )
   ttyNew->c_iflag |= IGNCR;  // Ignora el caracter '\r' en la entrada.
 
 
-  tcsetattr( fd, TCSAFLUSH, ttyNew );
+  tcsetattr( fd, TCSAFLUSH, ttyNew ); // Setea los nuevos atributos.
 }
 
 
@@ -39,14 +39,14 @@ void seteoTramaYBaudRate( int fd, struct termios *ttyNew, speed_t baudRate )
 void imprimeMenu( void )
 {
   printf("=================================================================================\n"
-         "==                        MENÚ PRINCIPAL (modo remoto)                         ==\n"
-         "=================================================================================\n"
-         "  a) Selección de modo local/remoto\t      g) Secuencia \"El Vúmetro\"\n"
-         "  b) -                                        h) Secuencia \"Juntos Por Paridad\"\n"
-         "  c) Secuencia \"El Auto Fantástico\"\t      i) Secuencia \"La Gran Moisés\"\n"
-         "  d) Secuencia \"El Choque\"\t\t      j) Secuencia \"El Parpadeo\"\n"
-         "  e) Secuencia \"La Apilada\"\t\t      k) SALIR\n"
-         "  f) Secuencia \"La Carrera\"\n\n");
+        "==                        MENÚ PRINCIPAL (modo remoto)                         ==\n"
+        "=================================================================================\n"
+        "  a) Selección de modo local/remoto\t      g) Secuencia \"El Vúmetro\"\n"
+        "  b) -                                        h) Secuencia \"Juntos Por Paridad\"\n"
+        "  c) Secuencia \"El Auto Fantástico\"\t      i) Secuencia \"La Gran Moisés\"\n"
+        "  d) Secuencia \"El Choque\"\t\t      j) Secuencia \"El Parpadeo\"\n"
+        "  e) Secuencia \"La Apilada\"\t\t      k) SALIR\n"
+        "  f) Secuencia \"La Carrera\"\n\n");
 }
 
 /*******************************************************************************************/
@@ -55,21 +55,20 @@ char seleccionMenuModoRemoto( int fdUART )
 {
   char opcion[4] = {'\0'};
 
-  while( (opcion[0] < 'a') || (opcion[0] > 'k') )
+  while( (opcion[0] < 'a') || (opcion[0] > 'k') ) // Corroba que la opción sea válida.
   {
     dprintf(FD_STDOUT, "Por favor, ingrese una opción vía UART: ");
 
-    while( read(FD_STDIN, opcion, 3) == 0 ){}//Espera por ingreso por teclado.
-      //tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
+    while( read(FD_STDIN, opcion, 3) == 0 ){} // Espera por ingreso por teclado.
 
-    if( opcion[0] != 'b' )
+    if( opcion[0] != 'b' ) // Impide el envío del char 'b', ya que no se controla en remoto.
     {
       write( fdUART, opcion, 1  ); // Envía el caracter por puerto serie.
       tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
       tcflush(fdUART, TCIOFLUSH);
     }
 
-    if( (opcion[0] >= 32) && (opcion[0] <=126) )//Imprime solo char imprimibles.
+    if( (opcion[0] >= 32) && (opcion[0] <=126) ) // Imprime solo char imprimibles.
       dprintf(FD_STDOUT, "%c", opcion[0]); 
 
     if( (opcion[0] >= 'A') && (opcion[0] <= 'Z') ) // Si las letras son mayúsculas,
@@ -89,14 +88,14 @@ char seleccionMenuModoLocal( void )
 {
   char opcion[4] = {'\0'};
 
-  while( opcion[0] != 'a' )
+  while( opcion[0] != 'a' ) // Bloquea la ejecución hasta que se cambie a modo remoto.
   {
     dprintf(FD_STDOUT,
         "\nSe encuentra en modo local. Cambie a modo remoto antes de continuar: ");
     
-    while( read(FD_STDIN, opcion, 3) == 0 ){}//Espera por ingreso por teclado.
+    while( read(FD_STDIN, opcion, 3) == 0 ){} // Espera por ingreso por teclado.
     
-    if( (opcion[0] >= 32) && (opcion[0] <=126) )//Imprime solo char imprimibles
+    if( (opcion[0] >= 32) && (opcion[0] <=126) ) // Imprime solo char imprimibles.
       dprintf(FD_STDOUT, "%c", opcion[0]); 
   }
 
@@ -115,11 +114,10 @@ bool seleccionModo( int fdUART, bool modoLocal )
 
   do
   {
-    while( read(FD_STDIN, modoLocalFlag, 3) == 0 ){}//Espera por ingreso por teclado.
-      //tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
+    while( read(FD_STDIN, modoLocalFlag, 3) == 0 ){} // Espera por ingreso por teclado.
 
-    if( modoLocal == false )
-    {
+    if( modoLocal == false ) // Evita que el programa en las raspi reciba caracteres hasta
+    {                        //que el programa en PC no esté en modo remoto.
       write( fdUART, modoLocalFlag, 1  ); // Envía el caracter por puerto serie.
       tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
       tcflush(fdUART, TCIOFLUSH);
@@ -128,8 +126,8 @@ bool seleccionModo( int fdUART, bool modoLocal )
     if( (modoLocalFlag[0] >= 32) && (modoLocalFlag[0] <=126) )//Imprime solo char imprimibles
       dprintf(FD_STDOUT, "%c", modoLocalFlag[0]); 
   
-    if( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') )
-      dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo vía UART: ");//Mensaje de error.
+    if( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') ) // Mensaje de error.
+      dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo vía UART: ");
     
   }while( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') );//Control valores válidos.
 
@@ -150,10 +148,9 @@ void secuencia( int fdUART )
   char buf[4] = {'\0'};
   int datosLeidos = 0;
 
-  while( buf[0] != 's' )
+  while( buf[0] != 's' ) // Mantiene la secuencia hasta que se ingresa 's'.
   {
-    datosLeidos = read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
-    //tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
+    datosLeidos = read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de char que lee.
 
     if( datosLeidos != 0 )
     { 

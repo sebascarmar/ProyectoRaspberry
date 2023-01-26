@@ -62,9 +62,12 @@ char seleccionMenuModoRemoto( int fdUART )
     while( read(FD_STDIN, opcion, 3) == 0 ){}//Espera por ingreso por teclado.
       //tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
 
-    write( fdUART, opcion, 1  ); // Envía el caracter por puerto serie.
-    tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
-    tcflush(fdUART, TCIOFLUSH);
+    if( opcion[0] != 'b' )
+    {
+      write( fdUART, opcion, 1  ); // Envía el caracter por puerto serie.
+      tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
+      tcflush(fdUART, TCIOFLUSH);
+    }
 
     if( (opcion[0] >= 32) && (opcion[0] <=126) )//Imprime solo char imprimibles.
       dprintf(FD_STDOUT, "%c", opcion[0]); 

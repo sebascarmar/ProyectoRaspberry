@@ -2,7 +2,7 @@
 
 
 /*#########################################################################################*/
-/*##                             CONFIGURACIÓN DE LAS TTY                                ##*/
+/*##                           CONFIGURACIÓN DE LAS TTY's                                ##*/
 /*#########################################################################################*/
 
 void seteoModoNoCanonicoNoBloqueante( int fd, struct termios *ttyNew )
@@ -22,8 +22,8 @@ void seteoTramaYBaudRate( int fd, struct termios *ttyNew, speed_t baudRate )
   cfsetispeed( ttyNew, baudRate ); // Velocidad de comunicación de entrada.
   
   ttyNew->c_cflag = ( ttyNew->c_cflag & ~CSIZE ) | CS8; // 8 bits de datos (8)
-  //ttyNew->c_cflag &= ~( PARENB | PARODD );	                // sin paridad     (N)
-  //ttyNew->c_cflag &= ~CSTOPB;			        // 1 bit de stop   (1)
+  ttyNew->c_cflag &= ~( PARENB | PARODD );	        // sin paridad     (N)
+  ttyNew->c_cflag &= ~CSTOPB;			        // 1 bit de stop   (1)
 
   ttyNew->c_iflag |= IGNCR;  // Ignora el caracter '\r' en la entrada.
 
@@ -39,7 +39,7 @@ void seteoTramaYBaudRate( int fd, struct termios *ttyNew, speed_t baudRate )
 void imprimeMenu( void )
 {
   printf("=================================================================================\n"
-         "==                             MENÚ PRINCIPAL                                  ==\n"
+         "==                        MENÚ PRINCIPAL (modo remoto)                         ==\n"
          "=================================================================================\n"
          "  a) Selección de modo local/remoto\t      g) Secuencia \"El Vúmetro\"\n"
          "  b) -                                        h) Secuencia \"Juntos Por Paridad\"\n"
@@ -51,7 +51,7 @@ void imprimeMenu( void )
 
 /*******************************************************************************************/
 
-char seleccionMenu( int fdUART )
+char seleccionMenuModoRemoto( int fdUART )
 {
   char opcion[4] = {'\0'};
 
@@ -59,7 +59,7 @@ char seleccionMenu( int fdUART )
   {
     dprintf(FD_STDOUT, "Por favor, ingrese una opción vía UART: ");
 
-    while( read(FD_STDIN, opcion, 1) == 0 ){}//Espera por ingreso por teclado.
+    while( read(FD_STDIN, opcion, 3) == 0 ){}//Espera por ingreso por teclado.
       //tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
 
     write( fdUART, opcion, 1  ); // Envía el caracter por puerto serie.
@@ -80,18 +80,47 @@ char seleccionMenu( int fdUART )
 
 }
 
-void seleccionModo( int fdUART )
+/*******************************************************************************************/
+
+char seleccionMenuModoLocal( void )
 {
-  char modoLocalFlag[4] = {'1','1','1','\0'};// Permite almacenar lo ingresado por teclado.
+  char opcion[4] = {'\0'};
+
+  while( opcion[0] != 'a' )
+  {
+    dprintf(FD_STDOUT,
+        "\nSe encuentra en modo local. Cambie a modo remoto antes de continuar: ");
+    
+    while( read(FD_STDIN, opcion, 3) == 0 ){}//Espera por ingreso por teclado.
+    
+    if( (opcion[0] >= 32) && (opcion[0] <=126) )//Imprime solo char imprimibles
+      dprintf(FD_STDOUT, "%c", opcion[0]); 
+  }
+
+  return opcion[0];
+
+}
+
+
+/*#########################################################################################*/
+/*##                           ELECCIÓN DE MODO LOCAL O REMOTO                           ##*/
+/*#########################################################################################*/
+
+bool seleccionModo( int fdUART, bool modoLocal )
+{
+  char modoLocalFlag[4] = {'2','2','2','\0'};// Permite almacenar lo ingresado por teclado.
 
   do
   {
     while( read(FD_STDIN, modoLocalFlag, 3) == 0 ){}//Espera por ingreso por teclado.
       //tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
 
-    write( fdUART, modoLocalFlag, 1  ); // Envía el caracter por puerto serie.
-    tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
-    tcflush(fdUART, TCIOFLUSH);
+    if( modoLocal == false )
+    {
+      write( fdUART, modoLocalFlag, 1  ); // Envía el caracter por puerto serie.
+      tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
+      tcflush(fdUART, TCIOFLUSH);
+    }
 
     if( (modoLocalFlag[0] >= 32) && (modoLocalFlag[0] <=126) )//Imprime solo char imprimibles
       dprintf(FD_STDOUT, "%c", modoLocalFlag[0]); 
@@ -100,7 +129,14 @@ void seleccionModo( int fdUART )
       dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo vía UART: ");//Mensaje de error.
     
   }while( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') );//Control valores válidos.
+
+
+  if(modoLocalFlag[0] == '1') // Retorna si se trata de modo local o remoto.
+    return true;
+  else
+    return false ;
 }
+
 
 /*#########################################################################################*/
 /*##                                SECUENCIAS                                           ##*/
@@ -113,12 +149,12 @@ void secuencia( int fdUART )
 
   while( buf[0] != 's' )
   {
-    datosLeidos = read( FD_STDIN, buf, 1 ); // read() retorna la cantidad de caracteres que lee.
+    datosLeidos = read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
     //tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
 
     if( datosLeidos != 0 )
     { 
-      write( fdUART, buf, 1 ); // Envía el caracter por puerto serie.
+      write( fdUART, buf, 3 ); // Envía el caracter por puerto serie.
       tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
       tcflush(fdUART, TCIOFLUSH);
     }

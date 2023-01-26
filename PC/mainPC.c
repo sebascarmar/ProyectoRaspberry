@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include <string.h>
 
 #include "funciones.h"
 
@@ -14,6 +13,7 @@ int main( int argc, char *argv[] )
   struct termios ttyOldUART, ttyNewUART;   // Estructuras para atributos de la UART.
   int fdUART;                              // Descriptor de archivo de la UART. 
   char opcion = '\0';                      // Almacena el caracter ingresado.
+  bool modoLocal = false;
 
 /*------------ Seteo del modo NO canónico NO bloqueante en la ENTRADA ESTANDAR ------------*/
   tcgetattr( FD_STDIN, &ttyOldStdIn );              // Lee atributos del teclado.
@@ -23,15 +23,15 @@ int main( int argc, char *argv[] )
 
 
 /*-------------------------- Apertura del puerto serie (UART) -----------------------------*/
-  // SE ASEGURA QUE AL PROGRAMA SE LE PASE EL DISPOSITIVO A main().
-  if( argc != 2 )
+  
+  if( argc != 2 ) // Corrobora que  el main se ejcute con argumentos.
   {
     dprintf(FD_STDERR, "ERROR EN MODO DE EJECUCIÓN: %s <UART> \n", argv[0]);
     tcsetattr( FD_STDIN, TCSAFLUSH, &ttyOldStdIn );
     exit(EXIT_FAILURE);
   }
 
-  fdUART = open( argv[1], O_RDWR | O_NOCTTY | O_NDELAY ); //O_DSYNC
+  fdUART = open( argv[1], O_RDWR | O_NOCTTY | O_NDELAY ); // Abre la UART.
   if( fdUART == -1 )
   {
     dprintf(FD_STDERR, "ERROR: no se pudo abrir %s. \n", argv[1]);
@@ -50,7 +50,11 @@ int main( int argc, char *argv[] )
   while( opcion != 'k' )
   {
     imprimeMenu( );
-    opcion = seleccionMenu( fdUART );
+    if( modoLocal == false )
+        opcion = seleccionMenuModoRemoto( fdUART );
+    else
+      opcion = seleccionMenuModoLocal( );
+
     dprintf(FD_STDOUT, "\n\n");
 
     switch( opcion)
@@ -64,7 +68,7 @@ int main( int argc, char *argv[] )
                            "Por favor, elija el modo: ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
       
-        seleccionModo( fdUART );
+        modoLocal = seleccionModo( fdUART, modoLocal );
       
         dprintf(FD_STDOUT, "\n\n");
         break;
@@ -163,33 +167,18 @@ int main( int argc, char *argv[] )
   }
 
 
-
-  /************************Seteo del modo canónico*****************************/
+/*----------------------------- Seteo de modo por defecto (original) ----------------------*/
   tcsetattr( FD_STDIN, TCSANOW, &ttyOldStdIn ); // Actualiza los atributos del teclado 
-                                        //con los valores previos.
-  tcsetattr( fdUART, TCSANOW, &ttyOldUART ); // Actualiza los atributos del teclado 
-                                        //con los valores previos.
+                                                //con los valores previos.
+  tcsetattr( fdUART, TCSANOW, &ttyOldUART ); // Actualiza los atributos de la UART
+                                             //con los valores previos.
 	
+/*--------------------------- Cierre del puerto serie (UART) ------------------------------*/
   if( close(fdUART)==-1 )
     dprintf(FD_STDERR, "ERROR: no se puedo cerrar el puerto serial\n");
+
 
   return 0;
 }
 
-//  /****Bucle  de ESCRITURA en la UART (termina cuando se aprieta una tecla)****/
-//  printf(" --------------------------------------\n");
-//  printf(" - Com. serie (termina al enviar '!') -\n");
-//  printf(" --------------------------------------\n");
-//  while( opcion != '!'  )
-//  {     
-//    read( FD_STDIN, &opcion, 1 ); // read() lee 1 caracter de la ENTRADA ESTANDAR
-//                              //y lo almacena en opcion[0].
-//    //dprintf(1, "%c", &opcion[0]); 
-//    write( 1, &opcion, 1  ); // Imprime el caracter ingresado, simula entrada canónica
-//   
-//    write( fdUART, &opcion, 1  ); // Escribe 1 byte del contenido de cadena al "fdUART".
-//    tcdrain( fdUART ); // Espera a que lo que se haya escrito en "fdUART" se transmita.
-//    tcflush(fdUART, TCIOFLUSH);
-//    
-//    if(opcion[0] != '!') // Evita que se imprima el mismo caracter indefinidamente.
-//        opcion[0]='\0';  
+

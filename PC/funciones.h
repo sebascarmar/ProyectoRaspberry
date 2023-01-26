@@ -7,6 +7,8 @@
 #include <unistd.h> //read, usleep
 #include <termios.h> // struct termios, tcgetattr, tcsetattr, tcflush
 
+#include <stdbool.h>
+
 /*----------------- Descriptor de entrada estándar y salida estándar ----------------------*/
 #define FD_STDIN 0
 #define FD_STDOUT 1
@@ -48,7 +50,15 @@ void imprimeMenu( void );
  * PARÁMETROS: ninguno.
  * RETORNO: ninguno.
  */
-char seleccionMenu( int fdUART );
+char seleccionMenuModoRemoto( int fdUART );
+
+/*******************************************************************************************/
+
+/* ACCIÓN: imprime las opciones del menú principal en la stdout.
+ * PARÁMETROS: ninguno.
+ * RETORNO: ninguno.
+ */
+char seleccionMenuModoLocal( void );
 
 
 /*#########################################################################################*/
@@ -59,7 +69,7 @@ char seleccionMenu( int fdUART );
  * PARÁMETROS: ninguno.
  * RETORNO: un bool: verdadero si es modo local, falso si es modo remoto.
  */
-void seleccionModo( int fdUART );
+bool seleccionModo( int fdUART, bool modoLocal );
 
 
 /*#########################################################################################*/

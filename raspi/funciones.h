@@ -74,7 +74,7 @@ int velocidadSecuenciasConPote( void );
 /*******************************************************************************************/
 
 /* ACCIÓN: setea la velocidad durante la secuencia  en ejecución, con las flechas up/down del
- *       teclado local (entrada estándar) o remoto (mediante puerto serial).
+ *        teclado local (entrada estándar) o remoto (mediante puerto serial).
  * PARÁMETROS: un puntero a un entero de 8bits, un arreglo de char.
  * RETORNO: ninguno.
  */
@@ -158,10 +158,10 @@ void imprimeVelocidadDurante( int velSecuencias );
 /*******************************************************************************************/
 
 /* ACCIÓN: durante la ejecución de las secuencias, lee el teclado local o remoto (mediante
- * el puerto serie).
- * PARÁMETROS: un bool con el modo de manejo (true: local, false: remoto)
+ *        el puerto serie).
+ * PARÁMETROS: un bool con el modo de manejo (true: local, false: remoto),
  *             un entero con el descr. de archivos del puerto serial,
- *             un un arreglo a char para almacenar lo leído
+ *             un un arreglo a char para almacenar lo leído.
  * RETORNO: ninguno.
  */
 void lecturaTeclado( bool modoLocal, int fdPuertoSerial, char *buf );
@@ -171,11 +171,11 @@ void lecturaTeclado( bool modoLocal, int fdPuertoSerial, char *buf );
 /*##                          SECUENCIAS DE LUCES                                        ##*/
 /*#########################################################################################*/
 
-/* ACCIÓN: ejecuta la secuencia El Auto Fantástico en los leds
- * PARÁMETROS: un arreglo a enteros con los pines de los leds
+/* ACCIÓN: ejecuta la secuencia El Auto Fantástico en los leds.
+ * PARÁMETROS: un arreglo a enteros con los pines de los leds,
  *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
- *             un bool con el modo de manejo (true: local, false: remoto)
- *             un entero con el valor del puerto serial
+ *             un bool con el modo de manejo (true: local, false: remoto),
+ *             un entero con el valor del puerto serial.
  * RETORNO: ninguno.
  */
 void secAutoFantastico( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
@@ -183,10 +183,10 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, bool modoLocal, int fd
 /*******************************************************************************************/
 
 /* ACCIÓN: ejecuta la secuencia El Choque en los leds.
- * PARÁMETROS: un arreglo a enteros con los pines de los leds
+ * PARÁMETROS: un arreglo a enteros con los pines de los leds,
  *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
- *             un bool con el modo de manejo (true: local, false: remoto)
- *             un entero con el valor del puerto serial
+ *             un bool con el modo de manejo (true: local, false: remoto),
+ *             un entero con el valor del puerto serial.
  * RETORNO: ninguno.
  */
 void secChoque( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
@@ -194,10 +194,10 @@ void secChoque( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSe
 /*******************************************************************************************/
 
 /* ACCIÓN: ejecuta la secuencia la Apilada en los leds.
- * PARÁMETROS: un arreglo a enteros con los pines de los leds
+ * PARÁMETROS: un arreglo a enteros con los pines de los leds,
  *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
- *             un bool con el modo de manejo (true: local, false: remoto)
- *             un entero con el valor del puerto serial
+ *             un bool con el modo de manejo (true: local, false: remoto),
+ *             un entero con el valor del puerto serial.
  * RETORNO: ninguno.
  */
 void secApilada( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
@@ -205,10 +205,10 @@ void secApilada( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
 /*******************************************************************************************/
 
 /* ACCIÓN: ejecuta la secuencia La Carrera en los leds.
- * PARÁMETROS: un arreglo a enteros con los pines de los leds
+ * PARÁMETROS: un arreglo a enteros con los pines de los leds,
  *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
- *             un bool con el modo de manejo (true: local, false: remoto)
- *             un entero con el valor del puerto serial
+ *             un bool con el modo de manejo (true: local, false: remoto),
+ *             un entero con el valor del puerto serial.
  * RETORNO: ninguno.
  */
 void secCarrera( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
@@ -216,10 +216,10 @@ void secCarrera( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
 /*******************************************************************************************/
 
 /* ACCIÓN: ejecuta la secuencia El Vúmetro en los leds.
- * PARÁMETROS: un arreglo a enteros con los pines de los leds
+ * PARÁMETROS: un arreglo a enteros con los pines de los leds,
  *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
- *             un bool con el modo de manejo (true: local, false: remoto)
- *             un entero con el valor del puerto serial
+ *             un bool con el modo de manejo (true: local, false: remoto),
+ *             un entero con el valor del puerto serial.
  * RETORNO: ninguno.
  */
 void secVumetro( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
@@ -227,10 +227,10 @@ void secVumetro( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
 /*******************************************************************************************/
 
 /* ACCIÓN: ejecuta la secuencia La Gran Moisés en los leds.
- * PARÁMETROS: un arreglo a enteros con los pines de los leds
+ * PARÁMETROS: un arreglo a enteros con los pines de los leds,
  *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
- *             un bool con el modo de manejo (true: local, false: remoto)
- *             un entero con el valor del puerto serial
+ *             un bool con el modo de manejo (true: local, false: remoto),
+ *             un entero con el valor del puerto serial.
  * RETORNO: ninguno.
  */
 void secJuntosPorParidad( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
@@ -238,10 +238,10 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, bool modoLocal, int 
 /*******************************************************************************************/
 
 /* ACCIÓN: ejecuta la secuencia La Gran Moisés en los leds.
- * PARÁMETROS: un arreglo a enteros con los pines de los leds
+ * PARÁMETROS: un arreglo a enteros con los pines de los leds,
  *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
- *             un bool con el modo de manejo (true: local, false: remoto)
- *             un entero con el valor del puerto serial
+ *             un bool con el modo de manejo (true: local, false: remoto),
+ *             un entero con el valor del puerto serial.
  * RETORNO: ninguno.
  */
 void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );
@@ -249,10 +249,10 @@ void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuer
 /*******************************************************************************************/
 
 /* ACCIÓN: ejecuta la secuencia El Parpadeo en los leds.
- * PARÁMETROS: un arreglo a enteros con los pines de los leds
+ * PARÁMETROS: un arreglo a enteros con los pines de los leds,
  *             un puntero a entero de 8 bit con la dirección del valor de velocidad de secuen.
- *             un bool con el modo de manejo (true: local, false: remoto)
- *             un entero con el valor del puerto serial
+ *             un bool con el modo de manejo (true: local, false: remoto),
+ *             un entero con el valor del puerto serial.
  * RETORNO: ninguno.
  */
 void secParpadeo( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSerial );

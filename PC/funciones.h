@@ -20,8 +20,8 @@
 /*#########################################################################################*/
 
 /* ACCIÓN: setea el modo NO canónico en la tty apuntada por ttyNew.
- * PARÁMETROS: un entero con el descriptor de archivos de la tty en cuestión
- *             un puntero a la estructura termios de la terminal a configurar
+ * PARÁMETROS: un entero con el descriptor de archivos de la tty en cuestión,
+ *             un puntero a la estructura termios de la terminal a configurar.
  * RETORNO: ninguno.
  */
 void seteoModoNoCanonicoNoBloqueante( int fd, struct termios *ttyNew );
@@ -29,8 +29,8 @@ void seteoModoNoCanonicoNoBloqueante( int fd, struct termios *ttyNew );
 /*******************************************************************************************/
 
 /* ACCIÓN: setea la trama 8N1 y los baudios de la tty apuntada por ttyNew.
- * PARÁMETROS: un entero con el descriptor de archivos de la tty en cuestión
- *             un puntero a la estructura termios de la terminal a configurar
+ * PARÁMETROS: un entero con el descriptor de archivos de la tty en cuestión,
+ *             un puntero a la estructura termios de la terminal a configurar.
  * RETORNO: ninguno.
  */
 void seteoTramaYBaudRate( int fd, struct termios *ttyNew, speed_t baudRate );
@@ -70,8 +70,8 @@ char seleccionMenuModoLocal( void );
 /*#########################################################################################*/
 
 /* ACCIÓN: seleccion el modo local o remoto.
- * PARÁMETROS: un entero con el descriptor de archivos del puerto serie
- *             un bool indicando si se está en modo local o remoto al momento del llamado
+ * PARÁMETROS: un entero con el descriptor de archivos del puerto serie,
+ *             un bool indicando si se está en modo local o remoto al momento del llamado.
  * RETORNO: un bool: verdadero si es modo local, falso si es modo remoto.
  */
 bool seleccionModo( int fdUART, bool modoLocal );

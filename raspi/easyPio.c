@@ -16,7 +16,7 @@ void pioInit( )
   void *reg_map;
   mem_fd = open("/dev/mem", O_RDWR | O_SYNC); // /dev/mem es un pseudo_driver para
                                               //acceso a memoria en Linux.
-  if( mem_fd < 0)                             // Verifica si se pudo abrir el arch.
+  if( mem_fd < 0 ) // Verifica si se pudo abrir el archivo.
   {
     printf("Error al abrir /dev/mem.\n");
     exit(EXIT_FAILURE);
@@ -29,10 +29,10 @@ void pioInit( )
                  MAP_SHARED,            //Acceso no exclusivo a esta memoria.
                  mem_fd,                //Puntero a /dev/mem.
                  GPIO_BASE);            //Offset al periférico GPIO.
-  if (reg_map == MAP_FAILED)            //Verifica si se pudo realizar el mapeo.
+  if( reg_map == MAP_FAILED ) //Verifica si se pudo realizar el mapeo.
   {
-    printf("Error al  mapear GPIO  %d\n", (int)reg_map);
-    close(mem_fd);
+    printf("Error al  mapear GPIO  %ld\n", (long int)reg_map);
+    close( mem_fd );
     exit(EXIT_FAILURE);
   }
 
@@ -48,7 +48,7 @@ void pioInit( )
 
 void pinModeEP( int pin, int function ) // Los reg. GPFSEL setean la fun. de c/pin.
 {
-  int reg    = pin/10;     // 10 GPIO por registro (es decir, elige el registro).
+  int reg    = pin/10;      // 10 GPIO por registro (es decir, elige el registro).
   int offset = (pin%10)*3; // 3 pines para cada GPIO (selecciona los pines corres-
                            //pondientes).
   
@@ -60,10 +60,10 @@ void pinModeEP( int pin, int function ) // Los reg. GPFSEL setean la fun. de c/p
 
 void digitalWriteEP( int pin, int val )
 {
-  int reg    = pin/32;     // 10 GPIO por registro (es decir, elige el registro).
+  int reg    = pin/32; // 10 GPIO por registro (es decir, elige el registro).
   int offset = pin%32; // 3 pines para cada GPIO (selecciona los pines correspon.).
 
-  if(val)
+  if( val )
     GPSET[reg] = 1 << offset; // Escribe si es HIGH.
   else
     GPCLR[reg] = 1 << offset; // Escribe si es LOW.
@@ -77,6 +77,6 @@ int digitalReadEP( int pin )
   int offset = pin%32;
 
   return ( GPLEV[reg] >> offset ) & 0x00000001; // Pone en cero todos los bits que
-						//no interesan.
+                                                //no interesan.
 }
 

@@ -15,8 +15,8 @@ void seteoModoNoCanonico( struct termios *ttyNewStdIn )
 
 void seteoModoNoBloqueante( struct termios *ttyNewStdIn )
 {
-  ttyNewStdIn->c_cc[VMIN] = 0;    // No espera a recibir ningún caracter.
-  ttyNewStdIn->c_cc[VTIME] = 0;   // No espera tiempo alguno a recibir ningún caracter
+  ttyNewStdIn->c_cc[VMIN] = 0;   // No espera a recibir ningún caracter.
+  ttyNewStdIn->c_cc[VTIME] = 0;  // No espera tiempo alguno a recibir ningún caracter
   tcsetattr( FD_STDIN, TCSANOW, ttyNewStdIn ); // Setea los valores nuevos de la config.
 }
 
@@ -41,7 +41,7 @@ int controlDeContraseña( void )
     asteriscosImpresos = 0; // Cuenta los ast. que impresos, así se borran todos si se desea.
     contraCorrecta = 0;     // Al recorrer 'password' y comparar con 'contra', si vale 
                             //LENGTH_PSSW entnonces es válida la passwd ingresada.
-
+    
     printf("\t - Contraseña: ");
     while ( tecla != 10 ) // Ingresar hasta oprimir enter. Simula en parte el modo canónico.
     {
@@ -52,8 +52,7 @@ int controlDeContraseña( void )
         if( tecla != 127 ) // Si NO se presiona DEL es verdadero.
         {
           if( (i <= (LENGTH_PSSW-1)) && (i == asteriscosImpresos) )// i no puede ser mayor al 
-          {                                                   //largo de la contra, y debe 
-                                                              //coincdr c/los astrs. impresos
+          {                       //largo de la contra, y debe coincdr c/los astrs. impresos.
             password[i] = tecla;
             i++;
           }                   
@@ -61,7 +60,7 @@ int controlDeContraseña( void )
           printf("*");
           asteriscosImpresos++;
           
-        }else            // Si SÍ se presiona DEL es verdadero.
+        }else              // Si SÍ se presiona DEL es verdadero.
         {
           if( asteriscosImpresos > 0 ) // Verdadero si hay asteriscos impresos en pantalla.
           {
@@ -80,9 +79,9 @@ int controlDeContraseña( void )
         contraCorrecta++;
     }
     
-    if( contraCorrecta == 5 ){
+    if( contraCorrecta == 5 )
       numIntentos = 3; 
-    }else
+    else
       printf("\n\t Contraseña inválida\n");
     
   } // Fin del for.
@@ -92,6 +91,7 @@ int controlDeContraseña( void )
     return 1;
   else
     return 0;
+
 }
 
 
@@ -101,8 +101,8 @@ int controlDeContraseña( void )
 
 int velocidadSecuenciasConPote( void )
 {
-  char tecla[1] = {'\0'};         // Almacena lo leído por read().
-  int fdModuloADC, valorADC;      // Declaracion de variables para acceder al ADC.
+  char tecla[1] = {'\0'};    // Almacena lo leído por read().
+  int fdModuloADC, valorADC; // Declaracion de variables para acceder al ADC.
   int velocidad; 
 
   fdModuloADC = wiringPiI2CSetup(ADDRESS); // Inicializa el sistema I2C con el ID del dispos.
@@ -119,7 +119,7 @@ int velocidadSecuenciasConPote( void )
     wiringPiI2CReadReg8(fdModuloADC, A0); // Activa la conversión.
     valorADC = wiringPiI2CReadReg8(fdModuloADC, A0);// Lectura del valor.
     dprintf(FD_STDOUT, "\b\b  \b\b");
-
+    
     if( valorADC  <= 26 ) 
       dprintf(FD_STDOUT, " %d", velocidad = 1);
     else if( (valorADC  > 26) && (valorADC <= 51) )
@@ -140,7 +140,7 @@ int velocidadSecuenciasConPote( void )
       dprintf(FD_STDOUT, " %d", velocidad = 9);
     else
       dprintf(FD_STDOUT, "%d", velocidad = 10);
-
+    
     read( FD_STDIN, tecla, 1 ); // Se guarda el caracter ingresado en "tecla[0]".
     retardo( 10000000 );  // Retardo que impide el parpadeo en la impresión del valor.
   }
@@ -227,9 +227,9 @@ char seleccionMenuModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBA
   while( (bufferIngresoUART < 'a') || (bufferIngresoUART > 'k') )
   {
     dprintf(FD_STDOUT, "Por favor, ingrese una opción vía UART: ");
-
+    
     while( serialDataAvail(fdPuertoSerial) == 0 ){} // Espera por ingreso por la UART.
-      
+    
     bufferIngresoUART = serialGetchar( fdPuertoSerial ); // Lee el puerto serie.
     
     if( bufferIngresoUART >= 32 && bufferIngresoUART <= 126 ) // Imprime solo los caracteres
@@ -237,7 +237,7 @@ char seleccionMenuModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBA
     
     if( (bufferIngresoUART >= 'A') && (bufferIngresoUART <= 'Z') ) // Si las letras son ma-
       bufferIngresoUART += 32;                                     //yús., las pasa a minús.
-
+    
     if( (bufferIngresoUART < 'a') || (bufferIngresoUART > 'k') ) // Imprime msj de error.
       dprintf(FD_STDOUT, "\nValor inválido. ");
   }
@@ -259,10 +259,10 @@ bool seleccionModoEnModoLocal( void )
   {
     while( read(FD_STDIN, modoLocalFlag, 3) == 0 )//Espera por ingreso por teclado.
       tcflush(FD_STDIN, TCIOFLUSH);//Descarta lo escrito pero no transmtido (limpia buffer).
-
+    
     if( (modoLocalFlag[0] >= 32) && (modoLocalFlag[0] <=126) )//Imprime solo char imprimibles
       dprintf(FD_STDOUT, "%c", modoLocalFlag[0]); 
-  
+    
     if( (modoLocalFlag[0] != '1') && (modoLocalFlag[0] != '2') )
       dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo: ");//Mensaje de error.
     
@@ -285,12 +285,12 @@ bool seleccionModoEnModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBAAAA
   do
   {
     while( serialDataAvail(fdPuertoSerial) == 0 ){} // Espera por ingreso por la UART.
-
+    
     modoLocalFlag = serialGetchar( fdPuertoSerial ); // Lee el puerto serie.
     
     if( (modoLocalFlag >= 32) && (modoLocalFlag <= 126) ) // Imprime solo char imprimibles.
       dprintf(FD_STDOUT, "%c", modoLocalFlag); 
-  
+    
     if( (modoLocalFlag != '1') && (modoLocalFlag != '2') ) // Imprime mensaje de error.
       dprintf(FD_STDOUT, "\nOpción inválida. Por favor, elija el modo vía UART: ");
     
@@ -300,7 +300,7 @@ bool seleccionModoEnModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBAAAA
   if(modoLocalFlag == '1') // Retorna si se trata de modo local o remoto.
     return true;
   else
-    return false ;
+    return false;
 
 }
 
@@ -311,10 +311,10 @@ bool seleccionModoEnModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBAAAA
 
 void imprimeVelocidadDurante( int velSecuencias )
 {
-      if( velSecuencias == 10)
-        dprintf(FD_STDOUT, "\b\b  \b\b%d", velSecuencias);
-      else
-        dprintf(FD_STDOUT, "\b\b  \b\b %d", velSecuencias);
+  if( velSecuencias == 10)
+    dprintf(FD_STDOUT, "\b\b  \b\b%d", velSecuencias);
+  else
+    dprintf(FD_STDOUT, "\b\b  \b\b %d", velSecuencias);
 }
 
 /*******************************************************************************************/
@@ -326,7 +326,7 @@ void lecturaTeclado( bool modoLocal, int fdPuertoSerial, char *buf ) //Modo remo
     read( FD_STDIN, buf, 3 ); // read() retorna la cantidad de caracteres que lee.
     tcflush(FD_STDIN, TCIOFLUSH); // Descarta datos escritos pero no transmitidos.
   }
-  else                   // Lectura teclado remoto mediante puerto serie.
+  else                    // Lectura teclado remoto mediante puerto serie.
   {
     if( serialDataAvail(fdPuertoSerial) )       // Retorna el número de caracteres
     {                                           //disponible para leer.
@@ -367,7 +367,7 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, bool modoLocal, int fd
       
       digitalWriteEP( leds[i], 0 );
     }
-  
+    
     for(int i = 6 ; (buf[0] != 's') && (i > 0) ; i--) // Act/Desact ls leds en otro sentido.
     {                                                     
       lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
@@ -381,7 +381,7 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, bool modoLocal, int fd
       
       digitalWriteEP( leds[i], 0 );
     }
-
+    
   } // Fin del while.
 
 }
@@ -507,12 +507,12 @@ void secApilada( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
          
         digitalWriteEP( leds[j], laApilada[i][j] ); // Muestra en los leds la tabla.
         usleep(5000); // Delay entre cada led.
-      } // Fin 2º for.
-        
+      }
+      
       retardo( valorDeRetardo(*velSecuencias) );
-    } // Fin 1º for.
-
-  } // Fin del while.
+    } 
+    
+  }
   
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
       digitalWriteEP( leds[i], 0 );
@@ -542,7 +542,7 @@ void secCarrera( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
                             {0,0,0,0,0,0,1,0},
                             {0,0,0,0,0,0,0,1}
                           }; 
-   
+  
   while( buf[0] != 's' )
   {
     for(int i = 0 ; (buf[0] != 's') && (i < 17) ; i++) 
@@ -556,11 +556,11 @@ void secCarrera( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
         
         digitalWriteEP( leds[j], laCarrera[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
-      } // Fin 2do for.
+      }
       
       retardo( valorDeRetardo(*velSecuencias) );
-    } // Fin 1er for.
-
+    }
+    
   }
   
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
@@ -607,17 +607,17 @@ void secVumetro( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
         lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
-      
+       
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
-      
+        
         digitalWriteEP( leds[j], elVumetro[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
       }
       
       retardo( valorDeRetardo(*velSecuencias) );
     }
-
+    
   }
   
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
@@ -673,16 +673,16 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, bool modoLocal, int 
       for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++)
       {
         lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
-      
+        
         velocidadSecuenciasConTeclado( velSecuencias, buf );
         imprimeVelocidadDurante( *velSecuencias );
         
         digitalWriteEP( leds[j], juntosPorParidad[i][j] ); // Muestra en los leds la tabla.
-      } // Fin del 2do for.
+      }
       
       retardo( valorDeRetardo(*velSecuencias) );
-    } // Fin del 1er for.
-
+    }
+    
   }
   
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
@@ -700,7 +700,7 @@ void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuer
   while( buf[0] != 's' )
   {
     lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
-
+    
     velocidadSecuenciasConTeclado( velSecuencias, buf );
     imprimeVelocidadDurante( *velSecuencias );
     
@@ -725,9 +725,9 @@ void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuer
       j--;
       k++;
     }
-  
+   
     usleep(200000);
-
+    
     while( (buf[0] != 's') && (j <= 3) && (k >= 4) ) // Enciende los leds desde los extremos.
     {
       lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
@@ -748,7 +748,7 @@ void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuer
 
   for(int i = 0 ; i < 8 ; i++) // Apaga todos los leds antes de volver al menú.
       digitalWriteEP( leds[i], 0 );
-    
+
 }
 
 /*******************************************************************************************/
@@ -760,7 +760,7 @@ void secParpadeo( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuerto
   while( buf[0] != 's' )
   {
     lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
-
+    
     velocidadSecuenciasConTeclado( velSecuencias, buf );
     imprimeVelocidadDurante( *velSecuencias );
     
@@ -768,18 +768,18 @@ void secParpadeo( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuerto
       digitalWriteEP( leds[i], 1);
     
     retardo( valorDeRetardo(*velSecuencias) );
-
+    
     lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
-
+    
     velocidadSecuenciasConTeclado( velSecuencias, buf );
     imprimeVelocidadDurante( *velSecuencias );
     
     for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++) // Apaga todos los leds.
       digitalWriteEP( leds[j], 0 );
-
+    
     retardo( valorDeRetardo(*velSecuencias) );
   } // Fin del while.
-    
+  
   for(int k = 0 ; k < 8 ; k++) // Apaga todos los leds antes de volver al menú.
       digitalWriteEP( leds[k], 0 );
 

@@ -56,7 +56,7 @@ void pioInit( void );
 /*#########################################################################################*/
 
 /* ACCIÓN: inicializa los pines como propósito general o especial.
- * PARAMETROS: un entero que representa el pin que se desea.
+ * PARAMETROS: un entero que representa el pin que se desea,
  *             un entero que representa la función que tendrá ese pin.
  * RETORNO: ninguno.
  */
@@ -75,7 +75,7 @@ void digitalWriteEP( int pin, int val );
 
 /* ACCIÓN: lee el estado lógico de un pin.
  * PARAMETROS: un entero que representa el pin que se desea.
- * RETORNO: un entero con el estado del pin (1 o 0)
+ * RETORNO: un entero con el estado del pin (1 o 0).
  */
 int digitalReadEP( int pin );
 

@@ -23,22 +23,22 @@ int main( int argc, char *argv[] )
 
 
 /*------------------- Seteo del modo NO canónico en la ENTRADA ESTANDAR -------------------*/
-  tcgetattr( FD_STDIN, &ttyOldStdIn );          // Lee atributos por defecto del teclado.
-  ttyNewStdIn = ttyOldStdIn;                     // Guarda los atributos originales.
+  tcgetattr( FD_STDIN, &ttyOldStdIn ); // Lee atributos por defecto del teclado.
+  ttyNewStdIn = ttyOldStdIn;           // Guarda los atributos originales.
   seteoModoNoCanonico( &ttyNewStdIn );
 
 
 /*-------------------------------- Control de acceso --------------------------------------*/
   printf("-----------------------------------------------------------------------\n"
          "Para continuar, por favor ingrese su contraseña\n");
+
   if( controlDeContraseña( ) == 1 )
-  {
     dprintf(FD_STDOUT, "\n\n\t\t\t ¡BIENVENIDO AL SISTEMA!\n");
-  } else
+  else
   {
     dprintf(FD_STDERR, "\n\t\t\t NO SE HA PODIDO INGRESAR AL SISTEMA\n");
     tcsetattr(FD_STDIN, TCSANOW, &ttyOldStdIn); // Actualiza los atributos del teclado 
-                                               //con los valores originales.
+                                                //con los valores originales.
     exit(EXIT_FAILURE);
   }
 
@@ -60,7 +60,7 @@ int main( int argc, char *argv[] )
   {
     dprintf(FD_STDERR, "Error al abrir \\dev\\ttyS0\n");
     tcsetattr(FD_STDIN, TCSANOW, &ttyOldStdIn); // Actualiza los atributos del teclado 
-                                               //con los valores originales.
+                                                //con los valores originales.
     exit(EXIT_FAILURE);
   }
 
@@ -70,7 +70,7 @@ int main( int argc, char *argv[] )
   {
     printf("Error al inicializar wiringPi.\n");
     tcsetattr(FD_STDIN, TCSANOW, &ttyOldStdIn); // Actualiza los atributos del teclado 
-                                               //con los valores originales.
+                                                //con los valores originales.
     exit(EXIT_FAILURE);
   }
 
@@ -90,11 +90,10 @@ int main( int argc, char *argv[] )
     if( modoLocal == true )
       opcion = seleccionMenuModoLocal( );
     else
-    {
       opcion = seleccionMenuModoRemoto( fdPuertoSerial );
-    }
+    
     dprintf(FD_STDOUT, "\n\n");
-
+    
     switch( opcion )
     {
       case 'a': // Modo remoto/local.
@@ -105,16 +104,12 @@ int main( int argc, char *argv[] )
                            "\t 2) Remoto\n\n"
                            "Por favor, elija el modo: ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         if( modoLocal == true ) // Selección de modo en modo local.
-        {
           modoLocal = seleccionModoEnModoLocal( );
-          
-        }else                   // Selección de modo en modo remoto.
-        {
-            modoLocal = seleccionModoEnModoRemoto( fdPuertoSerial );
-        }
-      
+        else                    // Selección de modo en modo remoto.
+          modoLocal = seleccionModoEnModoRemoto( fdPuertoSerial );
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -124,7 +119,7 @@ int main( int argc, char *argv[] )
                "Seleccione la velocidad de las secuencias con el potenciómetro del ADC\n"
                "(mín=1, máx=10)\n");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         velSecuencias = velocidadSecuenciasConPote( );
         break;
       
@@ -134,9 +129,9 @@ int main( int argc, char *argv[] )
                "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+       
         secAutoFantastico( leds, &velSecuencias, modoLocal, fdPuertoSerial );
-      
+       
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -146,9 +141,9 @@ int main( int argc, char *argv[] )
                "\"El Choque\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+       
         secChoque( leds, &velSecuencias, modoLocal, fdPuertoSerial );
-      
+       
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -158,9 +153,9 @@ int main( int argc, char *argv[] )
                "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+       
         secApilada( leds, &velSecuencias, modoLocal, fdPuertoSerial );
-      
+       
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -170,9 +165,9 @@ int main( int argc, char *argv[] )
                "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+       
         secCarrera( leds, &velSecuencias, modoLocal, fdPuertoSerial );
-      
+       
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -182,9 +177,9 @@ int main( int argc, char *argv[] )
                "\"El Vúmetro\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+       
         secVumetro( leds, &velSecuencias, modoLocal, fdPuertoSerial );
-      
+       
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -194,9 +189,9 @@ int main( int argc, char *argv[] )
                "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+       
         secJuntosPorParidad( leds, &velSecuencias, modoLocal, fdPuertoSerial );
-      
+       
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -206,21 +201,21 @@ int main( int argc, char *argv[] )
                "\"La Gran Moisés\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+       
         secGranMoises( leds, &velSecuencias, modoLocal, fdPuertoSerial );
-      
+       
         dprintf(FD_STDOUT, "\n\n");
         break;
-        
+     
       case 'j': // Secuencia El Parpadeo.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"El Parpadeo\" en ejecución (presione 's' para volver al menú)\n"
                "Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         secParpadeo( leds, &velSecuencias, modoLocal, fdPuertoSerial );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       

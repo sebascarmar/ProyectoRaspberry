@@ -16,8 +16,8 @@ int main( int argc, char *argv[] )
   bool modoLocal = false;
 
 /*------------ Seteo del modo NO canónico NO bloqueante en la ENTRADA ESTANDAR ------------*/
-  tcgetattr( FD_STDIN, &ttyOldStdIn );              // Lee atributos del teclado.
-  ttyNewStdIn = ttyOldStdIn;                        // Guarda los atributos originales.
+  tcgetattr( FD_STDIN, &ttyOldStdIn );     // Lee atributos del teclado.
+  ttyNewStdIn = ttyOldStdIn;               // Guarda los atributos originales.
 
   seteoModoNoCanonicoNoBloqueante( FD_STDIN, &ttyNewStdIn );
 
@@ -39,8 +39,8 @@ int main( int argc, char *argv[] )
   }
 
 /*-------- Seteo del modo NO canónico NO bloqueante y conf. de la trama en la UART --------*/
-  tcgetattr( fdUART, &ttyOldUART );         // Lee atributos de la UART.
-  ttyNewUART = ttyOldUART;                  // Guarda los atributos originales.
+  tcgetattr( fdUART, &ttyOldUART );        // Lee atributos de la UART.
+  ttyNewUART = ttyOldUART;                 // Guarda los atributos originales.
 
   seteoModoNoCanonicoNoBloqueante( fdUART, &ttyNewUART );
   seteoTramaYBaudRate( fdUART, &ttyNewUART, 9600 );	
@@ -51,12 +51,12 @@ int main( int argc, char *argv[] )
   {
     imprimeMenu( );
     if( modoLocal == false )
-        opcion = seleccionMenuModoRemoto( fdUART );
+      opcion = seleccionMenuModoRemoto( fdUART );
     else
       opcion = seleccionMenuModoLocal( );
-
+    
     dprintf(FD_STDOUT, "\n\n");
-
+    
     switch( opcion)
     {
       case 'a': // Modo remoto/local.
@@ -67,9 +67,9 @@ int main( int argc, char *argv[] )
                            "\t 2) Remoto\n\n"
                            "Por favor, elija el modo: ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         modoLocal = seleccionModo( fdUART, modoLocal );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -78,9 +78,9 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         secuencia( fdUART );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -89,9 +89,9 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Choque\" en ejecución (presione 's' para volver al menú)\n");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         secuencia( fdUART );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -100,9 +100,9 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         secuencia( fdUART );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -111,9 +111,9 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         secuencia( fdUART );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -122,9 +122,9 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Vúmetro\" en ejecución (presione 's' para volver al menú)\n");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         secuencia( fdUART );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -133,9 +133,9 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         secuencia( fdUART );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       
@@ -144,27 +144,28 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Gran Moisés\" en ejecución (presione 's' para volver al menú)\n");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         secuencia( fdUART );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
-        
+     
       case 'j': // Secuencia El Parpadeo.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"El Parpadeo\" en ejecución (presione 's' para volver al menú)\n");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
-      
+        
         secuencia( fdUART );
-      
+        
         dprintf(FD_STDOUT, "\n\n");
         break;
       
       default:
         break;
     } // Fin del switch case.
-  }
+    
+  }// Fin del while
 
 
 /*----------------------------- Seteo de modo por defecto (original) ----------------------*/
@@ -179,6 +180,7 @@ int main( int argc, char *argv[] )
 
 
   return 0;
+
 }
 
 

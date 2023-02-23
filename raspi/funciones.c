@@ -233,7 +233,7 @@ char seleccionMenuModoRemoto( int fdPuertoSerial )
     bufferIngresoUART = serialGetchar( fdPuertoSerial ); // Lee el puerto serie.
     
     if( bufferIngresoUART >= 32 && bufferIngresoUART <= 126 ) // Imprime solo los caracteres
-      dprintf(FD_STDIN, "%c", bufferIngresoUART);             //imprimibles.
+      dprintf(FD_STDOUT, "%c", bufferIngresoUART);            //imprimibles.
     
     if( (bufferIngresoUART >= 'A') && (bufferIngresoUART <= 'Z') ) // Si las letras son ma-
       bufferIngresoUART += 32;                                     //yús., las pasa a minús.

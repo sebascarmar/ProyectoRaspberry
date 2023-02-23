@@ -218,7 +218,7 @@ void imprimeMenu( void )
 
 /*******************************************************************************************/
 
-char seleccionMenuModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBA
+char seleccionMenuModoRemoto( int fdPuertoSerial )
 {
   char bufferIngresoUART = '\0';
 
@@ -278,7 +278,7 @@ bool seleccionModoEnModoLocal( void )
 
 /*******************************************************************************************/
 
-bool seleccionModoEnModoRemoto( int fdPuertoSerial ) // FALTA PONER A PRUEBAAAA
+bool seleccionModoEnModoRemoto( int fdPuertoSerial )
 {
   char modoLocalFlag = '1';
 

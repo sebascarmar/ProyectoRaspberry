@@ -66,7 +66,7 @@ int main( int argc, char *argv[] )
 
 
 /*---------------------- Mapeo de pines según WiringPi (UART) -----------------------------*/
-  if ( wiringPiSetup( ) == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.
+  if( wiringPiSetup( ) == -1 ) // Inicializa los pines siguiendo el esquema de WiringPi.
   {
     printf("Error al inicializar wiringPi.\n");
     tcsetattr(FD_STDIN, TCSANOW, &ttyOldStdIn); // Actualiza los atributos del teclado 

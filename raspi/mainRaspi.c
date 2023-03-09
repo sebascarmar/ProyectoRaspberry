@@ -128,10 +128,10 @@ int main( int argc, char *argv[] )
       case 'c': // Secuencia El Auto Fantástico.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n"
+               "\"El Auto Fantástico\" en ejecución\n\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas para variar la velocidad de la secuencia\n  "
-               "     Velocidad actual:   ");
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
         secAutoFantastico( leds, &velSecuencias, modoLocal, fdPuertoSerial );
@@ -142,8 +142,10 @@ int main( int argc, char *argv[] )
       case 'd': // Secuencia El Choque.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"El Choque\" en ejecución (presione 's' para volver al menú)\n"
-               "Velocidad actual:   ");
+               "\"El Choque\" en ejecución\n\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
         secChoque( leds, &velSecuencias, modoLocal, fdPuertoSerial );
@@ -154,8 +156,10 @@ int main( int argc, char *argv[] )
       case 'e': // Secuencia La Apilada.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n"
-               "Velocidad actual:   ");
+               "\"La Apilada\" en ejecución\n\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
         secApilada( leds, &velSecuencias, modoLocal, fdPuertoSerial );
@@ -166,8 +170,10 @@ int main( int argc, char *argv[] )
       case 'f': // Secuencia La Carrera.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n"
-               "Velocidad actual:   ");
+               "\"La Carrera\" en ejecución\n\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
         secCarrera( leds, &velSecuencias, modoLocal, fdPuertoSerial );
@@ -178,8 +184,10 @@ int main( int argc, char *argv[] )
       case 'g': // Secuencia El Vúmetro.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"El Vúmetro\" en ejecución (presione 's' para volver al menú)\n"
-               "Velocidad actual:   ");
+               "\"El Vúmetro\" en ejecución\n\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
         secVumetro( leds, &velSecuencias, modoLocal, fdPuertoSerial );
@@ -190,8 +198,10 @@ int main( int argc, char *argv[] )
       case 'h': // Secuencia Juntos Por Paridad.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n"
-               "Velocidad actual:   ");
+               "\"Juntos Por Paridad\" en ejecución\n\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
         secJuntosPorParidad( leds, &velSecuencias, modoLocal, fdPuertoSerial );
@@ -202,8 +212,10 @@ int main( int argc, char *argv[] )
       case 'i': // Secuencia La Gran Moisés.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"La Gran Moisés\" en ejecución (presione 's' para volver al menú)\n"
-               "Velocidad actual:   ");
+               "\"La Gran Moisés\" en ejecución\n\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
         secGranMoises( leds, &velSecuencias, modoLocal, fdPuertoSerial );
@@ -214,8 +226,10 @@ int main( int argc, char *argv[] )
       case 'j': // Secuencia El Parpadeo.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"El Parpadeo\" en ejecución (presione 's' para volver al menú)\n"
-               "Velocidad actual:   ");
+               "\"El Parpadeo\" en ejecución\n\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
         
         secParpadeo( leds, &velSecuencias, modoLocal, fdPuertoSerial );

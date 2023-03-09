@@ -128,7 +128,9 @@ int main( int argc, char *argv[] )
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
                "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n"
-               "Velocidad actual:   ");
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas para variar la velocidad de la secuencia\n  "
+               "     Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
         secAutoFantastico( leds, &velSecuencias, modoLocal, fdPuertoSerial );

@@ -86,13 +86,14 @@ int main( int argc, char *argv[] )
 /*-------------------------------- Menú principal -----------------------------------------*/
   while( opcion != 'k' )
   {
+    system("clear");
     imprimeMenu( );
     if( modoLocal == true )
       opcion = seleccionMenuModoLocal( );
     else
       opcion = seleccionMenuModoRemoto( fdPuertoSerial );
     
-    dprintf(FD_STDOUT, "\n\n");
+    system("clear");
     
     switch( opcion )
     {

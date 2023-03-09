@@ -76,7 +76,9 @@ int main( int argc, char *argv[] )
       case 'c': // Secuencia El Auto Fantástico.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"El Auto Fantástico\" en ejecución (presione 's' para volver al menú)\n");
+               " \"El Auto Fantástico\" en ejecución\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -87,7 +89,9 @@ int main( int argc, char *argv[] )
       case 'd': // Secuencia El Choque.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"El Choque\" en ejecución (presione 's' para volver al menú)\n");
+               "\"El Choque\" en ejecución\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -98,7 +102,9 @@ int main( int argc, char *argv[] )
       case 'e': // Secuencia La Apilada.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"La Apilada\" en ejecución (presione 's' para volver al menú)\n");
+               "\"La Apilada\" en ejecución\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -109,7 +115,9 @@ int main( int argc, char *argv[] )
       case 'f': // Secuencia La Carrera.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"La Carrera\" en ejecución (presione 's' para volver al menú)\n");
+               "\"La Carrera\" en ejecución\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -120,7 +128,9 @@ int main( int argc, char *argv[] )
       case 'g': // Secuencia El Vúmetro.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"El Vúmetro\" en ejecución (presione 's' para volver al menú)\n");
+               "\"El Vúmetro\" en ejecución\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -131,7 +141,9 @@ int main( int argc, char *argv[] )
       case 'h': // Secuencia Juntos Por Paridad.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"Juntos Por Paridad\" en ejecución (presione 's' para volver al menú)\n");
+               "\"Juntos Por Paridad\" en ejecución\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -142,7 +154,9 @@ int main( int argc, char *argv[] )
       case 'i': // Secuencia La Gran Moisés.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"La Gran Moisés\" en ejecución (presione 's' para volver al menú)\n");
+               "\"La Gran Moisés\" en ejecución\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -153,7 +167,9 @@ int main( int argc, char *argv[] )
       case 'j': // Secuencia El Parpadeo.
         dprintf(FD_STDOUT,
                "-----------------------------------------------------------------------\n"
-               "\"El Parpadeo\" en ejecución (presione 's' para volver al menú)\n");
+               "\"El Parpadeo\" en ejecución\n"
+               "   - Presione 's' para volver al menú principal\n"
+               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );

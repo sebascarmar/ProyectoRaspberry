@@ -49,14 +49,14 @@ int main( int argc, char *argv[] )
 /*----------------------------- Menú Principal modo remoto  -------------------------------*/
   while( opcion != 'k' )
   {
+    system("clear"); 
     imprimeMenu( );
     if( modoLocal == false )
       opcion = seleccionMenuModoRemoto( fdUART );
     else
       opcion = seleccionMenuModoLocal( );
     
-    dprintf(FD_STDOUT, "\n\n");
-    
+    system("clear"); 
     switch( opcion)
     {
       case 'a': // Modo remoto/local.

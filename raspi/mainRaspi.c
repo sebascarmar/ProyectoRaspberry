@@ -29,6 +29,7 @@ int main( int argc, char *argv[] )
 
 
 /*-------------------------------- Control de acceso --------------------------------------*/
+  system("clear");
   printf("-----------------------------------------------------------------------\n"
          "Para continuar, por favor ingrese su contraseña\n");
 

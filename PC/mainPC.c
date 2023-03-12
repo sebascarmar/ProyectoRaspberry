@@ -78,7 +78,8 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                " \"El Auto Fantástico\" en ejecución\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
+               "   - Use las flechas para variar la velocidad de la secuencia\n"
+               "      Velocidad actual:   ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -91,7 +92,8 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Choque\" en ejecución\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
+               "   - Use las flechas para variar la velocidad de la secuencia\n"
+               "      Velocidad actual:   ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -104,7 +106,8 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Apilada\" en ejecución\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
+               "   - Use las flechas para variar la velocidad de la secuencia\n"
+               "      Velocidad actual:   ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -117,7 +120,8 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Carrera\" en ejecución\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
+               "   - Use las flechas para variar la velocidad de la secuencia\n"
+               "      Velocidad actual:   ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -130,7 +134,8 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Vúmetro\" en ejecución\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
+               "   - Use las flechas para variar la velocidad de la secuencia\n"
+               "      Velocidad actual:   ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -143,7 +148,8 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"Juntos Por Paridad\" en ejecución\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
+               "   - Use las flechas para variar la velocidad de la secuencia\n"
+               "      Velocidad actual:   ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -156,7 +162,8 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Gran Moisés\" en ejecución\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
+               "   - Use las flechas para variar la velocidad de la secuencia\n"
+               "      Velocidad actual:   ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );
@@ -169,7 +176,8 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Parpadeo\" en ejecución\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas para variar la velocidad de la secuencia\n  ");
+               "   - Use las flechas para variar la velocidad de la secuencia\n"
+               "      Velocidad actual:   ");
         usleep(1000);  // Retardo que permite que se imprima el mensaje siempre.
         
         secuencia( fdUART );

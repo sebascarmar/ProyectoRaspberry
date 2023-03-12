@@ -130,7 +130,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Auto Fantástico\" en ejecución\n\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n"
                "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
@@ -144,7 +144,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Choque\" en ejecución\n\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n"
                "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
@@ -158,7 +158,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Apilada\" en ejecución\n\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n"
                "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
@@ -172,7 +172,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Carrera\" en ejecución\n\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n"
                "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
@@ -186,7 +186,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Vúmetro\" en ejecución\n\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n"
                "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
@@ -200,7 +200,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"Juntos Por Paridad\" en ejecución\n\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n"
                "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
@@ -214,7 +214,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"La Gran Moisés\" en ejecución\n\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n"
                "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
        
@@ -228,7 +228,7 @@ int main( int argc, char *argv[] )
                "-----------------------------------------------------------------------\n"
                "\"El Parpadeo\" en ejecución\n\n"
                "   - Presione 's' para volver al menú principal\n"
-               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n  "
+               "   - Use las flechas (up/down) para variar la velocidad de la secuencia\n"
                "      Velocidad actual:   ");
         retardo( 1000000 );  // Retardo que permite que se imprima el mensaje siempre.
         

@@ -145,8 +145,12 @@ bool seleccionModo( int fdUART, bool modoLocal )
 
 void secuencia( int fdUART )
 {
+
   char buf[4] = {'\0'};
   int datosLeidos = 0;
+
+  union charInt auxHibrido;
+  auxHibrido.num = 0;
 
   while( buf[0] != 's' ) // Mantiene la secuencia hasta que se ingresa 's'.
   {
@@ -157,6 +161,17 @@ void secuencia( int fdUART )
       write( fdUART, buf, 3 ); // Envía el caracter por puerto serie.
       tcdrain(fdUART); // Espera a que lo que se haya escrito en "fdUART" se transmita.
       tcflush(fdUART, TCIOFLUSH);
+    }
+   
+    datosLeidos = read( fdUART, auxHibrido.bytes, 4); // Lee la UART.
+    if( (datosLeidos != 0) && (auxHibrido.num != 0) ) 
+    {
+      if( auxHibrido.num == 10 )
+        dprintf(FD_STDOUT, "\b\b  \b\b");
+      else
+        dprintf(FD_STDOUT, "\b\b  \b\b ");
+      
+      dprintf(FD_STDOUT, "%d", auxHibrido.num); // Imprime la velocidad en pantalla.
     }
   }
 

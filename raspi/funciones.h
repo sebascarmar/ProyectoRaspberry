@@ -29,7 +29,12 @@
 /*---------------------------- Tamaño de la contraseña ------------------------------------*/
 #define LENGTH_PSSW 5
 
-
+/*---------- Unión para recibir datos int por UART manipulandolos char a char -------------*/
+union intChar
+{
+  int num;
+  char bytes[4];
+};
 
 /*#########################################################################################*/
 /*##                         CONFIGURACIÓN DE LA ENTRADA ESTÁNDAR                        ##*/

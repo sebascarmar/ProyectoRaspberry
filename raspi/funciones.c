@@ -309,12 +309,27 @@ bool seleccionModoEnModoRemoto( int fdPuertoSerial )
 /*##                   MANEJO DE STDIN Y STDOUT DURANTE SECUENCIAS                       ##*/
 /*#########################################################################################*/
 
-void imprimeVelocidadDurante( int velSecuencias )
+void imprimeVelocidadDurante( int velSecuencias, bool modoLocal, int fdPuertoSerial )
 {
-  if( velSecuencias == 10)
-    dprintf(FD_STDOUT, "\b\b  \b\b%d", velSecuencias);
-  else
-    dprintf(FD_STDOUT, "\b\b  \b\b %d", velSecuencias);
+  union intChar auxHibrido;
+  auxHibrido.num = velSecuencias;
+
+  if( velSecuencias == 10 )
+  {
+    dprintf(FD_STDOUT, "\b\b  \b\b%d", velSecuencias); // Imprime velocidad en pantalla.
+    
+    if( modoLocal == 0 )                               // Envía velocidad por UART.
+    {
+      for(int i=0 ; i<4 ;i++)
+        serialPutchar(fdPuertoSerial, auxHibrido.bytes[i]);
+    }
+  }else
+  {
+    dprintf(FD_STDOUT, "\b\b  \b\b %d", velSecuencias); // Imprime velicudad en pantalla.
+    
+    if( modoLocal == 0 )                                // Envía velocidad por UART.
+      serialPuts(fdPuertoSerial, auxHibrido.bytes);
+  }
 }
 
 /*******************************************************************************************/

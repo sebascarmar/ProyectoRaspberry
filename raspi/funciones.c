@@ -374,7 +374,7 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, bool modoLocal, int fd
       lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
       
       velocidadSecuenciasConTeclado( velSecuencias, buf );
-      imprimeVelocidadDurante( *velSecuencias );
+      imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
       
       digitalWriteEP( leds[i], 1 );
      
@@ -388,7 +388,7 @@ void secAutoFantastico( int *leds, int8_t *velSecuencias, bool modoLocal, int fd
       lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
       
       velocidadSecuenciasConTeclado( velSecuencias, buf );
-      imprimeVelocidadDurante( *velSecuencias );
+      imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
       
       digitalWriteEP( leds[i], 1 );
       
@@ -417,7 +417,7 @@ void secChoque( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoSe
       lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
       
       velocidadSecuenciasConTeclado( velSecuencias, buf );
-      imprimeVelocidadDurante( *velSecuencias );
+      imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
       
       digitalWriteEP( leds[i], 1 );
       digitalWriteEP( leds[j], 1 );
@@ -518,7 +518,7 @@ void secApilada( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
         lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
          
         velocidadSecuenciasConTeclado( velSecuencias, buf );
-        imprimeVelocidadDurante( *velSecuencias );
+        imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
          
         digitalWriteEP( leds[j], laApilada[i][j] ); // Muestra en los leds la tabla.
         usleep(5000); // Delay entre cada led.
@@ -567,7 +567,7 @@ void secCarrera( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
         lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
         
         velocidadSecuenciasConTeclado( velSecuencias, buf );
-        imprimeVelocidadDurante( *velSecuencias );
+        imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
         
         digitalWriteEP( leds[j], laCarrera[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
@@ -624,7 +624,7 @@ void secVumetro( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuertoS
         lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
        
         velocidadSecuenciasConTeclado( velSecuencias, buf );
-        imprimeVelocidadDurante( *velSecuencias );
+        imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
         
         digitalWriteEP( leds[j], elVumetro[i][j] ); // Muestra en los leds la tabla.
         usleep(10000); // Delay entre cada led.
@@ -690,7 +690,7 @@ void secJuntosPorParidad( int *leds, int8_t *velSecuencias, bool modoLocal, int 
         lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
         
         velocidadSecuenciasConTeclado( velSecuencias, buf );
-        imprimeVelocidadDurante( *velSecuencias );
+        imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
         
         digitalWriteEP( leds[j], juntosPorParidad[i][j] ); // Muestra en los leds la tabla.
       }
@@ -717,7 +717,7 @@ void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuer
     lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
     
     velocidadSecuenciasConTeclado( velSecuencias, buf );
-    imprimeVelocidadDurante( *velSecuencias );
+    imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
     
     for(int i=0 ; (buf[0] != 's') && (i < 8) ; i++) // Enciende todos los leds.
       digitalWriteEP( leds[i], 1);
@@ -730,7 +730,7 @@ void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuer
       lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
       
       velocidadSecuenciasConTeclado( velSecuencias, buf );
-      imprimeVelocidadDurante( *velSecuencias );
+      imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
       
       digitalWriteEP( leds[j], 0 );
       digitalWriteEP( leds[k], 0 );
@@ -748,7 +748,7 @@ void secGranMoises( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuer
       lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
       
       velocidadSecuenciasConTeclado( velSecuencias, buf );
-      imprimeVelocidadDurante( *velSecuencias );
+      imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
       
       digitalWriteEP( leds[j], 1 );
       digitalWriteEP( leds[k], 1 );
@@ -777,7 +777,7 @@ void secParpadeo( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuerto
     lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
     
     velocidadSecuenciasConTeclado( velSecuencias, buf );
-    imprimeVelocidadDurante( *velSecuencias );
+    imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
     
     for(int i=0 ; (buf[0] != 's') && (i < 8) ; i++) // Enciende todos los leds.
       digitalWriteEP( leds[i], 1);
@@ -787,7 +787,7 @@ void secParpadeo( int *leds, int8_t *velSecuencias, bool modoLocal, int fdPuerto
     lecturaTeclado( modoLocal, fdPuertoSerial, buf ); // Lee el teclado local o remoto.
     
     velocidadSecuenciasConTeclado( velSecuencias, buf );
-    imprimeVelocidadDurante( *velSecuencias );
+    imprimeVelocidadDurante( *velSecuencias, modoLocal, fdPuertoSerial);
     
     for(int j = 0 ; (buf[0] != 's') && (j < 8) ; j++) // Apaga todos los leds.
       digitalWriteEP( leds[j], 0 );

@@ -158,7 +158,7 @@ bool seleccionModoEnModoRemoto( int fdPuertoSerial );
  * PARÁMETROS: un enetero con la velocidad de las secuencias ya seteada.
  * RETORNO: ninguno.
  */
-void imprimeVelocidadDurante( int velSecuencias );
+void imprimeVelocidadDurante( int velSecuencias, bool modoLocal, int fdPuertoSerial );
 
 /*******************************************************************************************/
 

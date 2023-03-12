@@ -14,6 +14,12 @@
 #define FD_STDOUT 1
 #define FD_STDERR 2
 
+/*---------- Unión para recibir datos int por UART manipulandolos char a char -------------*/
+union charInt
+{
+  int num;
+  char bytes[4];
+};
 
 /*#########################################################################################*/
 /*##                                     PARÁMETROS TTY                                  ##*/
